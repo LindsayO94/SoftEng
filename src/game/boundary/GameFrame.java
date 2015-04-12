@@ -5,12 +5,10 @@ import game.controller.GameAchievementsController;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
 
 import java.awt.CardLayout;
 
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 	AchievementsPanel achievements = new AchievementsPanel();
 	MainMenuPanel mainMenu = new MainMenuPanel();

@@ -1,7 +1,6 @@
 package game.boundary;
 
 import java.awt.Graphics;
-import java.awt.Panel;
 
 import javax.swing.JLabel;
 
@@ -13,9 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
 
+@SuppressWarnings("serial")
 public class AchievementsPanel extends JPanel {
 	private JTable table;
 	public AchievementsPanel() {

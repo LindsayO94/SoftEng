@@ -1,7 +1,5 @@
 package game.boundary;
 
-import game.controller.GameAchievementsController;
-
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,11 +15,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import java.awt.Component;
-
-import javax.swing.Box;
-
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel {
 	private JButton playGameButton;
 	private JButton achievementsButton;
