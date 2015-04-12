@@ -1,29 +1,35 @@
 package game.boundary;
 
+import game.controller.GameAchievementsController;
+
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 
+import java.awt.CardLayout;
+
 public class GameFrame extends JFrame {
+	AchievementsPanel achievements = new AchievementsPanel();
+	MainMenuPanel mainMenu = new MainMenuPanel();
+	
 	public GameFrame() {
 		
-		MainMenuPanel panel = new MainMenuPanel();
+		this.setMinimumSize(new Dimension(800, 600));
+		getContentPane().setLayout(new CardLayout(0, 0));
 		
-		/// NO TOUCHING
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
-		);
-		getContentPane().setLayout(groupLayout);
-		
-		/// DONE
+		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
+
+		getContentPane().add(mainMenu, "Main Menu");
+		getContentPane().add(achievements, "Achievements");
 	}
+
+	public void showAchievements() {
+		CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+		cardLayout.show(getContentPane(), "Achievements");
+	}
+	
+	
 }
