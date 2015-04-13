@@ -1,5 +1,5 @@
 package game.boundary;
-import entities.*;
+import game.entities.*;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,13 +23,14 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class AchievementsPanel extends JPanel {
 	private JTable table_1;
+	JButton mainMenuButton;
 	public AchievementsPanel(Game game) {
 		
 		JLabel lblAchievements = new JLabel("Achievements!");
 		lblAchievements.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAchievements.setFont(new Font("Dialog", Font.PLAIN, 40));
 		
-		JButton btnNewButton = new JButton("Back to Main Menu!");
+		mainMenuButton = new JButton("Back to Main Menu!");
 		
 		String[] columns = {"", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
 		Object[][] data = {
@@ -74,7 +75,7 @@ public class AchievementsPanel extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(672, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
+					.addComponent(mainMenuButton)
 					.addGap(17))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(262)
@@ -93,7 +94,7 @@ public class AchievementsPanel extends JPanel {
 					.addGap(103)
 					.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
+					.addComponent(mainMenuButton)
 					.addGap(15))
 		);
 		setLayout(groupLayout);
@@ -101,5 +102,9 @@ public class AchievementsPanel extends JPanel {
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
+	}
+	
+	public JButton getBackButton() {
+		return mainMenuButton;
 	}
 }

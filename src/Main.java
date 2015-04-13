@@ -1,8 +1,7 @@
-package game;
-import entities.*;
-import java.util.ArrayList;
 
-import game.boundary.GameFrame;
+import java.util.ArrayList;
+import game.entities.*;
+import game.boundary.*;
 
 public class Main {
 	public static ArrayList<Level> addLevels(ArrayList<Level> levels){

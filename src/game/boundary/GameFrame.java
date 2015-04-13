@@ -1,6 +1,7 @@
 package game.boundary;
-import entities.*;
-import game.controller.GameAchievementsController;
+import game.entities.*;
+import game.boundary.*;
+import game.controller.*;
 
 import java.awt.Dimension;
 
@@ -24,6 +25,7 @@ public class GameFrame extends JFrame {
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
+		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
 
 		getContentPane().add(mainMenu, "Main Menu");
 		getContentPane().add(achievements, "Achievements");
