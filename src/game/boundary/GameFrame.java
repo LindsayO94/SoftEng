@@ -1,5 +1,5 @@
 package game.boundary;
-
+import entities.*;
 import game.controller.GameAchievementsController;
 
 import java.awt.Dimension;
@@ -10,11 +10,16 @@ import java.awt.CardLayout;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
-	AchievementsPanel achievements = new AchievementsPanel();
+	//Entities
+	Game game;
+	
+	AchievementsPanel achievements;
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	
-	public GameFrame() {
+	public GameFrame(Game game) {
 		
+		this.game = game;
+		achievements = new AchievementsPanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
@@ -24,10 +29,10 @@ public class GameFrame extends JFrame {
 		getContentPane().add(achievements, "Achievements");
 	}
 
-	public void showAchievements() {
+	/*public void showAchievements() {
 		CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
 		cardLayout.show(getContentPane(), "Achievements");
-	}
+	}*/
 	
 	
 }
