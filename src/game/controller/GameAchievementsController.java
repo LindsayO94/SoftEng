@@ -1,6 +1,7 @@
 package game.controller;
 import game.boundary.GameFrame;
 
+import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,30 +13,26 @@ public class GameAchievementsController implements MouseListener {
 		this.gf = gf;
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
-		gf.showAchievements();
+		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
+		cardLayout.show(gf.getContentPane(), "Achievements");
 	}
 
-	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
