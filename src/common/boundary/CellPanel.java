@@ -13,13 +13,11 @@ public class CellPanel extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(tile, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(tile, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(tile, GroupLayout.PREFERRED_SIZE, 298, Short.MAX_VALUE)
-					.addContainerGap())
+				.addComponent(tile, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 		);
 		setLayout(groupLayout);
 	}
