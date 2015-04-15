@@ -1,7 +1,6 @@
 package game.boundary;
 import game.entities.*;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
