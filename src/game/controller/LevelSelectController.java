@@ -1,20 +1,21 @@
 package game.controller;
+
 import game.boundary.GameFrame;
 
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class PlayGameController implements MouseListener {
-	GameFrame gf;
+public class LevelSelectController implements MouseListener {
+GameFrame gf;
 	
-	public PlayGameController(GameFrame gf){
+	public LevelSelectController(GameFrame gf){
 		this.gf = gf;
 	}
 
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "1");
+		cardLayout.show(gf.getContentPane(), "Play Game");
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -38,3 +39,4 @@ public class PlayGameController implements MouseListener {
 	}
 
 }
+

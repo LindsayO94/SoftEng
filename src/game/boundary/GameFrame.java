@@ -16,6 +16,7 @@ public class GameFrame extends JFrame {
 	
 	AchievementsPanel achievements;
 	PlayGamePanel playGame;
+	LevelSelectPanel levelSelect;
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	
 	public GameFrame(Game game) {
@@ -26,13 +27,16 @@ public class GameFrame extends JFrame {
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
-		mainMenu.getPlayGameButton().addMouseListener(new PlayGameController(this));
+		mainMenu.getPlayGameButton().addMouseListener(new LevelSelectController(this));
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		levelSelect.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		levelSelect.getPuzzle1Button().addMouseListener(new PlayGameController(this));
 		
 		getContentPane().add(mainMenu, "Main Menu");
 		getContentPane().add(playGame, "Play Game");
+		getContentPane().add(levelSelect, "1");
 		getContentPane().add(achievements, "Achievements");
 	}
 
