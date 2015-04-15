@@ -14,19 +14,24 @@ public class GameFrame extends JFrame {
 	Game game;
 	
 	AchievementsPanel achievements;
+	PlayGamePanel playGame;
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	
 	public GameFrame(Game game) {
 		
 		this.game = game;
 		achievements = new AchievementsPanel(game);
+		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
+		mainMenu.getPlayGameButton().addMouseListener(new PlayGameController(this));
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
-
+		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		
 		getContentPane().add(mainMenu, "Main Menu");
+		getContentPane().add(playGame, "Play Game");
 		getContentPane().add(achievements, "Achievements");
 	}
 

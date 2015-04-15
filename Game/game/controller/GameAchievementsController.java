@@ -5,16 +5,17 @@ import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class BackToMainMenuController implements MouseListener{
+
+public class GameAchievementsController implements MouseListener {
 	GameFrame gf;
 	
-	public BackToMainMenuController(GameFrame gf){
+	public GameAchievementsController(GameFrame gf){
 		this.gf = gf;
 	}
 
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "Main Menu");
+		cardLayout.show(gf.getContentPane(), "Achievements");
 	}
 
 	public void mousePressed(MouseEvent e) {
