@@ -1,6 +1,5 @@
 package game.boundary;
 import game.entities.*;
-import game.boundary.*;
 import game.controller.*;
 
 import java.awt.Dimension;
