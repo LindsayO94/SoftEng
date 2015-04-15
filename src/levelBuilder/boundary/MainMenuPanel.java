@@ -31,15 +31,15 @@ public class MainMenuPanel extends JPanel {
 	private JButton loadButton;
 	
 	public MainMenuPanel(){
-		setBackground(new Color(255, 69, 0));
+		setBackground(new Color(255, 204, 102));
 		
 		newLvlButton = new JButton("Create New Level");
 		newLvlButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		newLvlButton.setBackground(new Color(173, 255, 47));
+		newLvlButton.setBackground(new Color(102, 51, 204));
 		
 		loadButton = new JButton("Load Existing Project");
 		loadButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		loadButton.setBackground(new Color(173, 255, 47));
+		loadButton.setBackground(new Color(102, 51, 204));
 		
 		JLabel label = new JLabel("");
 		

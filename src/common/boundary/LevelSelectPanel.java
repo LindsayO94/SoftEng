@@ -38,7 +38,6 @@ public class LevelSelectPanel extends JPanel {
 		lblRelease.setFont(new Font("Tahoma", Font.BOLD, 17));
 		
 		puzzle1 = new JButton("1");
-		puzzle1.setBackground(Color.DARK_GRAY);
 		puzzle1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		puzzle1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,7 +124,6 @@ public class LevelSelectPanel extends JPanel {
 		lblSelectALevel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		mainMenuButton = new JButton("Main Menu");
-		mainMenuButton.setBackground(Color.DARK_GRAY);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
