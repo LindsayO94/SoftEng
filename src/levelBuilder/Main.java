@@ -1,8 +1,9 @@
+package levelBuilder;
 import levelBuilder.boundary.LevelBuilderFrame;
-import game.boundary.GameFrame;
 
 
-public class MainLevelBuilder {
+
+public class Main {
 	public static void main(String args[]) {
 		LevelBuilderFrame f = new LevelBuilderFrame() ;
 		f.setVisible(true);

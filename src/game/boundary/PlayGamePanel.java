@@ -10,8 +10,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
+
+import common.boundary.BoardPanel;
+import common.boundary.TilePanel;
 
 @SuppressWarnings("serial")
 public class PlayGamePanel extends JPanel {
@@ -35,42 +40,42 @@ public class PlayGamePanel extends JPanel {
 		
 		JButton btnShuffle = new JButton("Shuffle");
 		
-		JLabel lblNewLabel = new JLabel("This is such a great placeholder for a board. Man, I sure hope that one day a board will be placed here so that we can revel in the glory of this placeholder. None of it would have been possible without him, and for that we thank him. Praise the board placeholder for all of eternity! May we Hold our praise for Him in its rightful Place.");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		BoardPanel panel = new BoardPanel();
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblStarPlaceholder)
-						.addComponent(lblScore)
-						.addComponent(lblMovesRemaining))
-					.addGap(70)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 494, Short.MAX_VALUE)
-					.addGap(55))
-				.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblStarPlaceholder)
+								.addComponent(lblScore)
+								.addComponent(lblMovesRemaining))
+							.addGap(31))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnShuffle, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
+							.addGap(28)))
+					.addGap(10)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
+					.addGap(39))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnShuffle, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
-					.addGap(617))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(595, Short.MAX_VALUE)
+					.addContainerGap(532, Short.MAX_VALUE)
 					.addComponent(mainMenuButton, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGap(38))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblPuzzleLevel)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblPuzzleLevel)
 							.addGap(19)
 							.addComponent(lblMovesRemaining)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -78,19 +83,18 @@ public class PlayGamePanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblStarPlaceholder)
 							.addGap(54)
-							.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+							.addComponent(button_1, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+							.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnShuffle, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-							.addGap(33))
+							.addComponent(btnShuffle, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addGap(114))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(54)
-							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(mainMenuButton, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					.addGap(12))
+							.addGap(25)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
+							.addGap(15)
+							.addComponent(mainMenuButton, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		setLayout(groupLayout);
 		
@@ -103,5 +107,4 @@ public class PlayGamePanel extends JPanel {
 	public JButton getBackButton() {
 		return mainMenuButton;
 	}
-	
 }
