@@ -17,9 +17,11 @@ import javax.swing.SwingConstants;
 
 import common.boundary.BoardPanel;
 import common.boundary.TilePanel;
+import common.entity.Board;
 
 @SuppressWarnings("serial")
 public class PlayGamePanel extends JPanel {
+	Board board;
 
 	JButton mainMenuButton;
 	public PlayGamePanel(Game game){
@@ -40,7 +42,7 @@ public class PlayGamePanel extends JPanel {
 		
 		JButton btnShuffle = new JButton("Shuffle");
 		
-		BoardPanel panel = new BoardPanel();
+		BoardPanel panel = new BoardPanel(board);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

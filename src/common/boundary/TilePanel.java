@@ -1,19 +1,32 @@
 package common.boundary;
 
 import javax.swing.JPanel;
+
 import java.awt.Color;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import common.entity.Tile;
+
 public class TilePanel extends JPanel {
-	public TilePanel() {
+	Tile tile;
+	
+	public TilePanel(Tile tile) {
+		this.tile = tile;
+		
+		// HERE THERE BE WINDOW BUILDER
 		setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		setBackground(Color.ORANGE);
 		
+		// TODO: As soon as the "tile" parameter is working, change
+		// this to reference the model.
 		JLabel label = new JLabel("2");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Museo Slab", Font.PLAIN, 26));
