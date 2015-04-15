@@ -5,7 +5,6 @@ import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
 public class GameAchievementsController implements MouseListener {
 	GameFrame gf;
 	
