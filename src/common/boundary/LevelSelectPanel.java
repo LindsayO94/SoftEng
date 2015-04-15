@@ -1,4 +1,4 @@
-package game.boundary;
+package common.boundary;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
