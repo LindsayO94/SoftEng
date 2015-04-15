@@ -15,7 +15,7 @@ public class GameFrame extends JFrame {
 	
 	AchievementsPanel achievements;
 	PlayGamePanel playGame;
-	LevelSelectPanel levelSelect;
+	LevelSelectPanel levelSelect = new LevelSelectPanel();
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	
 	public GameFrame(Game game) {
@@ -35,7 +35,7 @@ public class GameFrame extends JFrame {
 		
 		getContentPane().add(mainMenu, "Main Menu");
 		getContentPane().add(playGame, "Play Game");
-		getContentPane().add(levelSelect, "1");
+		getContentPane().add(levelSelect, "Level Select");
 		getContentPane().add(achievements, "Achievements");
 	}
 

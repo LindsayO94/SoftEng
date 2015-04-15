@@ -14,7 +14,7 @@ public class PlayGameController implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "1");
+		cardLayout.show(gf.getContentPane(), "Play Game");
 	}
 
 	public void mousePressed(MouseEvent e) {

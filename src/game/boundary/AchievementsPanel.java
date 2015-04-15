@@ -50,7 +50,11 @@ public class AchievementsPanel extends JPanel {
 			}
 		}
 		
-		table_1 = new JTable(data,columns);
+		table_1 = new JTable(data,columns) {
+			public boolean isCellEditable(int rowIndex, int colIndex) {
+				return false; //Disallow the editing of any cell
+			}
+		};
 		table_1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		table_1.setForeground(new Color(0, 0, 0));
 		table_1.setBackground(new Color(153, 204, 255));

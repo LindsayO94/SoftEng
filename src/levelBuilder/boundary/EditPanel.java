@@ -163,7 +163,7 @@ public class EditPanel extends JPanel {
 		
 		btnQuit = new JButton("Quit");
 		
-		board = new BoardPanel();
+		board = new BoardPanel(null);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

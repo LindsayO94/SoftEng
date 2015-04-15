@@ -15,7 +15,7 @@ GameFrame gf;
 
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "Play Game");
+		cardLayout.show(gf.getContentPane(), "Level Select");
 	}
 
 	public void mousePressed(MouseEvent e) {

@@ -18,7 +18,7 @@ public class BoardPanel extends JPanel {
 		setLayout(new GridLayout(9, 9, 0, 0));
 		
 		for (int i = 0; i < cells.length; i++) {
-			cells[i] = new CellPanel(board.getCell(i));
+			cells[i] = new CellPanel(null);
 			add(cells[i]);
 		}
 	}
