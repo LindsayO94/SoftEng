@@ -18,16 +18,18 @@ import common.entity.Tile;
 public class TilePanel extends JPanel {
 	Tile tile;
 	
+	final static Color colors[] = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.MAGENTA};
+	
 	public TilePanel(Tile tile) {
 		this.tile = tile;
 		
 		// HERE THERE BE WINDOW BUILDER
 		setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		setBackground(Color.ORANGE);
+		setBackground(colors[tile.getValue()-1]);
 		
 		// TODO: As soon as the "tile" parameter is working, change
 		// this to reference the model.
-		JLabel label = new JLabel("2");
+		JLabel label = new JLabel(tile.getValue() + "");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Museo Slab", Font.PLAIN, 26));
 		GroupLayout groupLayout = new GroupLayout(this);

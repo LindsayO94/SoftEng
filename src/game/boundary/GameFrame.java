@@ -43,11 +43,4 @@ public class GameFrame extends JFrame {
 		getContentPane().add(levelSelect, "Level Select");
 		getContentPane().add(achievements, "Achievements");
 	}
-
-	/*public void showAchievements() {
-		CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-		cardLayout.show(getContentPane(), "Achievements");
-	}*/
-	
-	
 }

@@ -22,7 +22,7 @@ public abstract class Cell {
 	 * false otherwise.
 	 * 
 	 * @param other The other cell to compare this to
-	 * @return Whether the cells 
+	 * @return Whether the cells are neighbors
 	 */
 	public boolean isNeighborCell(Cell other) {
 		return this.getColumn() == other.getColumn() || this.getRow() == other.getRow();
