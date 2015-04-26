@@ -27,7 +27,6 @@ public class MainMenuPanel extends JPanel {
 		setForeground(Color.BLUE);
 		
 		playGameButton = new JButton("Play Game");
-		playGameButton.setBackground(new Color(0, 204, 0));
 		playGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

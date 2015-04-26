@@ -16,32 +16,27 @@ public class SplashController implements MouseListener{
 		this.bf = levelBuilderFrame;
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) bf.getContentPane().getLayout();
 		cardLayout.show(bf.getContentPane(), "Main Menu");
 		
 	}
 
-	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		

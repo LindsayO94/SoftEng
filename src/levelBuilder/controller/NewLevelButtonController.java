@@ -14,7 +14,6 @@ public class NewLevelButtonController implements MouseListener {
 		this.LbF = frame;
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) LbF.getContentPane().getLayout();
 		cardLayout.show(LbF.getContentPane(), "Editor");
@@ -22,25 +21,21 @@ public class NewLevelButtonController implements MouseListener {
 		
 	}
 
-	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
