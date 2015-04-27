@@ -1,31 +1,21 @@
 package game;
 
 import java.util.ArrayList;
+
+import common.entity.Level;
+
 import game.entities.*;
 import game.boundary.*;
 
 public class Main {
 	public static ArrayList<Level> addLevels(ArrayList<Level> levels){
-		levels.add(new Level(100, "Puzzle"));
-		levels.add(new Level(200, "Puzzle"));
-		levels.add(new Level(300, "Puzzle"));
-		levels.add(new Level(400, "Puzzle"));
-		levels.add(new Level(500, "Puzzle"));
-		levels.add(new Level(100, "Lightning"));
-		levels.add(new Level(200, "Lightning"));
-		levels.add(new Level(300, "Lightning"));
-		levels.add(new Level(400, "Lightning"));
-		levels.add(new Level(500, "Lightning"));
-		levels.add(new Level(100, "Elimination"));
-		levels.add(new Level(200, "Elimination"));
-		levels.add(new Level(300, "Elimination"));
-		levels.add(new Level(400, "Elimination"));
-		levels.add(new Level(500, "Elimination"));
-		levels.add(new Level(100, "Release"));
-		levels.add(new Level(200, "Release"));
-		levels.add(new Level(300, "Release"));
-		levels.add(new Level(400, "Release"));
-		levels.add(new Level(500, "Release"));
+		for (String type : Level.allowedTypes) {
+			for (int score = 100; score <= 500; score += 100) {
+				Level l = new Level(type, 0);
+				l.setHighScore(score);
+				levels.add(l);
+			}
+		}
 		return levels;
 	}
 	

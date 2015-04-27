@@ -16,9 +16,14 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JButton;
 
 import common.boundary.BoardPanel;
+import common.entity.Board;
+import common.entity.Level;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Component;
 
 public class EditPanel extends JPanel {
@@ -52,8 +57,10 @@ public class EditPanel extends JPanel {
 	private JTextField textField_15;
 	private JButton btnPreview;
 	private JTextField textField_16;
+	Level level;
 	
-	public EditPanel(){
+	public EditPanel(Level level){
+		this.level = level;
 		
 		lblLevel = new JLabel("Level");
 		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -180,7 +187,7 @@ public class EditPanel extends JPanel {
 			}
 		});
 		
-		board = new BoardPanel(null);
+		board = new BoardPanel(Board.makeBoard(level));
 		
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);

@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import common.entity.Level;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")

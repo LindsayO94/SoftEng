@@ -3,6 +3,7 @@ package common.boundary;
 import javax.swing.JPanel;
 
 import common.entity.Board;
+<<<<<<< .merge_file_a90884
 import common.entity.Tile;
 import common.entity.TileCell;
 
@@ -10,6 +11,13 @@ import java.awt.GridLayout;
 import java.util.Random;
 
 import levelBuilder.controller.ChangeCellTypeController;
+=======
+import common.entity.Cell;
+import common.entity.TileCell;
+
+import java.awt.GridLayout;
+import java.util.ArrayList;
+>>>>>>> .merge_file_a92660
 
 public class BoardPanel extends JPanel {
 	// Entities
@@ -19,8 +27,8 @@ public class BoardPanel extends JPanel {
 	public BoardPanel(Board board) {
 		this.board = board;
 		
-		// HERE THERE BE WINDOW BUILDER
 		setLayout(new GridLayout(9, 9, 0, 0));
+<<<<<<< .merge_file_a90884
 		int row = 0, column = 0;
 		Random r = new Random();
 		for (int i = 0; i < cells.length; i++) {
@@ -31,7 +39,20 @@ public class BoardPanel extends JPanel {
 			cells[i].addMouseListener(new ChangeCellTypeController(cells[i]));
 			add(cells[i]);
 			
+=======
+				
+		int i = 0;
+		for (ArrayList<Cell> row : board.getCells()) {
+			for (Cell cell : row) {
+				switch (cell.getType()) {
+				case TILE_CELL:
+					TilePanel tileView = new TilePanel( ((TileCell) cell).getTile() );
+					cells[i] = new TileCellPanel(cell, tileView);
+				}
+				add(cells[i]);
+				i += 1;
+			}
+>>>>>>> .merge_file_a92660
 		}
 	}
-
 }
