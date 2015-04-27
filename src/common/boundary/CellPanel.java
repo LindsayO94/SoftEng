@@ -10,7 +10,6 @@ import common.entity.Tile;
 public abstract class CellPanel extends JPanel {
 	Cell cellModel;
 	
-<<<<<<< HEAD
 	TilePanel tileView;
 	
 	public CellPanel(Cell cell, TilePanel tileView) {
@@ -31,10 +30,10 @@ public abstract class CellPanel extends JPanel {
 				.addComponent(tileView, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 		);
 		setLayout(groupLayout);
-=======
+	}
+	
 	public CellPanel(Cell cell) {
 		this.cellModel = cell;
->>>>>>> 850fa54edc1e794a25390c60dd58c1ecc72d693a
 	}
 	
 	public Cell getCellModel(){

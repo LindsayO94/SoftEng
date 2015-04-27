@@ -1,13 +1,8 @@
 package common.entity;
 
 public abstract class Cell {
-<<<<<<< HEAD
-	int column;
-	int row;
 	Boolean active;
 	
-	public Cell(int column, int row, Boolean active) {
-=======
 	public static enum Type {
 		TILE_CELL
 	}
@@ -15,12 +10,11 @@ public abstract class Cell {
 	final int column;
 	final int row;
 	
-	public Cell(int column, int row) {
+	public Cell(int column, int row,  Boolean active) {
 		if (column < 0 || column >= 9 || row < 0 || row >= 9) {
 			throw new IllegalArgumentException("Illegal row or column passed to cell constructor");
 		}
 		
->>>>>>> 850fa54edc1e794a25390c60dd58c1ecc72d693a
 		this.column = column;
 		this.row = row;
 		this.active = active;

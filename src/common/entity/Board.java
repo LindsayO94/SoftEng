@@ -17,7 +17,7 @@ public abstract class Board {
 				switch (level.startingConfig[i][j]) {
 				case TILE_CELL:
 					Tile tile = level.getRandomTile();
-					cells.get(i).add(j, new TileCell(i, j, tile));
+					cells.get(i).add(j, new TileCell(i, j, tile, true));
 					break;
 				default:
 					throw new RuntimeException("Unknown tile type");

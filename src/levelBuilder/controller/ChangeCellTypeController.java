@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import common.boundary.CellPanel;
+import common.boundary.TileCellPanel;
+import common.boundary.TilePanel;
 
 public class ChangeCellTypeController implements MouseListener{
 
@@ -17,7 +19,6 @@ public class ChangeCellTypeController implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		System.out.println("Click!");
 		cell.getCellModel().toggleActive();
-		cell.getTileView().setBackground();
 		cell.getTileView().toggleNumber();
 		cell.repaint();
 		// TODO Auto-generated method stub

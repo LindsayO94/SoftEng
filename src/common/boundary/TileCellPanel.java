@@ -6,12 +6,10 @@ import javax.swing.GroupLayout.Alignment;
 import common.entity.Cell;
 
 public class TileCellPanel extends CellPanel {	
-	TilePanel tileView;
 	
 	public TileCellPanel(Cell cell, TilePanel tileView) {
-		super(cell);
+		super(cell, tileView);
 		
-		this.tileView = tileView;
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

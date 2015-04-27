@@ -51,12 +51,12 @@ public class TilePanel extends JPanel {
 		setLayout(groupLayout);
 	}
 	
-	public void setBackground(){
-		System.out.println("changing color to "+(tile.getValue()-1));
-		setBackground(colors[tile.getValue()-1]);
-	}
 	
 	public void toggleNumber(){
+		if (label.isVisible())
+			setBackground(colors[6]);
+		else
+			setBackground(colors[tile.getOldValue()-1]);
 		label.setVisible(!(label.isVisible()));
 	}
 }
