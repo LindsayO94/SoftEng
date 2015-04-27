@@ -1,7 +1,5 @@
-package game.boundary;
+package common.entity;
 
-import common.entity.Board;
-import common.entity.Level;
 
 public class PuzzleBoard extends Board {
 

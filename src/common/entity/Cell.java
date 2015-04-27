@@ -1,12 +1,18 @@
 package common.entity;
 
-import common.entity.Level.CellType;
-
 public abstract class Cell {
-	int column;
-	int row;
+	public static enum Type {
+		TILE_CELL
+	}
+	
+	final int column;
+	final int row;
 	
 	public Cell(int column, int row) {
+		if (column < 0 || column >= 9 || row < 0 || row >= 9) {
+			throw new IllegalArgumentException("Illegal row or column passed to cell constructor");
+		}
+		
 		this.column = column;
 		this.row = row;
 	}
@@ -29,11 +35,7 @@ public abstract class Cell {
 	 * @return Whether the cells are neighbors
 	 */
 	public boolean isNeighborCell(Cell other) {
-		return this.getColumn() == other.getColumn() || this.getRow() == other.getRow();
-	}
-
-	public static Cell newCellOfType(CellType cellType) {
-		// TODO Auto-generated method stub
-		return null;
+		// This is an xor so that a cell can't be its own neighbor
+		return this.getColumn() == other.getColumn() ^ this.getRow() == other.getRow();
 	}
 }

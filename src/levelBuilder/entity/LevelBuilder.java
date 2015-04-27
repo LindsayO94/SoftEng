@@ -9,7 +9,7 @@ public class LevelBuilder {
 	
 	public LevelBuilder() {
 		setLevel(new Level());
-		setBoard(getLevel().makeBoard());
+		setBoard(Board.makeBoard(level));
 	}
 
 	public Board getBoard() {

@@ -2,13 +2,7 @@ package common.entity;
 
 import java.util.Random;
 
-import game.boundary.PuzzleBoard;
-
 public class Level {
-	public static enum CellType {
-		TILE_CELL
-	}
-	
 	Random rand = new Random();
 	
 	// State -- only Game can change these fields
@@ -19,7 +13,7 @@ public class Level {
 	// Configuration -- only LevelBuilder can change these fields
 	String type;
 	
-	CellType startingConfig[][] = new CellType[9][9];
+	Cell.Type startingConfig[][] = new Cell.Type[9][9];
 	
 	int frequency[] = new int[6];
 	int multiplierFrequency[] = new int[3];
@@ -51,7 +45,7 @@ public class Level {
 		// Temporary - For now, all cells are tile cells
 		for (int i = 0; i < startingConfig.length; i++) {
 			for (int j = 0; j < startingConfig[i].length; j++) {
-				startingConfig[i][j] = CellType.TILE_CELL;
+				startingConfig[i][j] = Cell.Type.TILE_CELL;
 			}
 		}
 	}
@@ -81,21 +75,10 @@ public class Level {
 			}
 		}
 		
-		
 		throw new RuntimeException("Logic error when calculating random value");
 	}
 
 	public Tile getRandomTile() {
 		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
-	}
-
-	public Board makeBoard() {
-		switch (type) {
-		case "Puzzle":
-			return new PuzzleBoard(this);
-			
-		default:
-			throw new RuntimeException("Unknown board type");
-		}
 	}
 }

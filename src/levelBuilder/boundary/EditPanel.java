@@ -16,6 +16,7 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JButton;
 
 import common.boundary.BoardPanel;
+import common.entity.Board;
 import common.entity.Level;
 
 import java.awt.event.ActionListener;
@@ -186,7 +187,7 @@ public class EditPanel extends JPanel {
 			}
 		});
 		
-		board = new BoardPanel(level.makeBoard());
+		board = new BoardPanel(Board.makeBoard(level));
 		
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);
