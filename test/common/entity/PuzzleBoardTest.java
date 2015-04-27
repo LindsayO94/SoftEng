@@ -12,7 +12,7 @@ public class PuzzleBoardTest {
 	public void setUp() throws Exception {
 		// TODO: Currently levels default to only tiles, but eventually
 		// that will be changed
-		levelWithOnlyTiles = new Level();
+		levelWithOnlyTiles = new Level(23);
 	}
 
 	@Test

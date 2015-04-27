@@ -9,7 +9,7 @@ public class BoardTest {
 
 	@Test
 	public void testMakePuzzleBoard() {
-		Level l = new Level(0, "Puzzle");
+		Level l = new Level("Puzzle", 13);
 		Board b = Board.makeBoard(l);
 		
 		assertTrue(b instanceof PuzzleBoard);
@@ -18,7 +18,7 @@ public class BoardTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testMakeBoardUnknownType() {
-		Level l = new Level(0, "EagleWing");
+		Level l = new Level("EagleWing", 13);
 		Board.makeBoard(l);
 	}
 

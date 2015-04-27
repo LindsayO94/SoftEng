@@ -1,9 +1,11 @@
 package common.entity;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Level {
-	Random rand = new Random();
+	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" };
+	Random rand;
 	
 	// State -- only Game can change these fields
 	boolean locked;
@@ -27,9 +29,14 @@ public class Level {
 	
 	int starScore[] = new int[3];
 	
-	public Level(int highScore, String type) {
-		this.setHighScore(highScore);
+	public Level(String type, long seed) {
+		if (!Arrays.asList(Level.allowedTypes).contains(type)) {
+			throw new IllegalArgumentException("Illegal level type");
+		}
+		
 		this.type = type;
+		
+		this.rand = new Random(seed);
 		
 		// Temporary - For now, all frequencies are 1
 		for (int i = 0; i < frequency.length; i++) {
@@ -50,8 +57,8 @@ public class Level {
 		}
 	}
 
-	public Level() {
-		this(0, "Puzzle");
+	public Level(long seed) {
+		this("Puzzle", seed);
 	}
 
 	public int getHighScore() {
@@ -63,6 +70,10 @@ public class Level {
 	}
 	
 	int getWeightedRandomIndex(int arr[]) {
+		if (arr.length == 0) {
+			throw new IllegalArgumentException("getWeightedRandomIndex cannot accept an empty array");
+		}
+		
 		int total = 0;
 		for (int freq : arr) total += freq;
 		int num = rand.nextInt(total);

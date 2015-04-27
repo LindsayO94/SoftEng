@@ -7,8 +7,8 @@ public class LevelBuilder {
 	private Level level;
 	private Board board;
 	
-	public LevelBuilder() {
-		setLevel(new Level());
+	public LevelBuilder(long randomSeed) {
+		setLevel(new Level(randomSeed));
 		setBoard(Board.makeBoard(level));
 	}
 

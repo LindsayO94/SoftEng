@@ -57,7 +57,7 @@ public class EditPanel extends JPanel {
 	private JTextField textField_15;
 	private JButton btnPreview;
 	private JTextField textField_16;
-	private Level level;
+	Level level;
 	
 	public EditPanel(Level level){
 		this.level = level;
