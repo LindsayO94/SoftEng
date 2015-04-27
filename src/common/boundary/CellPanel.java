@@ -14,14 +14,14 @@ public class CellPanel extends JPanel {
 	
 	TilePanel tileView;
 	
-	public CellPanel(Cell cell) {
+	public CellPanel(Cell cell, TilePanel tileView) {
 		this.cellModel = cell;
 		
-		Random r = new Random();
+		
 		
 		// TODO: This can't be null forever -- where should the 
 		// tile come from?
-		tileView = new TilePanel(new Tile(r.nextInt(6)+1, 1));
+		this.tileView = tileView;
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -32,6 +32,14 @@ public class CellPanel extends JPanel {
 				.addComponent(tileView, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 		);
 		setLayout(groupLayout);
+	}
+	
+	public Cell getCellModel(){
+		return cellModel;
+	}
+	
+	public TilePanel getTileView(){
+		return tileView;
 	}
 
 }

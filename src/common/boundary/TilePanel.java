@@ -17,8 +17,9 @@ import common.entity.Tile;
 
 public class TilePanel extends JPanel {
 	Tile tile;
+	JLabel label;
 	
-	final static Color colors[] = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.MAGENTA};
+	final static Color colors[] = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.lightGray};
 	
 	public TilePanel(Tile tile) {
 		this.tile = tile;
@@ -29,7 +30,7 @@ public class TilePanel extends JPanel {
 		
 		// TODO: As soon as the "tile" parameter is working, change
 		// this to reference the model.
-		JLabel label = new JLabel(tile.getValue() + "");
+		label = new JLabel(tile.getValue() + "");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Museo Slab", Font.PLAIN, 26));
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -48,5 +49,14 @@ public class TilePanel extends JPanel {
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
+	}
+	
+	public void setBackground(){
+		System.out.println("changing color to "+(tile.getValue()-1));
+		setBackground(colors[tile.getValue()-1]);
+	}
+	
+	public void toggleNumber(){
+		label.setVisible(!(label.isVisible()));
 	}
 }
