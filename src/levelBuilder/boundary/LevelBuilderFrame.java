@@ -8,20 +8,23 @@ import javax.swing.JFrame;
 import levelBuilder.controller.BackToMainBuilderMenuController;
 import levelBuilder.controller.NewLevelButtonController;
 import levelBuilder.controller.SplashController;
+import levelBuilder.entity.LevelBuilder;
 
 public class LevelBuilderFrame extends JFrame {
-	
 	//Entities go here
+	LevelBuilder levelBuilder;
 
 	//Boundary Class Hierarchy Connections
 	MainMenuPanel mainMenu;
 	EditPanel editor;
 	SplashPanel splash;
 	
-	public LevelBuilderFrame() {
+	public LevelBuilderFrame(LevelBuilder levelBuilder) {
+		this.levelBuilder = levelBuilder;
+		
 		splash = new SplashPanel();
 		mainMenu = new MainMenuPanel();
-		editor = new EditPanel();
+		editor = new EditPanel(levelBuilder.getLevel());
 		
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));

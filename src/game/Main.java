@@ -1,6 +1,9 @@
 package game;
 
 import java.util.ArrayList;
+
+import common.entity.Level;
+
 import game.entities.*;
 import game.boundary.*;
 

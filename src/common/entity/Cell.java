@@ -1,5 +1,7 @@
 package common.entity;
 
+import common.entity.Level.CellType;
+
 public abstract class Cell {
 	int column;
 	int row;
@@ -26,5 +28,10 @@ public abstract class Cell {
 	 */
 	public boolean isNeighborCell(Cell other) {
 		return this.getColumn() == other.getColumn() || this.getRow() == other.getRow();
+	}
+
+	public static Cell newCellOfType(CellType cellType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

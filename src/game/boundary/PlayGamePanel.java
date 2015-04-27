@@ -18,15 +18,20 @@ import javax.swing.SwingConstants;
 import common.boundary.BoardPanel;
 import common.boundary.TilePanel;
 import common.entity.Board;
+import common.entity.Level;
+
 import java.awt.Component;
+
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class PlayGamePanel extends JPanel {
+	Level level;
 	Board board;
 
 	JButton mainMenuButton;
 	public PlayGamePanel(Game game){
+		
 		JLabel lblPuzzleLevel = new JLabel("Puzzle Level 1");
 		lblPuzzleLevel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblPuzzleLevel.setHorizontalAlignment(SwingConstants.CENTER);

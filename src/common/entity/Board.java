@@ -1,17 +1,32 @@
 package common.entity;
 
+import java.util.ArrayList;
+
+
+import common.entity.Level.CellType;
+
 public abstract class Board {
-	Cell currentConfig[];
+	ArrayList<ArrayList<Cell>> currentConfig;
 	Level level;
 	int score;
 	
 	public Board(Level level) {
 		this.level = level;
-		// Make sure to clone the starting array so modifications to currentConfig
-		// don't modify level.startingConfig
-		// TODO: Do we have to do anything to change from the cells in level, which
-		// won't ever have tiles, to the cells in the board?
-		this.currentConfig = level.startingConfig.clone();
+		
+		currentConfig = new ArrayList<ArrayList<Cell>>(9);
+		for (int i = 0; i < level.startingConfig.length; i++) {
+			currentConfig.add(i, new ArrayList<Cell>(9));
+			for (int j = 0; j < level.startingConfig[i].length; j++) {
+				switch (level.startingConfig[i][j]) {
+				case TILE_CELL:
+					currentConfig.get(i).add(j, new TileCell(i, j, level.getRandomTile()));
+					break;
+				default:
+					throw new RuntimeException("Unknown tile type");
+				}
+				
+			}
+		}
 	}
 	
 	public abstract boolean isWon();
@@ -24,7 +39,7 @@ public abstract class Board {
 		// TODO: Implementation
 	}
 
-	public Cell getCell(int i) {
-		return currentConfig[i];
+	public ArrayList<ArrayList<Cell>> getCells() {
+		return currentConfig;
 	}
 }
