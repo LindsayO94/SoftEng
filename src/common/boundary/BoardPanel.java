@@ -2,9 +2,9 @@ package common.boundary;
 
 import javax.swing.JPanel;
 
-
 import common.entity.Board;
 import common.entity.Cell;
+import common.entity.TileCell;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -22,7 +22,11 @@ public class BoardPanel extends JPanel {
 		int i = 0;
 		for (ArrayList<Cell> row : board.getCells()) {
 			for (Cell cell : row) {
-				cells[i] = new CellPanel(cell);
+				switch (cell.getCellType()) {
+				case "tile":
+					TilePanel tileView = new TilePanel( ((TileCell) cell).getTile() );
+					cells[i] = new TileCellPanel(cell, tileView);
+				}
 				add(cells[i]);
 				i += 1;
 			}

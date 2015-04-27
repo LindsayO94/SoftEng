@@ -18,6 +18,8 @@ public abstract class Cell {
 	public int getRow() {
 		return row;
 	}
+	
+	public abstract String getCellType();
 
 	/**
 	 * Returns true if this cell neighbors the given cell (no diagonals),

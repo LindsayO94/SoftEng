@@ -1,5 +1,7 @@
 package common.entity;
 
+import common.boundary.TilePanel;
+
 public class TileCell extends Cell {
 	boolean selected;
 	boolean marked;
@@ -10,5 +12,14 @@ public class TileCell extends Cell {
 		this.tile = tile;
 		this.selected = false;
 		this.marked = false;
+	}
+
+	public Tile getTile() {
+		return tile;
+	}
+
+	@Override
+	public String getCellType() {
+		return "tile";
 	}
 }
