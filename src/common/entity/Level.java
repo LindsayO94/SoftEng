@@ -1,11 +1,15 @@
 package common.entity;
 
+import java.util.Random;
+
 import game.boundary.PuzzleBoard;
 
 public class Level {
 	public static enum CellType {
 		TILE_CELL
 	}
+	
+	Random rand = new Random();
 	
 	// State -- only Game can change these fields
 	boolean locked;
@@ -33,6 +37,17 @@ public class Level {
 		this.setHighScore(highScore);
 		this.type = type;
 		
+		// Temporary - For now, all frequencies are 1
+		for (int i = 0; i < frequency.length; i++) {
+			frequency[i] = 1;
+		}
+		
+		// Temporary - For now, all multiplierFrequency are 1
+		for (int i = 0; i < multiplierFrequency.length; i++) {
+			multiplierFrequency[i] = 1;
+		}
+		
+		
 		// Temporary - For now, all cells are tile cells
 		for (int i = 0; i < startingConfig.length; i++) {
 			for (int j = 0; j < startingConfig[i].length; j++) {
@@ -52,10 +67,26 @@ public class Level {
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}
+	
+	int getWeightedRandomIndex(int arr[]) {
+		int total = 0;
+		for (int freq : arr) total += freq;
+		int num = rand.nextInt(total);
+		
+		for (int i = 0; i < arr.length; i++) {
+			if (num < arr[i]) {
+				return i;
+			} else {
+				num -= arr[i];
+			}
+		}
+		
+		
+		throw new RuntimeException("Logic error when calculating random value");
+	}
 
 	public Tile getRandomTile() {
-		// TODO Auto-generated method stub
-		return new Tile(1, 1);
+		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
 	}
 
 	public Board makeBoard() {
