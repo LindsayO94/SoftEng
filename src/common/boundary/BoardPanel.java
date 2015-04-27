@@ -22,8 +22,8 @@ public class BoardPanel extends JPanel {
 		int i = 0;
 		for (ArrayList<Cell> row : board.getCells()) {
 			for (Cell cell : row) {
-				switch (cell.getCellType()) {
-				case "tile":
+				switch (cell.getType()) {
+				case TILE_CELL:
 					TilePanel tileView = new TilePanel( ((TileCell) cell).getTile() );
 					cells[i] = new TileCellPanel(cell, tileView);
 				}

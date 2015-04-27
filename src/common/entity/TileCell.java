@@ -19,7 +19,7 @@ public class TileCell extends Cell {
 	}
 
 	@Override
-	public String getCellType() {
-		return "tile";
+	public Cell.Type getType() {
+		return Cell.Type.TILE_CELL;
 	}
 }

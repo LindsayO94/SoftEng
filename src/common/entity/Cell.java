@@ -25,7 +25,7 @@ public abstract class Cell {
 		return row;
 	}
 	
-	public abstract String getCellType();
+	public abstract Type getType();
 
 	/**
 	 * Returns true if this cell neighbors the given cell (no diagonals),

@@ -14,7 +14,7 @@ public class TileCellTest {
 		assertEquals(1, cell.getColumn());
 		assertEquals(2, cell.getRow());
 		assertEquals(t, cell.getTile());
-		assertEquals("tile", cell.getCellType());	
+		assertEquals(Cell.Type.TILE_CELL, cell.getType());	
 	}
 	
 	@Test(expected=IllegalArgumentException.class)

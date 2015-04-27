@@ -39,9 +39,9 @@ public class PuzzleBoardTest {
 		assertEquals(7, cellAt87.row);
 		
 		// Make sure types are right
-		assertEquals("tile", cellAt00.getCellType());
-		assertEquals("tile", cellAt13.getCellType());
-		assertEquals("tile", cellAt87.getCellType());
+		assertEquals(Cell.Type.TILE_CELL, cellAt00.getType());
+		assertEquals(Cell.Type.TILE_CELL, cellAt13.getType());
+		assertEquals(Cell.Type.TILE_CELL, cellAt87.getType());
 	}
 	
 	@Test
