@@ -24,7 +24,7 @@ public class LevelBuilderFrame extends JFrame {
 		
 		splash = new SplashPanel();
 		mainMenu = new MainMenuPanel();
-		editor = new EditPanel(levelBuilder.getLevel());
+		editor = new EditPanel(levelBuilder.getLevel(), this.levelBuilder);
 		
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));

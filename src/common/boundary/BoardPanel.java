@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.util.Random;
 
 import levelBuilder.controller.ChangeCellTypeController;
+import levelBuilder.entity.LevelBuilder;
 
 import common.entity.Cell;
 import common.entity.TileCell;
@@ -34,11 +35,14 @@ public class BoardPanel extends JPanel {
 				case TILE_CELL:
 					TilePanel tileView = new TilePanel( ((TileCell) cell).getTile() );
 					cells[i] = new TileCellPanel(cell, tileView);
-					cells[i].addMouseListener(new ChangeCellTypeController(cells[i]));
 				}
 				add(cells[i]);
 				i += 1;
 			}
 		}
+	}
+	
+	public CellPanel[] getCellPanel(){
+		return cells;
 	}
 }

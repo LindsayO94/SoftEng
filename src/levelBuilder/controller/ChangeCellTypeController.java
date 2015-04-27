@@ -3,23 +3,29 @@ package levelBuilder.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import levelBuilder.entity.LevelBuilder;
+
 import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
 import common.boundary.TilePanel;
+import common.entity.Move;
 
 public class ChangeCellTypeController implements MouseListener{
 
 	CellPanel cell;
+	LevelBuilder editor;
 	
-	public ChangeCellTypeController(CellPanel cell){
+	public ChangeCellTypeController(CellPanel cell, LevelBuilder editor){
 		this.cell = cell;
+		this.editor = editor;
+		
 		
 	}
 	
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("Click!");
-		cell.getCellModel().toggleActive();
-		cell.getTileView().toggleNumber();
+		Move m = new ChangeCellTypeMove(cell);
+		m.doMove(editor);
+		
 		cell.repaint();
 		// TODO Auto-generated method stub
 		
