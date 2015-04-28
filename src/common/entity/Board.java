@@ -2,6 +2,8 @@ package common.entity;
 
 import java.util.ArrayList;
 
+import common.boundary.CellPanel;
+
 public abstract class Board {
 	ArrayList<ArrayList<Cell>> cells;
 	Level level;
@@ -20,20 +22,26 @@ public abstract class Board {
 		for (int i = 0; i < level.startingConfig.length; i++) {
 			cells.add(i, new ArrayList<Cell>(9));
 			for (int j = 0; j < level.startingConfig[i].length; j++) {
-				switch (level.startingConfig[i][j]) {
-				case TILE_CELL:
-					Tile tile = level.getRandomTile();
-					cells.get(i).add(j, new TileCell(i, j, tile));
-					break;
-					
-				case INACTIVE_CELL:
-					cells.get(i).add(j, new InactiveCell(i, j));
-					break;
-					
-				default:
-					throw new RuntimeException("Unknown tile type");
-				}
+				cells.get(i).add(j, createCell(i, j));
 			}
+		}
+	}
+	
+	public void refreshCell(Cell c) {
+		cells.get(c.getColumn()).set(c.getRow(), createCell(c.getColumn(), c.getRow()));
+	}
+	
+	public Cell createCell(int i, int j) {
+		switch (level.startingConfig[i][j]) {
+		case TILE_CELL:
+			Tile tile = level.getRandomTile();
+			return new TileCell(i, j, tile);
+			
+		case INACTIVE_CELL:
+			return new InactiveCell(i, j);
+			
+		default:
+			throw new RuntimeException("Unknown tile type");
 		}
 	}
 	

@@ -193,9 +193,7 @@ public class EditPanel extends JPanel {
 		});
 		
 		board = new BoardPanel(Board.makeBoard(level));
-		for (CellPanel c : board.getCellPanel()){
-			c.addMouseListener(new ChangeCellTypeController(c, board, editor));
-		}
+		board.addMouseListener(new ChangeCellTypeController(board, editor));
 		
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);

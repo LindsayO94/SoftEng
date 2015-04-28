@@ -23,7 +23,7 @@ public class ChangeCellTypeMove extends Move{
 		
 		editor.getLevel().toggleCell(cell.getCellModel());
 		
-		board.getBoardModel().refresh();
+		board.getBoardModel().refreshCell(cell.getCellModel());
 		board.refresh();
 		
 		return true;
