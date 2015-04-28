@@ -10,6 +10,12 @@ public abstract class Board {
 	public Board(Level level) {
 		this.level = level;
 		
+		this.refresh();
+	}
+	
+	public abstract boolean isWon();
+	
+	public void refresh() {
 		cells = new ArrayList<ArrayList<Cell>>(9);
 		for (int i = 0; i < level.startingConfig.length; i++) {
 			cells.add(i, new ArrayList<Cell>(9));
@@ -17,19 +23,18 @@ public abstract class Board {
 				switch (level.startingConfig[i][j]) {
 				case TILE_CELL:
 					Tile tile = level.getRandomTile();
-					cells.get(i).add(j, new TileCell(i, j, tile, true));
+					cells.get(i).add(j, new TileCell(i, j, tile));
 					break;
+					
+				case INACTIVE_CELL:
+					cells.get(i).add(j, new InactiveCell(i, j));
+					break;
+					
 				default:
 					throw new RuntimeException("Unknown tile type");
 				}
 			}
 		}
-	}
-	
-	public abstract boolean isWon();
-	
-	public void refresh() {
-		// TODO: Implementation
 	}
 	
 	public void gravity() {

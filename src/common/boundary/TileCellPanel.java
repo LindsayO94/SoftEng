@@ -4,10 +4,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import common.entity.Cell;
+import common.entity.TileCell;
 
 public class TileCellPanel extends CellPanel {	
 	
-	public TileCellPanel(Cell cell, TilePanel tileView) {
+	public TileCellPanel(TileCell cell, TilePanel tileView) {
 		super(cell, tileView);
 		
 		

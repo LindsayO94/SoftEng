@@ -1,23 +1,21 @@
 package common.entity;
 
 public abstract class Cell {
-	Boolean active;
-	
 	public static enum Type {
-		TILE_CELL
+		TILE_CELL,
+		INACTIVE_CELL
 	}
 	
 	final int column;
 	final int row;
 	
-	public Cell(int column, int row,  Boolean active) {
+	public Cell(int column, int row) {
 		if (column < 0 || column >= 9 || row < 0 || row >= 9) {
 			throw new IllegalArgumentException("Illegal row or column passed to cell constructor");
 		}
 		
 		this.column = column;
 		this.row = row;
-		this.active = active;
 	}
 	
 	public int getColumn() {
@@ -40,13 +38,5 @@ public abstract class Cell {
 	public boolean isNeighborCell(Cell other) {
 		// This is an xor so that a cell can't be its own neighbor
 		return this.getColumn() == other.getColumn() ^ this.getRow() == other.getRow();
-	}
-	
-	public boolean toggleActive(){
-		if (this.active)
-			this.active = false;
-		else
-			this.active = true;
-		return this.active;
 	}
 }

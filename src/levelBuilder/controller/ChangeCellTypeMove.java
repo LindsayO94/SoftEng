@@ -1,23 +1,31 @@
 package levelBuilder.controller;
 
 import levelBuilder.entity.LevelBuilder;
+import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
 import common.entity.Cell;
+import common.entity.Level;
 import common.entity.Move;
 
 public class ChangeCellTypeMove extends Move{
 	
 	CellPanel cell;
+	BoardPanel board;
 	
-	public ChangeCellTypeMove(CellPanel cell){
+	public ChangeCellTypeMove(CellPanel cell, BoardPanel board){
 		this.cell = cell;
+		this.board = board;
 	}
 
 	@Override
 	public boolean doMove(LevelBuilder editor) {
 		if (!valid(editor)){ return false; }
-		cell.getCellModel().toggleActive();
-		cell.getTileView().toggleNumber();
+		
+		editor.getLevel().toggleCell(cell.getCellModel());
+		
+		board.getBoardModel().refresh();
+		board.refresh();
+		
 		return true;
 	}
 

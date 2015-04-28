@@ -15,10 +15,6 @@ public abstract class CellPanel extends JPanel {
 	public CellPanel(Cell cell, TilePanel tileView) {
 		this.cellModel = cell;
 		
-		
-		
-		// TODO: This can't be null forever -- where should the 
-		// tile come from?
 		this.tileView = tileView;
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

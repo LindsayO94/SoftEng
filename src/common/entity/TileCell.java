@@ -7,20 +7,11 @@ public class TileCell extends Cell {
 	boolean marked;
 	Tile tile;
 	
-	public TileCell(int column, int row, Tile tile, Boolean active) {
-		super(column, row, active);
+	public TileCell(int column, int row, Tile tile) {
+		super(column, row);
 		this.tile = tile;
 		this.selected = false;
 		this.marked = false;
-	}
-	
-	public boolean toggleActive(){
-		System.out.println("Toggling active");
-		if (this.active)
-			this.active = false;
-		else
-			this.active = true;
-		return this.active;
 	}
 
 	public Tile getTile() {

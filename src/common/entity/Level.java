@@ -3,6 +3,10 @@ package common.entity;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
+import common.entity.Cell.Type;
+
 public class Level {
 	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" };
 	Random rand;
@@ -91,5 +95,26 @@ public class Level {
 
 	public Tile getRandomTile() {
 		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
+	}
+
+	public void toggleCell(Cell cell) {
+		if (this.type.equals("Release")) {
+			throw new UnsupportedOperationException("We haven't implemented toggling release boards yet");
+		} else {
+			switch (startingConfig[cell.column][cell.row]) {
+			
+			case TILE_CELL:
+				startingConfig[cell.column][cell.row] = Type.INACTIVE_CELL;
+				break;
+				
+			case INACTIVE_CELL:
+				startingConfig[cell.column][cell.row] = Type.TILE_CELL;
+				break;
+				
+			default:
+				throw new IllegalStateException("Tile for a non-Release board had a type other than TILE or INACTIVE");
+			
+			}
+		}
 	}
 }
