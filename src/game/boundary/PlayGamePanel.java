@@ -28,28 +28,45 @@ import javax.swing.ImageIcon;
 public class PlayGamePanel extends JPanel {
 	Level level;
 	Board board;
+	Game game;
 
 	JButton mainMenuButton;
-	public PlayGamePanel(Game game){
+	JButton button_1;
+	JButton btnRemove;
+	JButton btnShuffle;
+	JLabel lblPuzzleLevel;
+	JLabel lblScore;
+	private JLabel lblMovesRemaining;
+	private JLabel labelStar1;
+	
+	public PlayGamePanel(Game game){	
+		this.game = game;
 		
-		JLabel lblPuzzleLevel = new JLabel("Puzzle Level 1");
+		lblPuzzleLevel = new JLabel("Puzzle Level 1");
 		lblPuzzleLevel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblPuzzleLevel.setHorizontalAlignment(SwingConstants.CENTER);
-		JButton button_1 = new JButton("Swap");
-		JLabel lblScore = new JLabel("Score: 1337");
+		button_1 = new JButton("Swap");
+		lblScore = new JLabel("Score: 1337");
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		JLabel lblMovesRemaining = new JLabel("Moves Remaining: 9001");
+		lblMovesRemaining = new JLabel("Moves Remaining: 9001");
 		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		JLabel labelStar1 = new JLabel("1");
+		labelStar1 = new JLabel("1");
 		labelStar1.setIcon(new ImageIcon("Images/Star.png")); //AWESOME!
 		labelStar1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		mainMenuButton = new JButton("Back to Main Menu!");
 		
-		JButton btnRemove = new JButton("Remove");
+		btnRemove = new JButton("Remove");
 		
-		JButton btnShuffle = new JButton("Shuffle");
+		btnShuffle = new JButton("Shuffle");
 		
+		refresh();
+	}
+	
+	public void refresh() {
+		if (board == null) {
+			return;
+		}
 		BoardPanel panel = new BoardPanel(board);
 		
 		JLabel lblMovesRemaining_1 = new JLabel("0 Moves Remaining");
@@ -135,14 +152,19 @@ public class PlayGamePanel extends JPanel {
 		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		setLayout(groupLayout);
-		
 	}
-	
+
+
+
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 	}
 	
 	public JButton getBackButton() {
 		return mainMenuButton;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 }

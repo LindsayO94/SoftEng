@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import common.boundary.LevelSelectPanel;
+import common.entity.Board;
 
 import java.awt.CardLayout;
 
@@ -42,5 +43,13 @@ public class GameFrame extends JFrame {
 		getContentPane().add(playGame, "Play Game");
 		getContentPane().add(levelSelect, "Level Select");
 		getContentPane().add(achievements, "Achievements");
+	}
+
+	public void setBoard(Board board) {
+		playGame.setBoard(board);
+	}
+
+	public PlayGamePanel getPlayView() {
+		return playGame;
 	}
 }

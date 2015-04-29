@@ -24,11 +24,15 @@ public class BoardPanel extends JPanel {
 	CellPanel[] cells = new CellPanel[81]; 
 	
 	public BoardPanel(Board board) {
+		if (board == null) {
+			throw new IllegalArgumentException("Can't pass a null board to BoardPanel");
+		}
+		
 		this.board = board;
 		
 		setLayout(new GridLayout(9, 9, 0, 0));
 				
-		//refresh();
+		refresh();
 	}
 	
 	public void refresh() {
