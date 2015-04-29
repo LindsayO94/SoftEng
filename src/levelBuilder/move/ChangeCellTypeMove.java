@@ -6,7 +6,6 @@ import common.boundary.CellPanel;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.Level;
-import common.entity.Move;
 
 public class ChangeCellTypeMove extends Move{
 	

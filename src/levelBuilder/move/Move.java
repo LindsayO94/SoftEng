@@ -1,4 +1,4 @@
-package common.entity;
+package levelBuilder.move;
 
 import levelBuilder.entity.LevelBuilder;
 

@@ -1,7 +1,6 @@
 package levelBuilder.move;
 
 import levelBuilder.entity.LevelBuilder;
-import common.entity.Move;
 
 
 /**

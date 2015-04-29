@@ -26,6 +26,11 @@ public class Tile {
 	public int getMultiplier() {
 		return multiplier;
 	}
+
+	public boolean isSelected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

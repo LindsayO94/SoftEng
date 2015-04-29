@@ -6,12 +6,12 @@ import java.awt.event.MouseListener;
 
 import levelBuilder.entity.LevelBuilder;
 import levelBuilder.move.ChangeCellTypeMove;
+import levelBuilder.move.Move;
 import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
 import common.boundary.TilePanel;
 import common.entity.Cell;
-import common.entity.Move;
 
 public class ChangeCellTypeController implements MouseListener{
 	BoardPanel board;

@@ -25,7 +25,6 @@ public class TilePanel extends JPanel {
 		this.tile = tile;
 		
 		// HERE THERE BE WINDOW BUILDER
-		setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		setBackground(colors[tile.getValue()-1]);
 		
 		// TODO: As soon as the "tile" parameter is working, change
@@ -58,5 +57,10 @@ public class TilePanel extends JPanel {
 		else
 			setBackground(colors[tile.getOldValue()-1]);
 		label.setVisible(!(label.isVisible()));
+	}
+
+
+	public Tile getTile() {
+		return this.tile;
 	}
 }

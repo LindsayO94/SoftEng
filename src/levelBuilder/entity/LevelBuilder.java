@@ -2,9 +2,9 @@ package levelBuilder.entity;
 
 
 import levelBuilder.boundary.LevelBuilderFrame;
+import levelBuilder.move.Move;
 import common.entity.Board;
 import common.entity.Level;
-import common.entity.Move;
 
 public class LevelBuilder {
 	private Level level;

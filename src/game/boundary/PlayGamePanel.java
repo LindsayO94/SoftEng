@@ -63,6 +63,7 @@ public class PlayGamePanel extends JPanel {
 		refresh();
 	}
 	
+	// TODO: Some of this should probably be in the constructor
 	public void refresh() {
 		if (board == null) {
 			return;

@@ -22,4 +22,12 @@ public class TileCell extends Cell {
 	public Cell.Type getType() {
 		return Cell.Type.TILE_CELL;
 	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public boolean isMarked() {
+		return marked;
+	}
 }
