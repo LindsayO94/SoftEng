@@ -1,19 +1,19 @@
 package common.entity;
 
 
-public class PuzzleBoard extends Board {
+public class LightningBoard extends Board {
 
-	int movesLeft;
+	int timeLeft;
 	
-	public PuzzleBoard(Level level) {
+	public LightningBoard(Level level) {
 		super(level);
 		
-		this.movesLeft = level.maxMoves;
+		this.timeLeft = level.maxTime;
 	}
 
 	@Override
 	public boolean isWon() {
-		// Reach certain score before exhausting number of allowed moves
+		// reach a certain score (before the time limit ends)
 		//if the high score is higher than the lowest star score value, then the level is won
 		if (level.starScore[0] < level.highScore){
 			return true;

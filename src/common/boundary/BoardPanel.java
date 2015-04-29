@@ -28,7 +28,7 @@ public class BoardPanel extends JPanel {
 		
 		setLayout(new GridLayout(9, 9, 0, 0));
 				
-		refresh();
+		//refresh();
 	}
 	
 	public void refresh() {

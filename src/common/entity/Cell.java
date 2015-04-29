@@ -3,7 +3,8 @@ package common.entity;
 public abstract class Cell {
 	public static enum Type {
 		TILE_CELL,
-		INACTIVE_CELL
+		INACTIVE_CELL,
+		BASKET_CELL
 	}
 	
 	final int column;
@@ -37,6 +38,7 @@ public abstract class Cell {
 	 */
 	public boolean isNeighborCell(Cell other) {
 		// This is an xor so that a cell can't be its own neighbor
+		//TODO $$$$$$$$$ isn't this just checking to see if they are in the same row or column, not that they are within one cell of one another? -Arty
 		return this.getColumn() == other.getColumn() ^ this.getRow() == other.getRow();
 	}
 }
