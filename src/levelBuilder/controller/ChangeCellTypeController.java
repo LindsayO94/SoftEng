@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import levelBuilder.entity.LevelBuilder;
+import levelBuilder.move.ChangeCellTypeMove;
 import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
@@ -22,10 +23,14 @@ public class ChangeCellTypeController implements MouseListener{
 		
 	}
 	
-	public void mouseClicked(MouseEvent me) {
+	public void mousePressed(MouseEvent me) {
 		CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-		Move m = new ChangeCellTypeMove(cell, board);
-		m.doMove(editor);
+		Move m = new ChangeCellTypeMove(cell.getCellModel(), board.getBoardModel());
+		if(m.doMove(editor)){
+			editor.pushMove(m);
+		};
+		
+		board.refresh();
 		// TODO Auto-generated method stub
 		
 	}
@@ -40,7 +45,7 @@ public class ChangeCellTypeController implements MouseListener{
 		
 	}
 
-	public void mousePressed(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}

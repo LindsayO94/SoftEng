@@ -9,6 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 
+/**
+ * Main Menu Panel for level builder
+ * @author August
+ *
+ */
 public class MainMenuPanel extends JPanel {
 	
 	public JButton getNewLvlButton() {

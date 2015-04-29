@@ -29,8 +29,15 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 import levelBuilder.controller.ChangeCellTypeController;
+import levelBuilder.controller.UndoController;
 import levelBuilder.entity.LevelBuilder;
 
+
+/**
+ * Panel which displays visual elements of the editor
+ * @author August
+ *
+ */
 public class EditPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_7;
@@ -62,10 +69,12 @@ public class EditPanel extends JPanel {
 	private JTextField textField_15;
 	private JButton btnPreview;
 	private JTextField textField_16;
+	LevelBuilder editor;
 	Level level;
 	
 	public EditPanel(Level level, LevelBuilder editor){
 		this.level = level;
+		this.editor = editor;
 		
 		lblLevel = new JLabel("Level");
 		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -99,12 +108,15 @@ public class EditPanel extends JPanel {
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textField_7 = new JTextField();
+		textField_7.setText("1");
 		textField_7.setColumns(10);
 		
 		textField_8 = new JTextField();
+		textField_8.setText("1");
 		textField_8.setColumns(10);
 		
 		textField_9 = new JTextField();
+		textField_9.setText("1");
 		textField_9.setColumns(10);
 		
 		JLabel label = new JLabel("1");
@@ -132,21 +144,27 @@ public class EditPanel extends JPanel {
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textField_1 = new JTextField();
+		textField_1.setText("1");
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.setText("1");
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
+		textField_3.setText("1");
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
+		textField_4.setText("1");
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
+		textField_5.setText("1");
 		textField_5.setColumns(10);
 		
 		textField_6 = new JTextField();
+		textField_6.setText("1");
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Star Score Minimums");
@@ -165,12 +183,15 @@ public class EditPanel extends JPanel {
 		label_13.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textField_10 = new JTextField();
+		textField_10.setText("1");
 		textField_10.setColumns(10);
 		
 		textField_11 = new JTextField();
+		textField_11.setText("1");
 		textField_11.setColumns(10);
 		
 		textField_12 = new JTextField();
+		textField_12.setText("1");
 		textField_12.setColumns(10);
 		
 		JLabel label_10 = new JLabel("");
@@ -192,8 +213,10 @@ public class EditPanel extends JPanel {
 			}
 		});
 		
+		
 		board = new BoardPanel(Board.makeBoard(level));
-		board.addMouseListener(new ChangeCellTypeController(board, editor));
+
+	
 		
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);
@@ -212,15 +235,25 @@ public class EditPanel extends JPanel {
 		textField_16.setEditable(false);
 		textField_16.setColumns(10);
 		
+		JButton btnUndo = new JButton("Undo");
+		
+		
+		/**
+		 * controllers are added here
+		 */
+		board.addMouseListener(new ChangeCellTypeController(board, editor));
+		btnUndo.addMouseListener(new UndoController(board, editor));
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(textField_16))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(textField_16, 702, 702, 702))
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(6)
@@ -313,14 +346,16 @@ public class EditPanel extends JPanel {
 									.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(lblLevel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-									.addGap(106)
-									.addComponent(btnPreview)
+									.addGap(88)
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(btnPreview)
+										.addComponent(btnUndo))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(btnQuit)
 										.addComponent(btnNewButton)))
 								.addComponent(board, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(54, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -334,7 +369,9 @@ public class EditPanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnQuit)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnQuit)
+										.addComponent(btnUndo))
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 									.addComponent(lblAllowedMoves)
@@ -415,14 +452,15 @@ public class EditPanel extends JPanel {
 							.addGap(18)
 							.addComponent(board, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(textField_16, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+					.addComponent(textField_16)
 					.addContainerGap())
 		);
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_5, label_7, label_8, textField_7, textField_8, textField_9});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_9, label_11, label_13, textField_10, textField_11, textField_12});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_8, textField_7, textField_8, textField_9, label_5, label_7});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6});
 		setLayout(groupLayout);
 		
+		this.refresh();
 	}
 
 	public JButton getBtnQuit() {
@@ -431,5 +469,30 @@ public class EditPanel extends JPanel {
 
 	public void setBtnQuit(JButton btnQuit) {
 		this.btnQuit = btnQuit;
+	}
+	
+	public void refresh(){
+		board.refresh();
+		textField_1.setText("" + editor.getLevel().getFrequency(0));
+		textField_2.setText("" + editor.getLevel().getFrequency(1));
+		textField_3.setText("" + editor.getLevel().getFrequency(2));
+		textField_4.setText("" + editor.getLevel().getFrequency(3));
+		textField_5.setText("" + editor.getLevel().getFrequency(4));
+		textField_6.setText("" + editor.getLevel().getFrequency(5));
+		
+		textField_7.setText("" + editor.getLevel().getMultiplierFrequency(0));
+		textField_8.setText("" + editor.getLevel().getMultiplierFrequency(1));
+		textField_9.setText("" + editor.getLevel().getMultiplierFrequency(2));
+		
+		textField_10.setText("" + editor.getLevel().getStarScore(0));
+		textField_10.setText("" + editor.getLevel().getStarScore(1));
+		textField_10.setText("" + editor.getLevel().getStarScore(2));
+		
+		spinner.setValue(editor.getLevel().getType());
+		
+		textField_13.setText("" + editor.getLevel().getNumShuffle());
+		textField_14.setText("" + editor.getLevel().getNumSwap());
+		textField_15.setText("" + editor.getLevel().getNumRemove());
+		
 	}
 }

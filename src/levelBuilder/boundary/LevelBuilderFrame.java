@@ -10,6 +10,11 @@ import levelBuilder.controller.NewLevelButtonController;
 import levelBuilder.controller.SplashController;
 import levelBuilder.entity.LevelBuilder;
 
+/**
+ * Frame for level editor
+ * @author August
+ *
+ */
 public class LevelBuilderFrame extends JFrame {
 	//Entities go here
 	LevelBuilder levelBuilder;
@@ -40,6 +45,10 @@ public class LevelBuilderFrame extends JFrame {
 		
 		
 		
+	}
+	
+	public EditPanel getEditor(){
+		return editor;
 	}
 	
 }

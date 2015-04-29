@@ -28,6 +28,13 @@ public class Level {
 	boolean swapAllowed;
 	boolean removeAllowed;
 	
+	//integers representing the number of each move type a player is given at the start of a level
+	int numShuffle;
+	int numSwap;
+	int numRemove;
+	
+	
+	
 	int maxMoves;
 	int maxTime;
 	
@@ -59,12 +66,25 @@ public class Level {
 				startingConfig[i][j] = Cell.Type.TILE_CELL;
 			}
 		}
+		
+		// Temporary - For now, all starScores are 1
+		for (int i = 0; i < starScore.length; i++) {
+			starScore[i] = 1;
+		}
+		
+		//Temporary - for now 1 of each move is allowed
+		numShuffle = 1;
+		numSwap = 1;
+		numRemove = 1;
+		
+		
 	}
 
 	public Level(long seed) {
 		this("Puzzle", seed);
 	}
 
+	
 	public int getHighScore() {
 		return highScore;
 	}
@@ -116,5 +136,61 @@ public class Level {
 			
 			}
 		}
+	}
+
+	public int getFrequency(int index) {
+		return frequency[index];
+	}
+
+	public void setFrequency(int[] frequency) {
+		this.frequency = frequency;
+	}
+
+	public int getMultiplierFrequency(int index) {
+		return multiplierFrequency[index];
+	}
+
+	public void setMultiplierFrequency(int[] multiplierFrequency) {
+		this.multiplierFrequency = multiplierFrequency;
+	}
+
+	public int getStarScore(int index) {
+		return starScore[index];
+	}
+
+	public void setStarScore(int[] starScore) {
+		this.starScore = starScore;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getNumShuffle() {
+		return numShuffle;
+	}
+
+	public void setNumShuffle(int numShuffle) {
+		this.numShuffle = numShuffle;
+	}
+
+	public int getNumSwap() {
+		return numSwap;
+	}
+
+	public void setNumSwap(int numSwap) {
+		this.numSwap = numSwap;
+	}
+
+	public int getNumRemove() {
+		return numRemove;
+	}
+
+	public void setNumRemove(int numRemove) {
+		this.numRemove = numRemove;
 	}
 }
