@@ -1,7 +1,5 @@
 package common.entity;
 
-import common.boundary.TilePanel;
-
 public class TileCell extends Cell {
 	boolean selected;
 	boolean marked;

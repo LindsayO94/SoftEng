@@ -29,6 +29,7 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 import levelBuilder.controller.ChangeCellTypeController;
+import levelBuilder.controller.GameTypeController;
 import levelBuilder.controller.UndoController;
 import levelBuilder.entity.LevelBuilder;
 
@@ -81,6 +82,19 @@ public class EditPanel extends JPanel {
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
+		GameTypeController gtc1 = new GameTypeController(this, editor, null);
+		GameTypeController gtc2 = new GameTypeController(this, editor, gtc1);
+		gtc1.setOtherController(gtc2);
+		int i = 0;
+		for(Component c:spinner.getComponents()){
+			System.out.println("Component: "+c.toString());
+			if (i==0)
+				c.addMouseListener(gtc1);
+			else if (i==1)
+				c.addMouseListener(gtc2);
+			i++;
+		}
+		
 		
 		lblAllowedMoves = new JLabel("Allowed Moves:");
 		lblAllowedMoves.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -469,6 +483,14 @@ public class EditPanel extends JPanel {
 
 	public void setBtnQuit(JButton btnQuit) {
 		this.btnQuit = btnQuit;
+	}
+	
+	public JSpinner getSpinner(){
+		return spinner;
+	}
+	
+	public BoardPanel getBoard(){
+		return board;
 	}
 	
 	public void refresh(){

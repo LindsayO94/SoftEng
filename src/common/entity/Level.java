@@ -3,8 +3,6 @@ package common.entity;
 import java.util.Arrays;
 import java.util.Random;
 
-import javax.naming.directory.InvalidAttributeValueException;
-
 import common.entity.Cell.Type;
 
 public class Level {
@@ -33,7 +31,9 @@ public class Level {
 	int numSwap;
 	int numRemove;
 	
-	
+	private int star1Score;
+	private int star2Score;
+	private int star3Score;
 	
 	int maxMoves;
 	int maxTime;
@@ -192,5 +192,29 @@ public class Level {
 
 	public void setNumRemove(int numRemove) {
 		this.numRemove = numRemove;
+	}
+
+	public int getStar1Score() {
+		return star1Score;
+	}
+
+	public void setStar1Score(int star1Score) {
+		this.star1Score = star1Score;
+	}
+
+	public int getStar2Score() {
+		return star2Score;
+	}
+
+	public void setStar2Score(int star2Score) {
+		this.star2Score = star2Score;
+	}
+
+	public int getStar3Score() {
+		return star3Score;
+	}
+
+	public void setStar3Score(int star3Score) {
+		this.star3Score = star3Score;
 	}
 }

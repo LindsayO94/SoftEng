@@ -2,11 +2,9 @@ package common.entity;
 
 import java.util.ArrayList;
 
-import common.boundary.CellPanel;
-
 public abstract class Board {
 	ArrayList<ArrayList<Cell>> cells;
-	Level level;
+	public Level level;
 	int score;
 	
 	public Board(Level level) {
@@ -61,5 +59,18 @@ public abstract class Board {
 		default:
 			throw new IllegalArgumentException("Unknown board type");
 		}
+	}
+	
+	public int getScore(){
+		return score;
+	}
+	
+	public int incrementScore(int delta){
+		score =+ delta;
+		return score;
+	}
+	
+	public Level getLevel(){
+		return level;
 	}
 }

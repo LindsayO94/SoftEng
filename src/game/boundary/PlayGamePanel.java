@@ -29,6 +29,10 @@ public class PlayGamePanel extends JPanel {
 	Level level;
 	Board board;
 	Game game;
+	
+	
+	String inactivePath = "src/Images/InactiveStar.png";
+	String activePath = "src/Images/Star.png";
 
 	JButton mainMenuButton;
 	JButton button_1;
@@ -38,6 +42,8 @@ public class PlayGamePanel extends JPanel {
 	JLabel lblScore;
 	private JLabel lblMovesRemaining;
 	private JLabel labelStar1;
+	private JLabel labelStar2;
+	private JLabel labelStar3;
 	
 	public PlayGamePanel(Game game){	
 		this.game = game;
@@ -51,7 +57,7 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemaining = new JLabel("Moves Remaining: 9001");
 		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		labelStar1 = new JLabel("1");
-		labelStar1.setIcon(new ImageIcon("Images/Star.png")); //AWESOME!
+		labelStar1.setIcon(new ImageIcon(inactivePath)); //AWESOME!
 		labelStar1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		mainMenuButton = new JButton("Back to Main Menu!");
@@ -76,13 +82,13 @@ public class PlayGamePanel extends JPanel {
 		
 		JLabel lblMovesRemaing = new JLabel("4 Moves Remaining");
 		
-		JLabel labelStar2 = new JLabel("2");
+		labelStar2 = new JLabel("2");
 		labelStar2.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		labelStar2.setIcon(new ImageIcon("Images/Star.png")); //AWESOME! 2
+		labelStar2.setIcon(new ImageIcon(inactivePath)); //AWESOME! 2
 		
-		JLabel labelStar3 = new JLabel("3");
+		labelStar3 = new JLabel("3");
 		labelStar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		labelStar3.setIcon(new ImageIcon("Images/Star.png")); //AWESOME!3 
+		labelStar3.setIcon(new ImageIcon(inactivePath)); //AWESOME!3 
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -167,5 +173,17 @@ public class PlayGamePanel extends JPanel {
 
 	public void setBoard(Board board) {
 		this.board = board;
+	}
+	
+	public JLabel getStar(int starNum){
+		switch(starNum){
+		case 1:
+			return labelStar1;
+		case 2:
+			return labelStar2;
+		case 3:
+			return labelStar3;
+		}
+		return null;
 	}
 }
