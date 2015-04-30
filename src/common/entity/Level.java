@@ -141,6 +141,10 @@ public class Level {
 	public int getFrequency(int index) {
 		return frequency[index];
 	}
+	
+	public int[] getFrequencyArray() {
+		return frequency;
+	}
 
 	public void setFrequency(int[] frequency) {
 		this.frequency = frequency;
@@ -148,6 +152,10 @@ public class Level {
 
 	public int getMultiplierFrequency(int index) {
 		return multiplierFrequency[index];
+	}
+	
+	public int[] getMultiplierFrequencyArray() {
+		return multiplierFrequency;
 	}
 
 	public void setMultiplierFrequency(int[] multiplierFrequency) {

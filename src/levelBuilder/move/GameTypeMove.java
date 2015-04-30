@@ -17,15 +17,18 @@ public class GameTypeMove extends Move {
 	String newType;
 	String oldType;
 	
-	public GameTypeMove(String newType){
+	public GameTypeMove(String newType, String oldType){
 		this.newType = newType;
+		this.oldType = oldType;
 	}
 
 	@Override
 	public boolean doMove(LevelBuilder editor) {
-		oldType = editor.getLevel().getType();
+		if(valid(editor)){
 		editor.getLevel().setType(newType);
 		return true;
+		} else {return false;}
+		
 	}
 
 	@Override
@@ -37,8 +40,8 @@ public class GameTypeMove extends Move {
 
 	@Override
 	public boolean valid(LevelBuilder editor) {
-		// TODO Auto-generated method stub
-		return true;
+		return(!newType.equals(oldType));
+		
 	}
 
 }

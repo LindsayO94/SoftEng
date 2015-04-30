@@ -27,7 +27,7 @@ public class GameTypeController implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		String newType = (String)options.getSpinner().getValue();
-		Move m = new GameTypeMove(newType);
+		Move m = new GameTypeMove(newType, editor.getLevel().getType());
 		if(m.doMove(editor)){
 			editor.pushMove(m);
 		};
