@@ -15,6 +15,15 @@ public class TileCell extends Cell {
 	public Tile getTile() {
 		return tile;
 	}
+	
+	public void setTile(Tile nTile){
+		this.tile = nTile;
+	}
+	
+	public void setSelected()
+	{
+		this.selected = true;
+	}
 
 	@Override
 	public Cell.Type getType() {

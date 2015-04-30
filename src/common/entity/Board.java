@@ -43,10 +43,61 @@ public abstract class Board {
 		}
 	}
 	
+	private Tile getNext(TileCell focus)
+	{
+		
+		int rf = focus.getRow();
+		int cf = focus.getColumn();
+		TileCell nextCell = (TileCell)cells.get(rf-1).get(cf);
+		Tile nextTile = nextCell.getTile();
+		return nextTile;
+	}
+	
 	public void gravity() {
-		// TODO: Implementation
+		for (int i=cells.size(); i>0; i--) {
+			for (int j=cells.get(i).size(); j>0; j--)
+			{
+				Cell temp = cells.get(i).get(j);
+				switch(temp.getType())
+				{
+				case TILE_CELL:
+					TileCell focus = (TileCell) temp;
+					if (focus.getTile() == null)
+					{
+						Tile tile = getNext(focus);
+						for(int k=focus.getRow()-1; k>=0; k--)
+						{
+							if (tile == null && k ==0)
+							{
+								Tile tempTile = level.getRandomTile();
+								focus.setTile(tempTile);
+							}
+							if (tile != null)
+							{
+								focus.setTile(tile);
+								break;
+							}
+							else
+							{
+								tile = getNext((TileCell)cells.get(k).get(j));
+							}
+						}
+					}
+				default:
+					break;
+					
+				}
+			}	
+		}
+			
 	}
 
+	public void selectCell(TileCell cell)
+	{
+		cell.setSelected();
+		return;
+	}
+	
 	public ArrayList<ArrayList<Cell>> getCells() {
 		return cells;
 	}
