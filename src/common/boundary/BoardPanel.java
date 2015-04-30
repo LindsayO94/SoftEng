@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class BoardPanel extends JPanel {
 	// Entities
-	Board board;
-	CellPanel[] cells = new CellPanel[81]; 
+	public Board board;
+	public CellPanel[] cells = new CellPanel[81]; 
 	
 	public BoardPanel(Board board) {
 		if (board == null) {

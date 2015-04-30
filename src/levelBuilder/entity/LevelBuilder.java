@@ -35,6 +35,10 @@ public class LevelBuilder {
 		this.level = level;
 	}
 	
+	public LevelBuilderFrame getFrame(){
+		return frame;
+	}
+	
 	public void setFrame(LevelBuilderFrame frame){
 		this.frame = frame;
 	}

@@ -50,5 +50,6 @@ public class LevelBuilderFrame extends JFrame {
 	public EditPanel getEditor(){
 		return editor;
 	}
+
 	
 }
