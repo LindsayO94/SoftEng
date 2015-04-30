@@ -17,27 +17,20 @@ public class GameTypeMove extends Move {
 	String newType;
 	String oldType;
 	
-	public GameTypeMove(String newType, String oldType){
+	public GameTypeMove(String newType){
 		this.newType = newType;
-		this.oldType = oldType;
 	}
 
 	@Override
 	public boolean doMove(LevelBuilder editor) {
+		oldType = editor.getLevel().getType();
 		editor.getLevel().setType(newType);
 		return true;
 	}
 
 	@Override
 	public boolean undo(LevelBuilder editor) {
-		for(Component c:editor.getFrame().getEditor().getSpinner().getComponents()){
-			for(MouseListener m:c.getMouseListeners()){
-				if (m instanceof GameTypeController){
-					GameTypeController gc = (GameTypeController)m;
-					gc.setOldType(oldType);
-				}
-			}
-		}
+		
 		editor.getLevel().setType(oldType);
 		return true;
 	}

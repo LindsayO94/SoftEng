@@ -82,9 +82,8 @@ public class EditPanel extends JPanel {
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
-		GameTypeController gtc1 = new GameTypeController(this, editor, null);
-		GameTypeController gtc2 = new GameTypeController(this, editor, gtc1);
-		gtc1.setOtherController(gtc2);
+		GameTypeController gtc1 = new GameTypeController(this, editor);
+		GameTypeController gtc2 = new GameTypeController(this, editor);
 		int i = 0;
 		for(Component c:spinner.getComponents()){
 			System.out.println("Component: "+c.toString());
