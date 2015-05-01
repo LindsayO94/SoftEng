@@ -66,26 +66,26 @@ public class EditPanel extends JPanel {
 	JLabel lblNewLabel_2;
 	
 	JButton btnQuit;
-	private BoardPanel board;
+	private BoardPanel boardPanel;
 	private JTextField shuffleField;
 	private JTextField removeField;
 	private JTextField swapField_15;
 	private JButton btnPreview;
 	private JTextField outputField;
 	LevelBuilder editor;
-	Level level;
+	private JButton btnSave;
 	
-	public EditPanel(Level level, LevelBuilder editor){
-		this.level = level;
-		this.editor = editor;
+	public EditPanel(LevelBuilder builder){
+		this.editor = builder;
+		this.boardPanel = new BoardPanel(builder.getBoard());
 		
 		lblLevel = new JLabel("Level");
 		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
-		GameTypeController gtc1 = new GameTypeController(this, editor);
-		GameTypeController gtc2 = new GameTypeController(this, editor);
+		GameTypeController gtc1 = new GameTypeController(this, builder);
+		GameTypeController gtc2 = new GameTypeController(this, builder);
 
 		
 		
@@ -212,18 +212,13 @@ public class EditPanel extends JPanel {
 		JLabel lblSwapTiles = new JLabel("Swap Tiles");
 		lblSwapTiles.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnNewButton = new JButton("Save");
+		btnSave = new JButton("Save");
 		
 		btnQuit = new JButton("Back");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		
-		board = new BoardPanel(Board.makeBoard(level));
-
-	
 		
 		shuffleField = new JTextField();
 		shuffleField.setColumns(10);
@@ -258,9 +253,9 @@ public class EditPanel extends JPanel {
 			i++;
 		}
 		
-		board.addMouseListener(new ChangeCellTypeController(board, editor));
-		btnUndo.addMouseListener(new UndoController(this, editor));
-		multiplierField_1.getDocument().addDocumentListener(new MultiplierFieldController(editor, multiplierField_1,0, this));
+		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, builder));
+		btnUndo.addMouseListener(new UndoController(this, builder));
+		multiplierField_1.getDocument().addDocumentListener(new MultiplierFieldController(builder, multiplierField_1,0, this));
 		
 		
 		
@@ -374,8 +369,8 @@ public class EditPanel extends JPanel {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(btnQuit)
-										.addComponent(btnNewButton)))
-								.addComponent(board, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
+										.addComponent(btnSave)))
+								.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -385,7 +380,7 @@ public class EditPanel extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnNewButton)
+								.addComponent(btnSave)
 								.addComponent(btnPreview))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -471,7 +466,7 @@ public class EditPanel extends JPanel {
 								.addComponent(swapField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
-							.addComponent(board, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addComponent(outputField)
 					.addContainerGap())
@@ -497,11 +492,11 @@ public class EditPanel extends JPanel {
 	}
 	
 	public BoardPanel getBoard(){
-		return board;
+		return boardPanel;
 	}
 	
 	public void refresh(){
-		board.refresh();
+		boardPanel.refresh();
 		probabilitieField_1.setText("" + editor.getLevel().getFrequency(0));
 		probabilitieField_2.setText("" + editor.getLevel().getFrequency(1));
 		probabilitieField_3.setText("" + editor.getLevel().getFrequency(2));
@@ -523,5 +518,13 @@ public class EditPanel extends JPanel {
 		removeField.setText("" + editor.getLevel().getNumSwap());
 		swapField_15.setText("" + editor.getLevel().getNumRemove());
 		
+	}
+
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
 	}
 }
