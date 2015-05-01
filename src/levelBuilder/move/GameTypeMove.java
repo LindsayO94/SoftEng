@@ -24,28 +24,24 @@ public class GameTypeMove extends Move {
 
 	@Override
 	public boolean doMove(LevelBuilder editor) {
+		if(valid(editor)){
 		editor.getLevel().setType(newType);
 		return true;
+		} else {return false;}
+		
 	}
 
 	@Override
 	public boolean undo(LevelBuilder editor) {
-		for(Component c:editor.getFrame().getEditor().getSpinner().getComponents()){
-			for(MouseListener m:c.getMouseListeners()){
-				if (m instanceof GameTypeController){
-					GameTypeController gc = (GameTypeController)m;
-					gc.setOldType(oldType);
-				}
-			}
-		}
+		
 		editor.getLevel().setType(oldType);
 		return true;
 	}
 
 	@Override
 	public boolean valid(LevelBuilder editor) {
-		// TODO Auto-generated method stub
-		return true;
+		return(!newType.equals(oldType));
+		
 	}
 
 }

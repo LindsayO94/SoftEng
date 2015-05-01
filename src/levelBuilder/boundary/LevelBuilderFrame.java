@@ -6,9 +6,17 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import levelBuilder.controller.BackToMainBuilderMenuController;
+import levelBuilder.controller.LoadLevelButtonController;
 import levelBuilder.controller.NewLevelButtonController;
+import levelBuilder.controller.SaveButtonController;
 import levelBuilder.controller.SplashController;
 import levelBuilder.entity.LevelBuilder;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JPanel;
+
+import common.entity.Level;
 
 /**
  * Frame for level editor
@@ -28,23 +36,44 @@ public class LevelBuilderFrame extends JFrame {
 		this.levelBuilder = levelBuilder;
 		
 		splash = new SplashPanel();
-		mainMenu = new MainMenuPanel();
-		editor = new EditPanel(levelBuilder.getLevel(), this.levelBuilder);
+		splash.addMouseListener(new SplashController(this));
 		
 		this.setMinimumSize(new Dimension(800, 600));
-		getContentPane().setLayout(new CardLayout(0, 0));
 		
-		splash.addMouseListener(new SplashController(this));
-		editor.getBtnQuit().addMouseListener(new BackToMainBuilderMenuController(this));
-		mainMenu.getLoadButton().addMouseListener(new NewLevelButtonController(this));
+		this.changePanel(splash);
+	}
+	
+	private void changePanel(JPanel panel) {
+		getContentPane().removeAll();
+		
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+		);
+		getContentPane().setLayout(groupLayout);
+	}
+
+	public void showMainMenu() {
+		mainMenu = new MainMenuPanel();
+		mainMenu.getLoadButton().addMouseListener(new LoadLevelButtonController(levelBuilder, this));
 		mainMenu.getNewLvlButton().addMouseListener(new NewLevelButtonController(this));
 		
-		getContentPane().add(splash, "Splash");
-		getContentPane().add(mainMenu, "Main Menu");
-		getContentPane().add(editor, "Editor");
+		this.changePanel(mainMenu);
+	}
+	
+	public void showEditor(Level level) {
+		levelBuilder.setLevel(level);
 		
-		
-		
+		editor = new EditPanel(this.levelBuilder);
+		editor.getBtnQuit().addMouseListener(new BackToMainBuilderMenuController(this));
+		editor.getBtnSave().addMouseListener(new SaveButtonController(levelBuilder, this));
+
+		this.changePanel(editor);
 	}
 	
 	public EditPanel getEditor(){

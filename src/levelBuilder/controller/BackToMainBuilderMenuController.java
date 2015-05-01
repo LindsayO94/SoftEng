@@ -16,10 +16,7 @@ public class BackToMainBuilderMenuController implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		CardLayout cardLayout = (CardLayout) LbF.getContentPane().getLayout();
-		cardLayout.show(LbF.getContentPane(), "Main Menu");
-		// TODO Auto-generated method stub
-		
+		LbF.showMainMenu();
 	}
 
 	public void mousePressed(MouseEvent e) {

@@ -30,29 +30,31 @@ import java.awt.Component;
 
 import levelBuilder.controller.ChangeCellTypeController;
 import levelBuilder.controller.GameTypeController;
+import levelBuilder.controller.MultiplierFieldController;
 import levelBuilder.controller.UndoController;
 import levelBuilder.entity.LevelBuilder;
 
 
 /**
  * Panel which displays visual elements of the editor
+ * put all of the controllers under the "controllers go here" comment
  * @author August
  *
  */
 public class EditPanel extends JPanel {
 	private JTextField textField;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
+	private JTextField multiplierField_1;
+	private JTextField multiplierField_2;
+	private JTextField multiplierField_3;
+	private JTextField probabilitieField_1;
+	private JTextField probabilitieField_2;
+	private JTextField probabilitieField_3;
+	private JTextField probabilitieField_4;
+	private JTextField probabilitieField_5;
+	private JTextField probabilitieField_6;
+	private JTextField scoreField_10;
+	private JTextField scoreField_11;
+	private JTextField scoreField_12;
 	
 	private JLabel lblLevel;
 	
@@ -65,11 +67,11 @@ public class EditPanel extends JPanel {
 	
 	JButton btnQuit;
 	private BoardPanel board;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
+	private JTextField shuffleField;
+	private JTextField removeField;
+	private JTextField swapField_15;
 	private JButton btnPreview;
-	private JTextField textField_16;
+	private JTextField outputField;
 	LevelBuilder editor;
 	Level level;
 	
@@ -82,18 +84,9 @@ public class EditPanel extends JPanel {
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
-		GameTypeController gtc1 = new GameTypeController(this, editor, null);
-		GameTypeController gtc2 = new GameTypeController(this, editor, gtc1);
-		gtc1.setOtherController(gtc2);
-		int i = 0;
-		for(Component c:spinner.getComponents()){
-			System.out.println("Component: "+c.toString());
-			if (i==0)
-				c.addMouseListener(gtc1);
-			else if (i==1)
-				c.addMouseListener(gtc2);
-			i++;
-		}
+		GameTypeController gtc1 = new GameTypeController(this, editor);
+		GameTypeController gtc2 = new GameTypeController(this, editor);
+
 		
 		
 		lblAllowedMoves = new JLabel("Allowed Moves:");
@@ -121,17 +114,17 @@ public class EditPanel extends JPanel {
 		label_8.setHorizontalAlignment(SwingConstants.CENTER);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		textField_7 = new JTextField();
-		textField_7.setText("1");
-		textField_7.setColumns(10);
+		multiplierField_1 = new JTextField();
+		multiplierField_1.setText("1");
+		multiplierField_1.setColumns(10);
 		
-		textField_8 = new JTextField();
-		textField_8.setText("1");
-		textField_8.setColumns(10);
+		multiplierField_2 = new JTextField();
+		multiplierField_2.setText("1");
+		multiplierField_2.setColumns(10);
 		
-		textField_9 = new JTextField();
-		textField_9.setText("1");
-		textField_9.setColumns(10);
+		multiplierField_3 = new JTextField();
+		multiplierField_3.setText("1");
+		multiplierField_3.setColumns(10);
 		
 		JLabel label = new JLabel("1");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -157,29 +150,29 @@ public class EditPanel extends JPanel {
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		textField_1 = new JTextField();
-		textField_1.setText("1");
-		textField_1.setColumns(10);
+		probabilitieField_1 = new JTextField();
+		probabilitieField_1.setText("1");
+		probabilitieField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("1");
-		textField_2.setColumns(10);
+		probabilitieField_2 = new JTextField();
+		probabilitieField_2.setText("1");
+		probabilitieField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("1");
-		textField_3.setColumns(10);
+		probabilitieField_3 = new JTextField();
+		probabilitieField_3.setText("1");
+		probabilitieField_3.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("1");
-		textField_4.setColumns(10);
+		probabilitieField_4 = new JTextField();
+		probabilitieField_4.setText("1");
+		probabilitieField_4.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("1");
-		textField_5.setColumns(10);
+		probabilitieField_5 = new JTextField();
+		probabilitieField_5.setText("1");
+		probabilitieField_5.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("1");
-		textField_6.setColumns(10);
+		probabilitieField_6 = new JTextField();
+		probabilitieField_6.setText("1");
+		probabilitieField_6.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Star Score Minimums");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -196,17 +189,17 @@ public class EditPanel extends JPanel {
 		label_13.setHorizontalAlignment(SwingConstants.CENTER);
 		label_13.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		textField_10 = new JTextField();
-		textField_10.setText("1");
-		textField_10.setColumns(10);
+		scoreField_10 = new JTextField();
+		scoreField_10.setText("1");
+		scoreField_10.setColumns(10);
 		
-		textField_11 = new JTextField();
-		textField_11.setText("1");
-		textField_11.setColumns(10);
+		scoreField_11 = new JTextField();
+		scoreField_11.setText("1");
+		scoreField_11.setColumns(10);
 		
-		textField_12 = new JTextField();
-		textField_12.setText("1");
-		textField_12.setColumns(10);
+		scoreField_12 = new JTextField();
+		scoreField_12.setText("1");
+		scoreField_12.setColumns(10);
 		
 		JLabel label_10 = new JLabel("");
 		
@@ -232,22 +225,21 @@ public class EditPanel extends JPanel {
 
 	
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
+		shuffleField = new JTextField();
+		shuffleField.setColumns(10);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
+		removeField = new JTextField();
+		removeField.setColumns(10);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
+		swapField_15 = new JTextField();
+		swapField_15.setColumns(10);
 		
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves");
 		
 		btnPreview = new JButton("Preview");
 		
-		textField_16 = new JTextField();
-		textField_16.setEditable(false);
-		textField_16.setColumns(10);
+		outputField = new JTextField();
+		outputField.setColumns(10);
 		
 		JButton btnUndo = new JButton("Undo");
 		
@@ -255,8 +247,23 @@ public class EditPanel extends JPanel {
 		/**
 		 * controllers are added here
 		 */
+		
+		int i = 0;
+		for(Component c:spinner.getComponents()){
+			System.out.println("Component: "+c.toString());
+			if (i==0)
+				c.addMouseListener(gtc1);
+			else if (i==1)
+				c.addMouseListener(gtc2);
+			i++;
+		}
+		
 		board.addMouseListener(new ChangeCellTypeController(board, editor));
-		btnUndo.addMouseListener(new UndoController(board, editor));
+		btnUndo.addMouseListener(new UndoController(this, editor));
+		multiplierField_1.getDocument().addDocumentListener(new MultiplierFieldController(editor, multiplierField_1,0, this));
+		
+		
+		
 		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -266,7 +273,7 @@ public class EditPanel extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(textField_16, 702, 702, 702))
+							.addComponent(outputField, 702, 702, 702))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -294,26 +301,26 @@ public class EditPanel extends JPanel {
 													.addPreferredGap(ComponentPlacement.RELATED)
 													.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_4, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_5, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+													.addComponent(probabilitieField_6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(10)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+													.addComponent(multiplierField_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 													.addGap(18)
-													.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+													.addComponent(multiplierField_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 													.addGap(18)
-													.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+													.addComponent(multiplierField_3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
 													.addComponent(label_5)
 													.addGap(18)
@@ -325,9 +332,9 @@ public class EditPanel extends JPanel {
 											.addComponent(label_10)
 											.addPreferredGap(ComponentPlacement.RELATED)
 											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-												.addComponent(textField_13, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-												.addComponent(textField_14, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-												.addComponent(textField_15, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+												.addComponent(shuffleField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+												.addComponent(removeField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+												.addComponent(swapField_15, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
 												.addComponent(lblNumberOfMoves, Alignment.LEADING)))))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addContainerGap()
@@ -338,17 +345,17 @@ public class EditPanel extends JPanel {
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+														.addComponent(scoreField_10, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 														.addComponent(label_9))
 													.addGap(18)
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(textField_11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+														.addComponent(scoreField_11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 														.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE))
 													.addGap(18)
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 														.addGroup(groupLayout.createSequentialGroup()
 															.addGap(2)
-															.addComponent(textField_12, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+															.addComponent(scoreField_12, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 														.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)))
 												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 													.addComponent(lblRemoveTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
@@ -409,12 +416,12 @@ public class EditPanel extends JPanel {
 								.addComponent(label_6))
 							.addGap(2)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(probabilitieField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addComponent(lblNewLabel_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -424,9 +431,9 @@ public class EditPanel extends JPanel {
 								.addComponent(label_8))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(multiplierField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(multiplierField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(multiplierField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -434,15 +441,15 @@ public class EditPanel extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(label_9)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+									.addComponent(scoreField_10, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_11, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+									.addComponent(scoreField_11, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_12, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(scoreField_12, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(52)
@@ -453,25 +460,25 @@ public class EditPanel extends JPanel {
 									.addGap(13)
 									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 										.addComponent(lblShuffleBoard)
-										.addComponent(textField_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+										.addComponent(shuffleField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(removeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblRemoveTiles, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(swapField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(board, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(textField_16)
+					.addComponent(outputField)
 					.addContainerGap())
 		);
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_9, label_11, label_13, textField_10, textField_11, textField_12});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_8, textField_7, textField_8, textField_9, label_5, label_7});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_9, label_11, label_13, scoreField_10, scoreField_11, scoreField_12});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_8, multiplierField_1, multiplierField_2, multiplierField_3, label_5, label_7});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, probabilitieField_1, probabilitieField_2, probabilitieField_3, probabilitieField_4, probabilitieField_5, probabilitieField_6});
 		setLayout(groupLayout);
 		
 		this.refresh();
@@ -495,26 +502,26 @@ public class EditPanel extends JPanel {
 	
 	public void refresh(){
 		board.refresh();
-		textField_1.setText("" + editor.getLevel().getFrequency(0));
-		textField_2.setText("" + editor.getLevel().getFrequency(1));
-		textField_3.setText("" + editor.getLevel().getFrequency(2));
-		textField_4.setText("" + editor.getLevel().getFrequency(3));
-		textField_5.setText("" + editor.getLevel().getFrequency(4));
-		textField_6.setText("" + editor.getLevel().getFrequency(5));
+		probabilitieField_1.setText("" + editor.getLevel().getFrequency(0));
+		probabilitieField_2.setText("" + editor.getLevel().getFrequency(1));
+		probabilitieField_3.setText("" + editor.getLevel().getFrequency(2));
+		probabilitieField_4.setText("" + editor.getLevel().getFrequency(3));
+		probabilitieField_5.setText("" + editor.getLevel().getFrequency(4));
+		probabilitieField_6.setText("" + editor.getLevel().getFrequency(5));
 		
-		textField_7.setText("" + editor.getLevel().getMultiplierFrequency(0));
-		textField_8.setText("" + editor.getLevel().getMultiplierFrequency(1));
-		textField_9.setText("" + editor.getLevel().getMultiplierFrequency(2));
+		multiplierField_1.setText("" + editor.getLevel().getMultiplierFrequency(0));
+		multiplierField_2.setText("" + editor.getLevel().getMultiplierFrequency(1));
+		multiplierField_3.setText("" + editor.getLevel().getMultiplierFrequency(2));
 		
-		textField_10.setText("" + editor.getLevel().getStarScore(0));
-		textField_10.setText("" + editor.getLevel().getStarScore(1));
-		textField_10.setText("" + editor.getLevel().getStarScore(2));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(0));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(1));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(2));
 		
 		spinner.setValue(editor.getLevel().getType());
 		
-		textField_13.setText("" + editor.getLevel().getNumShuffle());
-		textField_14.setText("" + editor.getLevel().getNumSwap());
-		textField_15.setText("" + editor.getLevel().getNumRemove());
+		shuffleField.setText("" + editor.getLevel().getNumShuffle());
+		removeField.setText("" + editor.getLevel().getNumSwap());
+		swapField_15.setText("" + editor.getLevel().getNumRemove());
 		
 	}
 }

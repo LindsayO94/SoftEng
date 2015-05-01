@@ -103,13 +103,19 @@ public abstract class Board {
 	}
 
 	public static Board makeBoard(Level level) {
-		switch (level.type) {
+		if (level.type.equals("Puzzle")){
+			return new PuzzleBoard(level);
+		}
+		else{
+			throw new IllegalArgumentException("Unknown board type");
+		}
+		/*switch (level.type) {
 		case "Puzzle":
 			return new PuzzleBoard(level);
 			
 		default:
 			throw new IllegalArgumentException("Unknown board type");
-		}
+		}*/
 	}
 	
 	public int getScore(){
