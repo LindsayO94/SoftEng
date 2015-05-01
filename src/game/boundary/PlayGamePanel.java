@@ -2,6 +2,8 @@ package game.boundary;
 
 import java.awt.Graphics;
 
+import game.controller.CellSelectController;
+import game.controller.SelectController;
 import game.entities.Game;
 
 import javax.swing.JPanel;
@@ -18,6 +20,7 @@ import javax.swing.SwingConstants;
 import common.boundary.BoardPanel;
 import common.boundary.TilePanel;
 import common.entity.Board;
+import common.entity.Cell;
 import common.entity.Level;
 
 import java.awt.Component;
@@ -29,6 +32,7 @@ public class PlayGamePanel extends JPanel {
 	Level level;
 	Board board;
 	Game game;
+	Cell cell;
 	
 	
 	String inactivePath = "Images/InactiveStar.png";
@@ -66,8 +70,11 @@ public class PlayGamePanel extends JPanel {
 		
 		btnShuffle = new JButton("Shuffle");
 		
+		
 		refresh();
 	}
+	
+	
 	
 	// TODO: Some of this should probably be in the constructor
 	public void refresh() {
@@ -75,6 +82,10 @@ public class PlayGamePanel extends JPanel {
 			return;
 		}
 		BoardPanel panel = new BoardPanel(board);
+		
+		
+		panel.addMouseListener(new SelectController(panel, game));
+		
 		
 		JLabel lblMovesRemaining_1 = new JLabel("0 Moves Remaining");
 		

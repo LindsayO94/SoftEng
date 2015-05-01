@@ -18,7 +18,7 @@ public class ChangeCellTypeController implements MouseListener{
 	LevelBuilder editor;
 	
 	public ChangeCellTypeController(BoardPanel board, LevelBuilder editor){
-		this.board = board;
+		this.board = board; 
 		this.editor = editor;
 		
 	}

@@ -1,5 +1,7 @@
 package common.boundary;
 
+import game.controller.CellSelectController;
+
 import javax.swing.JPanel;
 
 import common.entity.Board;
@@ -31,7 +33,7 @@ public class BoardPanel extends JPanel {
 		this.board = board;
 		
 		setLayout(new GridLayout(9, 9, 0, 0));
-				
+		
 		refresh();
 	}
 	
@@ -39,7 +41,7 @@ public class BoardPanel extends JPanel {
 		removeAll();
 		int i = 0;
 		for (ArrayList<Cell> row : board.getCells()) {
-			for (Cell cell : row) {
+			for (Cell cell : row) { 
 				switch (cell.getType()) {
 				case TILE_CELL:
 					TilePanel tileView = new TilePanel( ((TileCell) cell).getTile() );
@@ -58,6 +60,8 @@ public class BoardPanel extends JPanel {
 		validate(); // Recomputes layout
 		repaint();
 	}
+	
+	
 	
 	public CellPanel[] getCellPanel(){
 		return cells;

@@ -1,6 +1,7 @@
 package game.move;
 
-
+import game.entities.Game;
+import common.entity.Cell;
 import common.boundary.TileCellPanel;
 import common.entity.Board;
 import common.entity.Cell;
@@ -8,14 +9,14 @@ import common.entity.TileCell;
 import game.entities.Game;
 import game.move.gameMove;
 
-public class SelectMove extends gameMove{
+public class CellSelectMove extends gameMove{
 	
 	Cell cell;
-	Board board;
+
 	
-	public SelectMove(Cell cell, Board board){
+	public CellSelectMove(Cell cell){
 		this.cell = cell;
-		this.board = board;
+		
 	}
 
 	
@@ -48,4 +49,3 @@ public class SelectMove extends gameMove{
 	
 
 }
-

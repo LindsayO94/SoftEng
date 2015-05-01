@@ -29,27 +29,23 @@ public class SelectController implements MouseListener{
 	}
 	
 	public void mousePressed(MouseEvent me) {
-		mousePressed = true;
-		CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-		SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
-		m.doMove(game);
-		board.refresh();
-		((TileCellPanel) cell).refresh();
-		
-		}
-
-		
-
-	public void mouseEntered(MouseEvent me) {
-		
-		if (mousePressed==true)
-		{
+			System.out.println("Cell pressed");
+			//mousePressed = true;
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
 			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
 			m.doMove(game);
 			board.refresh();
 			((TileCellPanel) cell).refresh();
 		}
+
+	public void mouseDragged(MouseEvent me) {
+			
+		
+		}
+		
+
+	public void mouseEntered(MouseEvent me) {
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -64,9 +60,14 @@ public class SelectController implements MouseListener{
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-		mousePressed=false;
+	
 		
 		
+	}
+	
+	public boolean isPressed()
+	{
+		return mousePressed;
 	}
 
 }

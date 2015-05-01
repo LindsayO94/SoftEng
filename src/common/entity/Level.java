@@ -17,7 +17,7 @@ import com.google.gson.stream.JsonReader;
 import common.entity.Cell.Type;
 
 public class Level {
-	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" };
+	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" }; 
 	// Transient means it won't be in the JSON
 	transient Random rand;
 	

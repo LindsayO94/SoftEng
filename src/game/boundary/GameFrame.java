@@ -6,8 +6,11 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import common.boundary.BoardPanel;
 import common.boundary.LevelSelectPanel;
 import common.entity.Board;
+import common.entity.Cell;
+import common.entity.Level;
 
 import java.awt.CardLayout;
 
@@ -15,16 +18,22 @@ import java.awt.CardLayout;
 public class GameFrame extends JFrame {
 	//Entities
 	Game game;
+	Board Eboard;
+	Level level;
 	
 	AchievementsPanel achievements;
 	PlayGamePanel playGame;
 	LevelSelectPanel levelSelect = new LevelSelectPanel();
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
+	BoardPanel board; 
 	
 	public GameFrame(Game game) {
 		
 		this.game = game;
+		this.level = game.iterator().next();
+		
+		board = new BoardPanel(Board.makeBoard(level));
 		achievements = new AchievementsPanel(game);
 		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
@@ -37,6 +46,8 @@ public class GameFrame extends JFrame {
 		levelSelect.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		levelSelect.getPuzzle1Button().addMouseListener(new PlayGameController(this));
 		splash.addMouseListener(new SplashController(this));
+		board.addMouseListener(new SelectController(board, game));
+		
 		
 		getContentPane().add(splash, "Splash");
 		getContentPane().add(mainMenu, "Main Menu");

@@ -1,20 +1,17 @@
 package game.move;
 
+import java.util.ArrayList;
 
-import common.boundary.TileCellPanel;
+import game.entities.Game;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.TileCell;
-import game.entities.Game;
-import game.move.gameMove;
 
-public class SelectMove extends gameMove{
+public class RemoveSelected extends gameMove{
 	
-	Cell cell;
 	Board board;
 	
-	public SelectMove(Cell cell, Board board){
-		this.cell = cell;
+	public RemoveSelected(Board board){
 		this.board = board;
 	}
 
@@ -23,11 +20,9 @@ public class SelectMove extends gameMove{
 	public boolean doMove(Game game) {
 		if(valid(game)==true)
 		{
-			((TileCell) cell).setSelected();
-			//board.refreshCell(cell);
 			
 			return true;
-		} 
+		}
 		return false;
 	}
 
@@ -42,10 +37,3 @@ public class SelectMove extends gameMove{
 		// TODO Auto-generated method stub
 		return true;
 	}
-
-
-	
-	
-
-}
-

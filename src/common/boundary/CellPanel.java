@@ -1,5 +1,8 @@
 package common.boundary;
 
+import game.controller.CellSelectController;
+import game.controller.SelectController;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -9,7 +12,7 @@ import common.entity.Tile;
 
 public abstract class CellPanel extends JPanel {
 	Cell cellModel;
-	
+	BoardPanel board;
 	TilePanel tileView;
 	
 	public CellPanel(Cell cell, TilePanel tileView) {
@@ -26,7 +29,9 @@ public abstract class CellPanel extends JPanel {
 				.addComponent(tileView, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 		);
 		setLayout(groupLayout);
+		this.addMouseListener(new CellSelectController(this));
 	}
+	
 	
 	public CellPanel(Cell cell) {
 		this.cellModel = cell;
