@@ -94,6 +94,7 @@ public class Level {
 	}
 	
 	int getWeightedRandomIndex(int arr[]) {
+		System.out.println("array length = "+arr.length);
 		if (arr.length == 0) {
 			throw new IllegalArgumentException("getWeightedRandomIndex cannot accept an empty array");
 		}

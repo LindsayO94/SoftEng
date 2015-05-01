@@ -40,7 +40,7 @@ public class MultiplierFrequencyMove extends Move{
 	public boolean undo(LevelBuilder editor) {
 		
 		editor.getLevel().setMultiplierFrequency(oldMultiplierFrequencies);
-		return false;
+		return true;
 	}
 
 	@Override

@@ -26,10 +26,10 @@ public class MultiplierFieldController implements DocumentListener {
 	
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getFrequencyArray());
+		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray());
 		if(move.doMove(editor)){
-		editor.pushMove(move);
-		System.out.println("yo");
+			editor.pushMove(move);
+			System.out.println("yo");
 		}
 
 		
@@ -39,10 +39,10 @@ public class MultiplierFieldController implements DocumentListener {
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 
-		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getFrequencyArray());
+		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray());
 		if(move.doMove(editor)){
-		editor.pushMove(move);
-		System.out.println(editor.getLevel().getMultiplierFrequency(0));
+			editor.pushMove(move);
+			System.out.println(editor.getLevel().getMultiplierFrequency(0));
 		}
 	
 		
