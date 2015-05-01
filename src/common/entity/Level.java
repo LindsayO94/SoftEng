@@ -102,6 +102,7 @@ public class Level {
 	}
 	
 	int getWeightedRandomIndex(int arr[]) {
+		System.out.println("array length = "+arr.length);
 		if (arr.length == 0) {
 			throw new IllegalArgumentException("getWeightedRandomIndex cannot accept an empty array");
 		}
@@ -149,6 +150,10 @@ public class Level {
 	public int getFrequency(int index) {
 		return frequency[index];
 	}
+	
+	public int[] getFrequencyArray() {
+		return frequency;
+	}
 
 	public void setFrequency(int[] frequency) {
 		this.frequency = frequency;
@@ -156,6 +161,10 @@ public class Level {
 
 	public int getMultiplierFrequency(int index) {
 		return multiplierFrequency[index];
+	}
+	
+	public int[] getMultiplierFrequencyArray() {
+		return multiplierFrequency;
 	}
 
 	public void setMultiplierFrequency(int[] multiplierFrequency) {

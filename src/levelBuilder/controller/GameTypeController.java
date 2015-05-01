@@ -17,36 +17,20 @@ import common.boundary.BoardPanel;
 public class GameTypeController implements MouseListener{
 	EditPanel options;
 	LevelBuilder editor;
-	GameTypeController other;
-	String oldType;
 	
-	public GameTypeController(EditPanel options, LevelBuilder editor, GameTypeController other){
+	public GameTypeController(EditPanel options, LevelBuilder editor){
 		this.options = options;
 		this.editor = editor;
-		this.other = other;
-		this.oldType = (String)options.getSpinner().getValue();
 	}
 	
-	public void setOldType(String oldType){
-		System.out.println("old type is now "+oldType);
-		this.oldType = oldType;
-	}
-	
-	public void setOtherController(GameTypeController gtc){
-		this.other = gtc;
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		String newType = (String)options.getSpinner().getValue();
-		System.out.println("Changing type to "+newType+"old type is "+oldType);
-		Move m = new GameTypeMove(newType, oldType);
+		Move m = new GameTypeMove(newType, editor.getLevel().getType());
 		if(m.doMove(editor)){
 			editor.pushMove(m);
-			oldType = newType;
-			other.setOldType(oldType);
 		};
-		System.out.println("old type is "+oldType);
 		
 		options.getBoardPanel().refresh();
 		

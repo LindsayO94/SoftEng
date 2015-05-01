@@ -30,204 +30,241 @@ import java.awt.Component;
 
 import levelBuilder.controller.ChangeCellTypeController;
 import levelBuilder.controller.GameTypeController;
+import levelBuilder.controller.MultiplierFieldController;
 import levelBuilder.controller.UndoController;
 import levelBuilder.entity.LevelBuilder;
 
 
 /**
  * Panel which displays visual elements of the editor
+ * put all of the controllers under the "controllers go here" comment
  * @author August
  *
  */
 public class EditPanel extends JPanel {
-	// Other LevelBuilder objects
-	BoardPanel boardPanel;
-	LevelBuilder editor;
+	private JTextField textField;
+	private JTextField multiplierField_1;
+	private JTextField multiplierField_2;
+	private JTextField multiplierField_3;
+	private JTextField probabilitieField_1;
+	private JTextField probabilitieField_2;
+	private JTextField probabilitieField_3;
+	private JTextField probabilitieField_4;
+	private JTextField probabilitieField_5;
+	private JTextField probabilitieField_6;
+	private JTextField scoreField_10;
+	private JTextField scoreField_11;
+	private JTextField scoreField_12;
 	
-	// Fields on the left of the builder
-	JSpinner levelTypeSpinner;
+	private JLabel lblLevel;
 	
-	JTextField allowedMovesField;
+	JSpinner spinner;
 	
-	JTextField tileOnesWeightField;
-	JTextField tileTwosWeightField;
-	JTextField tileThreesWeightField;
-	JTextField tileFoursWeightField;
-	JTextField tileFivesWeightField;
-	JTextField tileSixesWeightField;
+	JLabel lblAllowedMoves;
 	
-	JTextField multiplier1xWeightField;
-	JTextField multiplier2xWeightField;
-	JTextField multiplier3xWeightField;
+	JLabel lblNewLabel;
+	JLabel lblNewLabel_2;
 	
-	JTextField oneStarThresholdField;
-	JTextField twoStarThresholdField;
-	JTextField threeStarThresholdField;
-
-	JTextField shuffleBoardMovesField;
-	JTextField removeTilesMovesField;
-	JTextField swapTilesMovesField;
-	
-	// Buttons
 	JButton btnQuit;
-	JButton btnPreview;
-	JButton saveBtn;
+	private BoardPanel board;
+	private JTextField shuffleField;
+	private JTextField removeField;
+	private JTextField swapField_15;
+	private JButton btnPreview;
+	private JTextField outputField;
+	LevelBuilder editor;
+	Level level;
 	
-	// Error output
-	JTextField errorOutputField;
-	JButton btnUndo;
-	
-	public EditPanel(LevelBuilder editor){
+	public EditPanel(Level level, LevelBuilder editor){
+		this.level = level;
 		this.editor = editor;
-		this.boardPanel = new BoardPanel(editor.getBoard());
 		
-		// HERE THERE BE WINDOWBUILDER - Controllers are after WindowBuilder
-		JLabel levelLabel = new JLabel("Level");
-		levelLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblLevel = new JLabel("Level");
+		lblLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
-		levelTypeSpinner = new JSpinner();
-		levelTypeSpinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
+		GameTypeController gtc1 = new GameTypeController(this, editor);
+		GameTypeController gtc2 = new GameTypeController(this, editor);
+
 		
-		JLabel allowedMovesLabel = new JLabel("Allowed Moves:");
-		allowedMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		allowedMovesField = new JTextField();
-		allowedMovesField.setText("20");
-		allowedMovesField.setColumns(10);
+		lblAllowedMoves = new JLabel("Allowed Moves:");
+		lblAllowedMoves.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel tileWeightsLabel = new JLabel("Tile Probability Weights:");
-		tileWeightsLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textField = new JTextField();
+		textField.setText("20");
+		textField.setColumns(10);
 		
-		JLabel multiplierProbabilitiesLabel = new JLabel("Multiplier Probability Weights:");
-		multiplierProbabilitiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel = new JLabel("Tile Probabilities:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel multiplier1xWeightLabel = new JLabel("1");
-		multiplier1xWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		multiplier1xWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2 = new JLabel("Multiplier Probabilites:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel multiplier2xWeightLabel = new JLabel("2");
-		multiplier2xWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		multiplier2xWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_5 = new JLabel("1");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel multiplier3xWeightLabel = new JLabel("3");
-		multiplier3xWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		multiplier3xWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_7 = new JLabel("2");
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		multiplier1xWeightField = new JTextField();
-		multiplier1xWeightField.setText("1");
-		multiplier1xWeightField.setColumns(10);
+		JLabel label_8 = new JLabel("3");
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		multiplier2xWeightField = new JTextField();
-		multiplier2xWeightField.setText("1");
-		multiplier2xWeightField.setColumns(10);
+		multiplierField_1 = new JTextField();
+		multiplierField_1.setText("1");
+		multiplierField_1.setColumns(10);
 		
-		multiplier3xWeightField = new JTextField();
-		multiplier3xWeightField.setText("1");
-		multiplier3xWeightField.setColumns(10);
+		multiplierField_2 = new JTextField();
+		multiplierField_2.setText("1");
+		multiplierField_2.setColumns(10);
 		
-		JLabel tileOnesWeightLabel = new JLabel("1");
-		tileOnesWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileOnesWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		multiplierField_3 = new JTextField();
+		multiplierField_3.setText("1");
+		multiplierField_3.setColumns(10);
 		
-		JLabel tileTwosWeightLabel = new JLabel("2");
-		tileTwosWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileTwosWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label = new JLabel("1");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel tileThreesWeightLabel = new JLabel("3");
-		tileThreesWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileThreesWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_1 = new JLabel("2");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel tileFoursWeightLabel = new JLabel("4");
-		tileFoursWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileFoursWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_2 = new JLabel("3");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel tileFivesWeightLabel = new JLabel("5");
-		tileFivesWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileFivesWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_3 = new JLabel("4");
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel tileSixesWeightLabel = new JLabel("6");
-		tileSixesWeightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tileSixesWeightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_4 = new JLabel("5");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		tileOnesWeightField = new JTextField();
-		tileOnesWeightField.setText("1");
-		tileOnesWeightField.setColumns(10);
+		JLabel label_6 = new JLabel("6");
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		tileTwosWeightField = new JTextField();
-		tileTwosWeightField.setText("1");
-		tileTwosWeightField.setColumns(10);
+		probabilitieField_1 = new JTextField();
+		probabilitieField_1.setText("1");
+		probabilitieField_1.setColumns(10);
 		
-		tileThreesWeightField = new JTextField();
-		tileThreesWeightField.setText("1");
-		tileThreesWeightField.setColumns(10);
+		probabilitieField_2 = new JTextField();
+		probabilitieField_2.setText("1");
+		probabilitieField_2.setColumns(10);
 		
-		tileFoursWeightField = new JTextField();
-		tileFoursWeightField.setText("1");
-		tileFoursWeightField.setColumns(10);
+		probabilitieField_3 = new JTextField();
+		probabilitieField_3.setText("1");
+		probabilitieField_3.setColumns(10);
 		
-		tileFivesWeightField = new JTextField();
-		tileFivesWeightField.setText("1");
-		tileFivesWeightField.setColumns(10);
+		probabilitieField_4 = new JTextField();
+		probabilitieField_4.setText("1");
+		probabilitieField_4.setColumns(10);
 		
-		tileSixesWeightField = new JTextField();
-		tileSixesWeightField.setText("1");
-		tileSixesWeightField.setColumns(10);
+		probabilitieField_5 = new JTextField();
+		probabilitieField_5.setText("1");
+		probabilitieField_5.setColumns(10);
 		
-		JLabel starScoreThresholdsLabel = new JLabel("Star Score Minimums");
-		starScoreThresholdsLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		probabilitieField_6 = new JTextField();
+		probabilitieField_6.setText("1");
+		probabilitieField_6.setColumns(10);
 		
-		JLabel oneStarThresholdLabel = new JLabel("1");
-		oneStarThresholdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		oneStarThresholdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblNewLabel_1 = new JLabel("Star Score Minimums");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel twoStarThresholdLabel = new JLabel("2");
-		twoStarThresholdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		twoStarThresholdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_9 = new JLabel("1");
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel threeStarThresholdLabel = new JLabel("3");
-		threeStarThresholdLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		threeStarThresholdLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_11 = new JLabel("2");
+		label_11.setHorizontalAlignment(SwingConstants.CENTER);
+		label_11.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		oneStarThresholdField = new JTextField();
-		oneStarThresholdField.setText("1");
-		oneStarThresholdField.setColumns(10);
+		JLabel label_13 = new JLabel("3");
+		label_13.setHorizontalAlignment(SwingConstants.CENTER);
+		label_13.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		twoStarThresholdField = new JTextField();
-		twoStarThresholdField.setText("1");
-		twoStarThresholdField.setColumns(10);
+		scoreField_10 = new JTextField();
+		scoreField_10.setText("1");
+		scoreField_10.setColumns(10);
 		
-		threeStarThresholdField = new JTextField();
-		threeStarThresholdField.setText("1");
-		threeStarThresholdField.setColumns(10);
+		scoreField_11 = new JTextField();
+		scoreField_11.setText("1");
+		scoreField_11.setColumns(10);
 		
-		JLabel shuffleBoardMovesLabel = new JLabel("Shuffle Board");
-		shuffleBoardMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		scoreField_12 = new JTextField();
+		scoreField_12.setText("1");
+		scoreField_12.setColumns(10);
 		
-		JLabel removeTilesMovesLabel = new JLabel("Remove Tiles");
-		removeTilesMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_10 = new JLabel("");
 		
-		JLabel swapTilesMovesLabel = new JLabel("Swap Tiles");
-		swapTilesMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblShuffleBoard = new JLabel("Shuffle Board");
+		lblShuffleBoard.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		shuffleBoardMovesField = new JTextField();
-		shuffleBoardMovesField.setColumns(10);
+		JLabel lblRemoveTiles = new JLabel("Remove Tiles");
+		lblRemoveTiles.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		removeTilesMovesField = new JTextField();
-		removeTilesMovesField.setColumns(10);
+		JLabel lblSwapTiles = new JLabel("Swap Tiles");
+		lblSwapTiles.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		swapTilesMovesField = new JTextField();
-		swapTilesMovesField.setColumns(10);
+		JButton btnNewButton = new JButton("Save");
 		
-		JLabel specalMovesNumLabel = new JLabel("Number of Moves");
-		
-		saveBtn = new JButton("Save");
 		btnQuit = new JButton("Back");
-		btnPreview = new JButton("Preview");
-		btnUndo = new JButton("Undo");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		errorOutputField = new JTextField();
-		errorOutputField.setEditable(false);
-		errorOutputField.setColumns(10);
+		
+		board = new BoardPanel(Board.makeBoard(level));
+
+	
+		
+		shuffleField = new JTextField();
+		shuffleField.setColumns(10);
+		
+		removeField = new JTextField();
+		removeField.setColumns(10);
+		
+		swapField_15 = new JTextField();
+		swapField_15.setColumns(10);
+		
+		JLabel lblNumberOfMoves = new JLabel("Number of Moves");
+		
+		btnPreview = new JButton("Preview");
+		
+		outputField = new JTextField();
+		outputField.setColumns(10);
+		
+		JButton btnUndo = new JButton("Undo");
+		
+		
+		/**
+		 * controllers are added here
+		 */
+		
+		int i = 0;
+		for(Component c:spinner.getComponents()){
+			System.out.println("Component: "+c.toString());
+			if (i==0)
+				c.addMouseListener(gtc1);
+			else if (i==1)
+				c.addMouseListener(gtc2);
+			i++;
+		}
+		
+		board.addMouseListener(new ChangeCellTypeController(board, editor));
+		btnUndo.addMouseListener(new UndoController(this, editor));
+		multiplierField_1.getDocument().addDocumentListener(new MultiplierFieldController(editor, multiplierField_1,0, this));
+		
+		
+		
+		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -236,98 +273,100 @@ public class EditPanel extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(errorOutputField, 702, 702, 702))
+							.addComponent(outputField, 702, 702, 702))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGap(6)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(allowedMovesLabel)
+											.addComponent(lblAllowedMoves)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(allowedMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addComponent(multiplierProbabilitiesLabel)
-										.addComponent(tileWeightsLabel)
+											.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addComponent(lblNewLabel_2)
+										.addComponent(lblNewLabel)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(10)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(tileOnesWeightLabel)
+													.addComponent(label)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileTwosWeightLabel)
+													.addComponent(label_1)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileThreesWeightLabel)
+													.addComponent(label_2)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileFoursWeightLabel)
+													.addComponent(label_3)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileFivesWeightLabel)
+													.addComponent(label_4)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileSixesWeightLabel, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+													.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(tileOnesWeightField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileTwosWeightField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileThreesWeightField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileFoursWeightField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_4, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileFivesWeightField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+													.addComponent(probabilitieField_5, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 													.addPreferredGap(ComponentPlacement.RELATED)
-													.addComponent(tileSixesWeightField, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
+													.addComponent(probabilitieField_6, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(10)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(multiplier1xWeightField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+													.addComponent(multiplierField_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 													.addGap(18)
-													.addComponent(multiplier2xWeightField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+													.addComponent(multiplierField_2, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 													.addGap(18)
-													.addComponent(multiplier3xWeightField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+													.addComponent(multiplierField_3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(multiplier1xWeightLabel)
+													.addComponent(label_5)
 													.addGap(18)
-													.addComponent(multiplier2xWeightLabel)
+													.addComponent(label_7)
 													.addGap(18)
-													.addComponent(multiplier3xWeightLabel))))
+													.addComponent(label_8))))
 										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(146)
+											.addGap(140)
+											.addComponent(label_10)
+											.addPreferredGap(ComponentPlacement.RELATED)
 											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-												.addComponent(shuffleBoardMovesField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-												.addComponent(removeTilesMovesField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-												.addComponent(swapTilesMovesField, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-												.addComponent(specalMovesNumLabel, Alignment.LEADING)))))
+												.addComponent(shuffleField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+												.addComponent(removeField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+												.addComponent(swapField_15, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblNumberOfMoves, Alignment.LEADING)))))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addContainerGap()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(starScoreThresholdsLabel)
+										.addComponent(lblNewLabel_1)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGap(10)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addGroup(groupLayout.createSequentialGroup()
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(oneStarThresholdField, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-														.addComponent(oneStarThresholdLabel))
+														.addComponent(scoreField_10, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+														.addComponent(label_9))
 													.addGap(18)
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(twoStarThresholdField, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-														.addComponent(twoStarThresholdLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE))
+														.addComponent(scoreField_11, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+														.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE))
 													.addGap(18)
 													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 														.addGroup(groupLayout.createSequentialGroup()
 															.addGap(2)
-															.addComponent(threeStarThresholdField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-														.addComponent(threeStarThresholdLabel, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)))
+															.addComponent(scoreField_12, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+														.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 8, GroupLayout.PREFERRED_SIZE)))
 												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-													.addComponent(removeTilesMovesLabel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-													.addComponent(shuffleBoardMovesLabel)
-													.addComponent(swapTilesMovesLabel, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)))))))
+													.addComponent(lblRemoveTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblShuffleBoard)
+													.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)))))))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(levelTypeSpinner, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+									.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(levelLabel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblLevel, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
 									.addGap(88)
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(btnPreview)
@@ -335,9 +374,9 @@ public class EditPanel extends JPanel {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addComponent(btnQuit)
-										.addComponent(saveBtn)))
-								.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(70, Short.MAX_VALUE))
+										.addComponent(btnNewButton)))
+								.addComponent(board, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -346,7 +385,7 @@ public class EditPanel extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(saveBtn)
+								.addComponent(btnNewButton)
 								.addComponent(btnPreview))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -356,107 +395,91 @@ public class EditPanel extends JPanel {
 										.addComponent(btnUndo))
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-									.addComponent(allowedMovesLabel)
-									.addComponent(allowedMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(lblAllowedMoves)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(levelLabel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(levelTypeSpinner, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))))
+								.addComponent(lblLevel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(spinner, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(24)
-							.addComponent(tileWeightsLabel)
+							.addComponent(lblNewLabel)
 							.addGap(12)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tileOnesWeightLabel)
-								.addComponent(tileTwosWeightLabel)
-								.addComponent(tileThreesWeightLabel)
-								.addComponent(tileFoursWeightLabel)
-								.addComponent(tileFivesWeightLabel)
-								.addComponent(tileSixesWeightLabel))
+								.addComponent(label)
+								.addComponent(label_1)
+								.addComponent(label_2)
+								.addComponent(label_3)
+								.addComponent(label_4)
+								.addComponent(label_6))
 							.addGap(2)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(tileOnesWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tileTwosWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tileThreesWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tileFoursWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tileFivesWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tileSixesWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(probabilitieField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(probabilitieField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
-							.addComponent(multiplierProbabilitiesLabel)
+							.addComponent(lblNewLabel_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(multiplier1xWeightLabel)
-								.addComponent(multiplier2xWeightLabel)
-								.addComponent(multiplier3xWeightLabel))
+								.addComponent(label_5)
+								.addComponent(label_7)
+								.addComponent(label_8))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(multiplier1xWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(multiplier2xWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(multiplier3xWeightField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(multiplierField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(multiplierField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(multiplierField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(starScoreThresholdsLabel)
+							.addComponent(lblNewLabel_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(oneStarThresholdLabel)
+									.addComponent(label_9)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(oneStarThresholdField, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+									.addComponent(scoreField_10, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(twoStarThresholdLabel, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(twoStarThresholdField, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+									.addComponent(scoreField_11, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(threeStarThresholdLabel, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(threeStarThresholdField, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
-							.addGap(12)
-							.addComponent(specalMovesNumLabel)
-							.addGap(13)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(shuffleBoardMovesLabel)
-								.addComponent(shuffleBoardMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(scoreField_12, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(52)
+									.addComponent(label_10))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(12)
+									.addComponent(lblNumberOfMoves)
+									.addGap(13)
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(lblShuffleBoard)
+										.addComponent(shuffleField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(removeTilesMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(removeTilesMovesLabel, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
+								.addComponent(removeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblRemoveTiles, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(swapTilesMovesLabel, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(swapTilesMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+								.addComponent(swapField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
-							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(board, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(errorOutputField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(outputField)
 					.addContainerGap())
 		);
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {tileOnesWeightLabel, tileTwosWeightLabel, tileThreesWeightLabel, tileFoursWeightLabel, tileFivesWeightLabel, tileSixesWeightLabel, tileOnesWeightField, tileTwosWeightField, tileThreesWeightField, tileFoursWeightField, tileFivesWeightField, tileSixesWeightField});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {multiplier1xWeightLabel, multiplier2xWeightLabel, multiplier3xWeightLabel, multiplier1xWeightField, multiplier2xWeightField, multiplier3xWeightField});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {oneStarThresholdLabel, twoStarThresholdLabel, threeStarThresholdLabel, oneStarThresholdField, twoStarThresholdField, threeStarThresholdField});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_9, label_11, label_13, scoreField_10, scoreField_11, scoreField_12});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_8, multiplierField_1, multiplierField_2, multiplierField_3, label_5, label_7});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, probabilitieField_1, probabilitieField_2, probabilitieField_3, probabilitieField_4, probabilitieField_5, probabilitieField_6});
 		setLayout(groupLayout);
-		// END WINDOWBUILDER
-
-		
-		/**
-		 * controllers are added here
-		 */
-		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, editor));
-		btnUndo.addMouseListener(new UndoController(boardPanel, editor));
-		
-		GameTypeController gtc1 = new GameTypeController(this, editor, null);
-		GameTypeController gtc2 = new GameTypeController(this, editor, gtc1);
-		gtc1.setOtherController(gtc2);
-		int i = 0;
-		for(Component c:levelTypeSpinner.getComponents()){
-			System.out.println("Component: "+c.toString());
-			if (i==0)
-				c.addMouseListener(gtc1);
-			else if (i==1)
-				c.addMouseListener(gtc2);
-			i++;
-		}
 		
 		this.refresh();
 	}
@@ -470,40 +493,35 @@ public class EditPanel extends JPanel {
 	}
 	
 	public JSpinner getSpinner(){
-		return levelTypeSpinner;
+		return spinner;
 	}
 	
-	public BoardPanel getBoardPanel(){
-		return boardPanel;
+	public BoardPanel getBoard(){
+		return board;
 	}
 	
 	public void refresh(){
-		boardPanel.refresh();
+		board.refresh();
+		probabilitieField_1.setText("" + editor.getLevel().getFrequency(0));
+		probabilitieField_2.setText("" + editor.getLevel().getFrequency(1));
+		probabilitieField_3.setText("" + editor.getLevel().getFrequency(2));
+		probabilitieField_4.setText("" + editor.getLevel().getFrequency(3));
+		probabilitieField_5.setText("" + editor.getLevel().getFrequency(4));
+		probabilitieField_6.setText("" + editor.getLevel().getFrequency(5));
 		
-		tileOnesWeightField.setText("" + editor.getLevel().getFrequency(0));
-		tileTwosWeightField.setText("" + editor.getLevel().getFrequency(1));
-		tileThreesWeightField.setText("" + editor.getLevel().getFrequency(2));
-		tileFoursWeightField.setText("" + editor.getLevel().getFrequency(3));
-		tileFivesWeightField.setText("" + editor.getLevel().getFrequency(4));
-		tileSixesWeightField.setText("" + editor.getLevel().getFrequency(5));
+		multiplierField_1.setText("" + editor.getLevel().getMultiplierFrequency(0));
+		multiplierField_2.setText("" + editor.getLevel().getMultiplierFrequency(1));
+		multiplierField_3.setText("" + editor.getLevel().getMultiplierFrequency(2));
 		
-		multiplier1xWeightField.setText("" + editor.getLevel().getMultiplierFrequency(0));
-		multiplier2xWeightField.setText("" + editor.getLevel().getMultiplierFrequency(1));
-		multiplier3xWeightField.setText("" + editor.getLevel().getMultiplierFrequency(2));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(0));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(1));
+		scoreField_10.setText("" + editor.getLevel().getStarScore(2));
 		
-		oneStarThresholdField.setText("" + editor.getLevel().getStarScore(0));
-		oneStarThresholdField.setText("" + editor.getLevel().getStarScore(1));
-		oneStarThresholdField.setText("" + editor.getLevel().getStarScore(2));
+		spinner.setValue(editor.getLevel().getType());
 		
-		levelTypeSpinner.setValue(editor.getLevel().getType());
+		shuffleField.setText("" + editor.getLevel().getNumShuffle());
+		removeField.setText("" + editor.getLevel().getNumSwap());
+		swapField_15.setText("" + editor.getLevel().getNumRemove());
 		
-		shuffleBoardMovesField.setText("" + editor.getLevel().getNumShuffle());
-		removeTilesMovesField.setText("" + editor.getLevel().getNumSwap());
-		swapTilesMovesField.setText("" + editor.getLevel().getNumRemove());
-		
-	}
-
-	public JButton getBtnSave() {
-		return saveBtn;
 	}
 }

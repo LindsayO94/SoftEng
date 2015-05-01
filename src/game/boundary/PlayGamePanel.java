@@ -31,8 +31,8 @@ public class PlayGamePanel extends JPanel {
 	Game game;
 	
 	
-	String inactivePath = "src/Images/InactiveStar.png";
-	String activePath = "src/Images/Star.png";
+	String inactivePath = "Images/InactiveStar.png";
+	String activePath = "Images/Star.png";
 
 	JButton mainMenuButton;
 	JButton button_1;

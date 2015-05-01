@@ -3,17 +3,17 @@ package levelBuilder.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
-
 import common.boundary.BoardPanel;
 
 public class UndoController implements MouseListener{
 
-	BoardPanel board;
+	EditPanel editPanel;
 	LevelBuilder editor;
 	
-	public UndoController(BoardPanel board, LevelBuilder editor){
-		this.board = board;
+	public UndoController(EditPanel editPanel, LevelBuilder editor){
+		this.editPanel = editPanel;
 		this.editor = editor;
 	}
 	
@@ -28,6 +28,8 @@ public class UndoController implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		editor.undoMove();
+		editPanel.refresh();
+		
 		
 	}
 
