@@ -48,7 +48,7 @@ public class GameTypeController implements MouseListener{
 		};
 		System.out.println("old type is "+oldType);
 		
-		options.getBoard().refresh();
+		options.getBoardPanel().refresh();
 		
 	}
 

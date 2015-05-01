@@ -17,9 +17,7 @@ public class SplashController implements MouseListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		CardLayout cardLayout = (CardLayout) bf.getContentPane().getLayout();
-		cardLayout.show(bf.getContentPane(), "Main Menu");
-		
+		bf.showMainMenu();
 	}
 
 	public void mousePressed(MouseEvent e) {

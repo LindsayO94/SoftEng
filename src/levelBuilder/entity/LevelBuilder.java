@@ -14,17 +14,8 @@ public class LevelBuilder {
 	/** Stack of recent Moves */
 	protected java.util.Stack<Move> moves = new java.util.Stack<Move>();
 	
-	public LevelBuilder(long randomSeed) {
-		setLevel(new Level(randomSeed));
-		setBoard(Board.makeBoard(level));
-	}
-
 	public Board getBoard() {
 		return board;
-	}
-
-	public void setBoard(Board board) {
-		this.board = board;
 	}
 
 	public Level getLevel() {
@@ -33,6 +24,7 @@ public class LevelBuilder {
 
 	public void setLevel(Level level) {
 		this.level = level;
+		this.board = Board.makeBoard(level);
 	}
 	
 	public LevelBuilderFrame getFrame(){

@@ -1,13 +1,25 @@
 package common.entity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
+
+import javax.swing.JFileChooser;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 
 import common.entity.Cell.Type;
 
 public class Level {
 	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" };
-	Random rand;
+	// Transient means it won't be in the JSON
+	transient Random rand;
 	
 	// State -- only Game can change these fields
 	boolean locked;
@@ -30,10 +42,6 @@ public class Level {
 	int numShuffle;
 	int numSwap;
 	int numRemove;
-	
-	private int star1Score;
-	private int star2Score;
-	private int star3Score;
 	
 	int maxMoves;
 	int maxTime;
@@ -195,26 +203,72 @@ public class Level {
 	}
 
 	public int getStar1Score() {
-		return star1Score;
+		return starScore[0];
 	}
 
 	public void setStar1Score(int star1Score) {
-		this.star1Score = star1Score;
+		this.starScore[0] = star1Score;
 	}
 
 	public int getStar2Score() {
-		return star2Score;
+		return starScore[1];
 	}
 
 	public void setStar2Score(int star2Score) {
-		this.star2Score = star2Score;
+		this.starScore[1] = star2Score;
 	}
 
 	public int getStar3Score() {
-		return star3Score;
+		return starScore[2];
 	}
 
 	public void setStar3Score(int star3Score) {
-		this.star3Score = star3Score;
+		this.starScore[2] = star3Score;
+	}
+	
+	public String toJsonString() {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		return g.toJson(this);
+	}
+	
+	public File toJsonFile(String filename) throws IOException {
+		File file = getSaveLocation(filename);
+		FileWriter writer = new FileWriter(file);
+		writer.write(this.toJsonString());
+		writer.close();
+		
+		return file;
+	}
+	
+	public static File getSaveLocation(String filename) {
+		File documentsPath;
+		if (System.getProperty("os.name").equals("Mac OS X")) {
+			documentsPath = new File( System.getProperty("user.home")+File.separator+"Documents" );
+		} else {
+			documentsPath = new JFileChooser().getFileSystemView().getDefaultDirectory();
+		}
+		File sixesWildPath = new File(documentsPath, "SixesWild");
+		sixesWildPath.mkdir();
+		
+		return new File(sixesWildPath, filename);
+	}
+	
+	public static Level fromJsonString(String json, long seed) {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		Level l = g.fromJson(json, Level.class);
+		l.rand = new Random(seed);
+		
+		return l;
+	}
+	
+	public static Level fromJsonFile(String filename, long seed) throws FileNotFoundException {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		File file = getSaveLocation(filename);
+		JsonReader reader = new JsonReader(new FileReader(file));
+		
+		Level l = g.fromJson(reader, Level.class);
+		l.rand = new Random(seed);
+		
+		return l;
 	}
 }

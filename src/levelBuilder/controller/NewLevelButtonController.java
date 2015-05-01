@@ -4,6 +4,8 @@ import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import common.entity.Level;
+
 import levelBuilder.boundary.LevelBuilderFrame;
 
 public class NewLevelButtonController implements MouseListener {
@@ -15,10 +17,7 @@ public class NewLevelButtonController implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		CardLayout cardLayout = (CardLayout) LbF.getContentPane().getLayout();
-		cardLayout.show(LbF.getContentPane(), "Editor");
-		// TODO Auto-generated method stub
-		
+		LbF.showEditor(new Level(0));
 	}
 
 	public void mousePressed(MouseEvent e) {
