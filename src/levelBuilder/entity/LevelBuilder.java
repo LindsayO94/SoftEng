@@ -1,14 +1,19 @@
 package levelBuilder.entity;
 
 
+import java.util.Random;
+
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.move.Move;
+import levelBuilder.move.MultiplierFrequencyMove;
 import common.entity.Board;
 import common.entity.Level;
 
 public class LevelBuilder {
 	private Level level;
 	private Board board;
+	
+	private Random seedGenerator = new Random();
 	
 	private LevelBuilderFrame frame;
 	/** Stack of recent Moves */
@@ -33,6 +38,10 @@ public class LevelBuilder {
 	
 	public void setFrame(LevelBuilderFrame frame){
 		this.frame = frame;
+	}
+	
+	public long getSeed() {
+		return seedGenerator.nextLong();
 	}
 	
 	/**
@@ -86,8 +95,8 @@ public class LevelBuilder {
 
 		// Undo and refresh all widgets.
 		boolean status = m.undo(this);
+	
 		if (status) {
-			System.out.println("Undoing move");
 			frame.getEditor().refresh();
 		} else {
 			// if we can't undo the move, we push it back onto the stack
