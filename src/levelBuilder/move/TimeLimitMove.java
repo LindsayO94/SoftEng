@@ -4,18 +4,16 @@ import javax.swing.undo.UndoableEdit;
 
 import levelBuilder.entity.LevelBuilder;
 
-public class ScoreMove extends Move{
+public class TimeLimitMove extends Move{
 
 	String newValue;
-	int index; 
-	int oldStarScores[];
+	int oldValue;
 	UndoableEdit undo;
 	
 	
-	public ScoreMove(String newValue, int index, int newScores[], UndoableEdit undo){
+	public TimeLimitMove(String newValue, int oldValue, UndoableEdit undo){
 		this.newValue = newValue;
-		this.index = index;
-		this.oldStarScores = newScores;
+		this.oldValue = oldValue;
 		this.undo = undo;
 	}
 	
@@ -29,16 +27,8 @@ public class ScoreMove extends Move{
 			else{
 				newIntValue = Integer.parseInt(newValue);
 			}
-			
-			int newStarScores[] = new int[3];
-					
-			for(int i = 0; i <3; i++){
-				 newStarScores[i] = oldStarScores[i];
-			}
-			
-			newStarScores[index] = newIntValue;
-			
-			editor.getLevel().setStarScore(newStarScores);
+						
+			editor.getLevel().setMaxTime(newIntValue);
 			return true;
 			
 		}
@@ -51,7 +41,7 @@ public class ScoreMove extends Move{
 	@Override
 	public boolean undo(LevelBuilder editor) {
 		
-		editor.getLevel().setStarScore(oldStarScores);
+		editor.getLevel().setMaxTime(oldValue);
 		undo.undo();	
 		
 		return true;
@@ -60,6 +50,6 @@ public class ScoreMove extends Move{
 	@Override
 	public boolean valid(LevelBuilder editor) {
 		return newValue.matches("[0-9]+") || newValue.matches("");
-	} 
+	}  
 
 }

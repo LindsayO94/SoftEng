@@ -14,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.JButton;
+import javax.swing.text.PlainDocument;
 
 import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
@@ -28,10 +29,18 @@ import javax.swing.SwingConstants;
 
 import java.awt.Component;
 
+import levelBuilder.LevelBuilderDocumentFilter;
 import levelBuilder.controller.ChangeCellTypeController;
-import levelBuilder.controller.GameTypeController;
+import levelBuilder.controller.GameTypeSpinnerController;
+import levelBuilder.controller.MovesFieldController;
 import levelBuilder.controller.MultiplierFieldController;
-import levelBuilder.controller.UndoController;
+import levelBuilder.controller.RemoveFieldController;
+import levelBuilder.controller.ShuffleFieldController;
+import levelBuilder.controller.StarScoreFieldController;
+import levelBuilder.controller.SwapFieldController;
+import levelBuilder.controller.TileFieldContoller;
+import levelBuilder.controller.TimeLimitFieldController;
+import levelBuilder.controller.UndoButtonController;
 import levelBuilder.entity.LevelBuilder;
 
 
@@ -42,7 +51,7 @@ import levelBuilder.entity.LevelBuilder;
  *
  */
 public class EditPanel extends JPanel {
-	private JTextField textField;
+	private JTextField maxMovesField;
 	private JTextField multiplierField_1;
 	private JTextField multiplierField_2;
 	private JTextField multiplierField_3;
@@ -69,11 +78,13 @@ public class EditPanel extends JPanel {
 	private BoardPanel boardPanel;
 	private JTextField shuffleField;
 	private JTextField removeField;
-	private JTextField swapField_15;
+	private JTextField swapField;
 	private JButton btnPreview;
 	private JTextField outputField;
 	LevelBuilder editor;
 	private JButton btnSave;
+	private JTextField timeLimitTextField;
+	private JLabel lblNewLabel_3;
 	
 	public EditPanel(LevelBuilder builder){
 		this.editor = builder;
@@ -84,17 +95,18 @@ public class EditPanel extends JPanel {
 		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerListModel(new String[] {"Puzzle", "Elimination", "Lightning", "Release"}));
-		GameTypeController gtc1 = new GameTypeController(this, builder);
-		GameTypeController gtc2 = new GameTypeController(this, builder);
+		GameTypeSpinnerController gtc1 = new GameTypeSpinnerController(this, builder);
+		GameTypeSpinnerController gtc2 = new GameTypeSpinnerController(this, builder);
 
 		
 		
 		lblAllowedMoves = new JLabel("Allowed Moves:");
 		lblAllowedMoves.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		textField = new JTextField();
-		textField.setText("20");
-		textField.setColumns(10);
+		maxMovesField = new JTextField();
+		maxMovesField.setText("20");
+		((PlainDocument) maxMovesField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		maxMovesField.setColumns(10);
 		
 		lblNewLabel = new JLabel("Tile Probabilities:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -117,16 +129,22 @@ public class EditPanel extends JPanel {
 		multiplierField_1 = new JTextField();
 		multiplierField_1.setText("1");
 		multiplierField_1.setColumns(10);
+		((PlainDocument) multiplierField_1.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
 		multiplierField_1.setText("" + editor.getLevel().getMultiplierFrequency(0));
 		
 		
 		multiplierField_2 = new JTextField();
 		multiplierField_2.setText("1");
 		multiplierField_2.setColumns(10);
+		((PlainDocument) multiplierField_2.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		multiplierField_2.setText("" + editor.getLevel().getMultiplierFrequency(1));
+	
 		
 		multiplierField_3 = new JTextField();
 		multiplierField_3.setText("1");
 		multiplierField_3.setColumns(10);
+		((PlainDocument) multiplierField_3.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		multiplierField_3.setText("" + editor.getLevel().getMultiplierFrequency(2));
 		
 		JLabel label = new JLabel("1");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -155,26 +173,43 @@ public class EditPanel extends JPanel {
 		probabilitieField_1 = new JTextField();
 		probabilitieField_1.setText("1");
 		probabilitieField_1.setColumns(10);
+		((PlainDocument) probabilitieField_1.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_1.setText("" + editor.getLevel().getFrequency(0));
+
 		
 		probabilitieField_2 = new JTextField();
 		probabilitieField_2.setText("1");
 		probabilitieField_2.setColumns(10);
+		((PlainDocument) probabilitieField_2.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_2.setText("" + editor.getLevel().getFrequency(1));
+
 		
 		probabilitieField_3 = new JTextField();
 		probabilitieField_3.setText("1");
 		probabilitieField_3.setColumns(10);
+		((PlainDocument) probabilitieField_3.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_3.setText("" + editor.getLevel().getFrequency(2));
+
 		
 		probabilitieField_4 = new JTextField();
 		probabilitieField_4.setText("1");
 		probabilitieField_4.setColumns(10);
+		((PlainDocument) probabilitieField_4.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_4.setText("" + editor.getLevel().getFrequency(3));
+
 		
 		probabilitieField_5 = new JTextField();
 		probabilitieField_5.setText("1");
 		probabilitieField_5.setColumns(10);
+		((PlainDocument) probabilitieField_5.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_5.setText("" + editor.getLevel().getFrequency(4));
+
 		
 		probabilitieField_6 = new JTextField();
 		probabilitieField_6.setText("1");
 		probabilitieField_6.setColumns(10);
+		((PlainDocument) probabilitieField_6.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		probabilitieField_6.setText("" + editor.getLevel().getFrequency(5));
 		
 		JLabel lblNewLabel_1 = new JLabel("Star Score Minimums");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -194,14 +229,22 @@ public class EditPanel extends JPanel {
 		scoreField_10 = new JTextField();
 		scoreField_10.setText("1");
 		scoreField_10.setColumns(10);
+		((PlainDocument) scoreField_10.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		scoreField_10.setText("" + editor.getLevel().getStarScore(0));
+
 		
 		scoreField_11 = new JTextField();
 		scoreField_11.setText("1");
 		scoreField_11.setColumns(10);
+		((PlainDocument) scoreField_11.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		scoreField_11.setText("" + editor.getLevel().getStarScore(1));
+
 		
 		scoreField_12 = new JTextField();
 		scoreField_12.setText("1");
 		scoreField_12.setColumns(10);
+		((PlainDocument) scoreField_12.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		scoreField_12.setText("" + editor.getLevel().getStarScore(2));
 		
 		JLabel label_10 = new JLabel("");
 		
@@ -224,12 +267,20 @@ public class EditPanel extends JPanel {
 		
 		shuffleField = new JTextField();
 		shuffleField.setColumns(10);
+		((PlainDocument) shuffleField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		shuffleField.setText("" + editor.getLevel().getNumShuffle());
+
 		
 		removeField = new JTextField();
 		removeField.setColumns(10);
+		((PlainDocument) removeField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		removeField.setText("" + editor.getLevel().getNumSwap());
+
 		
-		swapField_15 = new JTextField();
-		swapField_15.setColumns(10);
+		swapField = new JTextField();
+		swapField.setColumns(10);
+		((PlainDocument) swapField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		swapField.setText("" + editor.getLevel().getNumRemove());
 		
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves");
 		
@@ -239,6 +290,14 @@ public class EditPanel extends JPanel {
 		outputField.setColumns(10);
 		
 		JButton btnUndo = new JButton("Undo");
+		
+		timeLimitTextField = new JTextField();
+		timeLimitTextField.setColumns(10);
+		((PlainDocument) timeLimitTextField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		timeLimitTextField.setText("" + editor.getLevel().getMaxTime());
+		
+		lblNewLabel_3 = new JLabel("Time Limit");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		
 		/**
@@ -256,11 +315,33 @@ public class EditPanel extends JPanel {
 		}
 		
 		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, builder));
-		btnUndo.addMouseListener(new UndoController(this, builder));
+		btnUndo.addMouseListener(new UndoButtonController(this, builder));
+		
+		
 		multiplierField_1.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_1,0, this));
+		multiplierField_2.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_2,1, this));
+		multiplierField_3.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_3,2, this));
 		
+		probabilitieField_1.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_1,0, this));
+		probabilitieField_2.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_2,1, this));
+		probabilitieField_3.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_3,2, this));
+		probabilitieField_4.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_4,3, this));
+		probabilitieField_5.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_5,4, this));
+		probabilitieField_6.getDocument().addUndoableEditListener(new TileFieldContoller(builder, probabilitieField_6,5, this));
 		
+		scoreField_10.getDocument().addUndoableEditListener(new StarScoreFieldController(builder, scoreField_10,0, this));
+		scoreField_11.getDocument().addUndoableEditListener(new StarScoreFieldController(builder, scoreField_11,0, this));
+		scoreField_12.getDocument().addUndoableEditListener(new StarScoreFieldController(builder, scoreField_12,0, this));
 		
+		shuffleField.getDocument().addUndoableEditListener(new ShuffleFieldController(builder, shuffleField, this));
+		swapField.getDocument().addUndoableEditListener(new SwapFieldController(builder, swapField, this));
+		removeField.getDocument().addUndoableEditListener(new RemoveFieldController(builder, removeField, this));
+		
+		maxMovesField.getDocument().addUndoableEditListener(new MovesFieldController(builder, maxMovesField, this));
+		
+		timeLimitTextField.getDocument().addUndoableEditListener(new TimeLimitFieldController(builder, timeLimitTextField, this));
+		
+	
 		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -279,7 +360,7 @@ public class EditPanel extends JPanel {
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(lblAllowedMoves)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+											.addComponent(maxMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 										.addComponent(lblNewLabel_2)
 										.addComponent(lblNewLabel)
 										.addGroup(groupLayout.createSequentialGroup()
@@ -331,8 +412,9 @@ public class EditPanel extends JPanel {
 											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 												.addComponent(shuffleField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
 												.addComponent(removeField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-												.addComponent(swapField_15, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-												.addComponent(lblNumberOfMoves, Alignment.LEADING)))))
+												.addComponent(swapField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+												.addComponent(lblNumberOfMoves, Alignment.LEADING)
+												.addComponent(timeLimitTextField, Alignment.LEADING)))))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addContainerGap()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -357,7 +439,8 @@ public class EditPanel extends JPanel {
 												.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 													.addComponent(lblRemoveTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 													.addComponent(lblShuffleBoard)
-													.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)))))))
+													.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+													.addComponent(lblNewLabel_3, Alignment.LEADING)))))))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
@@ -373,7 +456,7 @@ public class EditPanel extends JPanel {
 										.addComponent(btnQuit)
 										.addComponent(btnSave)))
 								.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(90, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -393,7 +476,7 @@ public class EditPanel extends JPanel {
 									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 									.addComponent(lblAllowedMoves)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(maxMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -465,16 +548,20 @@ public class EditPanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSwapTiles, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-								.addComponent(swapField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(swapField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(timeLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_3)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 433, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
-					.addComponent(outputField)
+					.addComponent(outputField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_9, label_11, label_13, scoreField_10, scoreField_11, scoreField_12});
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_8, multiplierField_1, multiplierField_2, multiplierField_3, label_5, label_7});
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label_5, label_7, label_8, multiplierField_1, multiplierField_2, multiplierField_3});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {label, label_1, label_2, label_3, label_4, label_6, probabilitieField_1, probabilitieField_2, probabilitieField_3, probabilitieField_4, probabilitieField_5, probabilitieField_6});
 		setLayout(groupLayout);
 		
@@ -499,26 +586,9 @@ public class EditPanel extends JPanel {
 	
 	public void refresh(){
 		boardPanel.refresh();
-		probabilitieField_1.setText("" + editor.getLevel().getFrequency(0));
-		probabilitieField_2.setText("" + editor.getLevel().getFrequency(1));
-		probabilitieField_3.setText("" + editor.getLevel().getFrequency(2));
-		probabilitieField_4.setText("" + editor.getLevel().getFrequency(3));
-		probabilitieField_5.setText("" + editor.getLevel().getFrequency(4));
-		probabilitieField_6.setText("" + editor.getLevel().getFrequency(5));
-		
-		
-		multiplierField_2.setText("" + editor.getLevel().getMultiplierFrequency(1));
-		multiplierField_3.setText("" + editor.getLevel().getMultiplierFrequency(2));
-		
-		scoreField_10.setText("" + editor.getLevel().getStarScore(0));
-		scoreField_10.setText("" + editor.getLevel().getStarScore(1));
-		scoreField_10.setText("" + editor.getLevel().getStarScore(2));
 		
 		spinner.setValue(editor.getLevel().getType());
-		
-		shuffleField.setText("" + editor.getLevel().getNumShuffle());
-		removeField.setText("" + editor.getLevel().getNumSwap());
-		swapField_15.setText("" + editor.getLevel().getNumRemove());
+
 		
 	}
 
