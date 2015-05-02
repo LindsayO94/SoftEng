@@ -112,7 +112,6 @@ public class Level {
 	}
 	
 	int getWeightedRandomIndex(int arr[]) {
-		System.out.println("array length = "+arr.length);
 		if (arr.length == 0) {
 			throw new IllegalArgumentException("getWeightedRandomIndex cannot accept an empty array");
 		}
@@ -138,7 +137,24 @@ public class Level {
 
 	public void toggleCell(Cell cell) {
 		if (this.type.equals("Release")) {
-			throw new UnsupportedOperationException("We haven't implemented toggling release boards yet");
+			switch (startingConfig[cell.column][cell.row]) {
+			
+			case TILE_CELL:
+				startingConfig[cell.column][cell.row] = Type.INACTIVE_CELL;
+				break;
+				
+			case INACTIVE_CELL:
+				startingConfig[cell.column][cell.row] = Type.BASKET_CELL;
+				break;
+				
+			case BASKET_CELL:
+				startingConfig[cell.column][cell.row] = Type.TILE_CELL;
+				break;
+				
+			default:
+				throw new IllegalStateException("Tile for a Release board had a type other than TILE, BASKET, or INACTIVE");
+			
+			}
 		} else {
 			switch (startingConfig[cell.column][cell.row]) {
 			

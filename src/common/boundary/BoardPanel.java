@@ -4,6 +4,7 @@ import game.controller.CellSelectController;
 
 import javax.swing.JPanel;
 
+import common.entity.BasketCell;
 import common.entity.Board;
 import common.entity.InactiveCell;
 import common.entity.Tile;
@@ -50,6 +51,10 @@ public class BoardPanel extends JPanel {
 					
 				case INACTIVE_CELL:
 					cells[i] = new InactiveCellPanel((InactiveCell) cell);
+					break;
+					
+				case BASKET_CELL:
+					cells[i] = new BasketCellPanel((BasketCell) cell);
 					break;
 				}
 				add(cells[i]);

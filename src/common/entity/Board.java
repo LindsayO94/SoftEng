@@ -38,6 +38,9 @@ public abstract class Board {
 		case INACTIVE_CELL:
 			return new InactiveCell(i, j);
 			
+		case BASKET_CELL:
+			return new BasketCell(i, j);
+			
 		default:
 			throw new RuntimeException("Unknown tile type");
 		}
@@ -105,6 +108,15 @@ public abstract class Board {
 	public static Board makeBoard(Level level) {
 		if (level.type.equals("Puzzle")){
 			return new PuzzleBoard(level);
+		}
+		else if (level.type.equals("Lightning")){
+			return new LightningBoard(level);
+		}
+		else if (level.type.equals("Elimination")){
+			return new EliminationBoard(level);
+		}
+		else if (level.type.equals("Release")){
+			return new ReleaseBoard(level);
 		}
 		else{
 			throw new IllegalArgumentException("Unknown board type");
