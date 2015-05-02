@@ -107,11 +107,11 @@ public class LevelSaver {
 		return l;
 	}
 	
-	public static String[] getLevelFilenames(String type) {
+	public static String[] getLevelFilenames(final String type) {
 		File folder = getSaveLocation();
+		System.out.println("loading "+type+" levels");
 		
 		FilenameFilter filter = new FilenameFilter() {
-			@Override
 			public boolean accept(File dir, String name) {
 				return name.startsWith(type);
 			}

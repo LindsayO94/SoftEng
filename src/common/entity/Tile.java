@@ -8,7 +8,6 @@ public class Tile {
 	
 	public Tile(int value, int multiplier) {
 		if (value < 1 || value > 6 || multiplier < 1 || multiplier > 3) {
-			System.out.println("value = "+value+" multiplier = "+ multiplier);
 			throw new IllegalArgumentException("Illegal value passed to tile constructor");
 		}
 		this.oldValue = value;

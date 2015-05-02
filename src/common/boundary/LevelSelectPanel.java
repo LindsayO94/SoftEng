@@ -130,7 +130,7 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
-		for (String filename : LevelSaver.getLevelFilenames("Relase")) {
+		for (String filename : LevelSaver.getLevelFilenames("Release")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 			releasePanel.add(btnNewButton);
