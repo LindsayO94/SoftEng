@@ -29,9 +29,7 @@ public abstract class CellPanel extends JPanel {
 				.addComponent(tileView, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
 		);
 		setLayout(groupLayout);
-		// NOTE TO WHOEVER TRIES TO UNCOMMENT THIS: Don't add boundaries in constructors.
-		// They should be added either by Main.java or by other controllers.
-//		this.addMouseListener(new CellSelectController(this));
+		//this.addMouseListener(new CellSelectController(this));
 	}
 	
 	

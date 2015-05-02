@@ -1,7 +1,5 @@
 package levelBuilder.move;
 
-import javax.swing.undo.UndoableEdit;
-
 import levelBuilder.entity.LevelBuilder;
 
 /**
@@ -14,26 +12,19 @@ public class MultiplierFrequencyMove extends Move{
 	String newValue;
 	int index; 
 	int oldMultiplierFrequencies[];
-	UndoableEdit undo;
 	
-	
-	public MultiplierFrequencyMove(String newValue, int index, int oldFrequencies[], UndoableEdit undo){
+	public MultiplierFrequencyMove(String newValue, int index, int oldFrequencies[]){
 		this.newValue = newValue;
 		this.index = index;
 		this.oldMultiplierFrequencies = oldFrequencies;
-		this.undo = undo;
 	}
 	
 	@Override
 	public boolean doMove(LevelBuilder editor) {
 		if(valid(editor)){
 			int newIntValue = Integer.parseInt(newValue);
-			int newMultiplierFrequencies[] = new int[3];
+			int newMultiplierFrequencies[] = oldMultiplierFrequencies;
 					
-			for(int i = 0; i <3; i++){
-				 newMultiplierFrequencies[i] = oldMultiplierFrequencies[i];
-			}
-			
 			newMultiplierFrequencies[index] = newIntValue;
 			
 			editor.getLevel().setMultiplierFrequency(newMultiplierFrequencies);
@@ -49,8 +40,6 @@ public class MultiplierFrequencyMove extends Move{
 	public boolean undo(LevelBuilder editor) {
 		
 		editor.getLevel().setMultiplierFrequency(oldMultiplierFrequencies);
-		undo.undo();	
-		
 		return true;
 	}
 
@@ -58,6 +47,5 @@ public class MultiplierFrequencyMove extends Move{
 	public boolean valid(LevelBuilder editor) {
 		return newValue.matches("[0-9]+");
 	}
-	
 
 }

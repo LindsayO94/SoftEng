@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.JFileChooser;
@@ -15,16 +14,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
-import common.LevelSaver;
 import common.entity.Cell.Type;
 
 public class Level {
 	public static final String[] allowedTypes = { "Puzzle", "Lightning", "Elimination", "Release" }; 
-
 	// Transient means it won't be in the JSON
 	transient Random rand;
-	
-	int levelNumber;
 	
 	// State -- only Game can change these fields
 	boolean locked;
@@ -57,8 +52,6 @@ public class Level {
 		if (!Arrays.asList(Level.allowedTypes).contains(type)) {
 			throw new IllegalArgumentException("Illegal level type");
 		}
-		
-		this.levelNumber = -1;
 		
 		this.type = type;
 		
@@ -191,9 +184,6 @@ public class Level {
 	}
 
 	public void setType(String type) {
-		if (levelNumber != -1) {
-			throw new UnsupportedOperationException("Level type may not be changed after the level is first saved");
-		}
 		this.type = type;
 	}
 
@@ -244,25 +234,50 @@ public class Level {
 	public void setStar3Score(int star3Score) {
 		this.starScore[2] = star3Score;
 	}
-
-	public void setRand(Random rand) {
-		// Only allowed once, right after creation
-		if (this.rand != null) {
-			throw new UnsupportedOperationException("Not allowed to reassign the "
-					+ "random number generator after level creation");
+	
+	public String toJsonString() {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		return g.toJson(this);
+	}
+	
+	public File toJsonFile(String filename) throws IOException {
+		File file = getSaveLocation(filename);
+		FileWriter writer = new FileWriter(file);
+		writer.write(this.toJsonString());
+		writer.close();
+		
+		return file;
+	}
+	
+	public static File getSaveLocation(String filename) {
+		File documentsPath;
+		if (System.getProperty("os.name").equals("Mac OS X")) {
+			documentsPath = new File( System.getProperty("user.home")+File.separator+"Documents" );
+		} else {
+			documentsPath = new JFileChooser().getFileSystemView().getDefaultDirectory();
 		}
-		this.rand = rand;
+		File sixesWildPath = new File(documentsPath, "SixesWild");
+		sixesWildPath.mkdir();
+		
+		return new File(sixesWildPath, filename);
 	}
-
-	public int getNumber() {
-		return levelNumber;
+	
+	public static Level fromJsonString(String json, long seed) {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		Level l = g.fromJson(json, Level.class);
+		l.rand = new Random(seed);
+		
+		return l;
 	}
-
-	public String filename() {
-		return this.type + "_" + this.levelNumber + ".json";
-	}
-
-	public void setNumber(int num) {
-		this.levelNumber = num;
+	
+	public static Level fromJsonFile(String filename, long seed) throws FileNotFoundException {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		File file = getSaveLocation(filename);
+		JsonReader reader = new JsonReader(new FileReader(file));
+		
+		Level l = g.fromJson(reader, Level.class);
+		l.rand = new Random(seed);
+		
+		return l;
 	}
 }

@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
 
-import common.LevelSaver;
 import common.entity.Level;
 import levelBuilder.boundary.EditPanel;
 import levelBuilder.boundary.LevelBuilderFrame;
@@ -23,7 +22,15 @@ public class LoadLevelButtonController implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		LbF.showLevelSelect();
+		try {
+			Level level = Level.fromJsonFile("temporaryname.json", 0);
+			LbF.showEditor(level);
+		} catch (FileNotFoundException e1) {
+			JOptionPane.showMessageDialog(LbF,
+				    e1.getMessage(),
+				    "Error loading file",
+				    JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {

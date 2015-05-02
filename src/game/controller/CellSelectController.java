@@ -7,6 +7,7 @@ import game.move.SelectMove;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import levelBuilder.move.ChangeCellTypeMove;
 import common.boundary.BoardPanel;
@@ -19,7 +20,7 @@ import common.entity.TileCell;
 
 
 
-public class CellSelectController implements MouseListener{
+public class CellSelectController implements MouseListener, MouseMotionListener{
 	CellPanel cellP;
 	BoardPanel board;
 	Game game;
@@ -45,11 +46,23 @@ public class CellSelectController implements MouseListener{
 
 	public void mouseDragged(MouseEvent me) {
 		System.out.println("entered dragged");
-		
+		Cell cell = cellP.getCellModel();
+		CellSelectMove m = new CellSelectMove(cell);
+		m.doMove(game);
+		((TileCellPanel) cellP).refresh();
 		}
 		
+	
+	public void mouseMoved(MouseEvent me) {
+		System.out.println("entered dragged");
+		Cell cell = cellP.getCellModel();
+		CellSelectMove m = new CellSelectMove(cell);
+		m.doMove(game);
+		((TileCellPanel) cellP).refresh();
+		}
 
 	public void mouseEntered(MouseEvent me) {
+		/*
 		System.out.println("mouse entered --> mousePressed is:" + mousePressed);
 		if (mousePressed == true)
 		{
@@ -59,7 +72,7 @@ public class CellSelectController implements MouseListener{
 			((TileCellPanel) cellP).refresh();
 		}
 		// TODO Auto-generated method stub
-		
+		*/
 	}
 
 	public void mouseExited(MouseEvent arg0) {
@@ -73,8 +86,8 @@ public class CellSelectController implements MouseListener{
 
 	public void mouseReleased(MouseEvent arg0) {
 	
-		mousePressed = false;
-		System.out.println("Mouse Released --> mousePressed is:" + mousePressed);
+		//mousePressed = false;
+		//System.out.println("Mouse Released --> mousePressed is:" + mousePressed);
 		
 	}
 

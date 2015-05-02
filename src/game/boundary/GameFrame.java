@@ -31,9 +31,9 @@ public class GameFrame extends JFrame {
 	public GameFrame(Game game) {
 		
 		this.game = game;
-		this.level = game.iterator().next();
+		//this.level = game.iterator().next();
 		
-		board = new BoardPanel(Board.makeBoard(level));
+		//board = new BoardPanel(Board.makeBoard(level));
 		achievements = new AchievementsPanel(game);
 		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
@@ -46,7 +46,7 @@ public class GameFrame extends JFrame {
 		levelSelect.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		levelSelect.getPuzzle1Button().addMouseListener(new PlayGameController(this));
 		splash.addMouseListener(new SplashController(this));
-		board.addMouseListener(new SelectController(board, game));
+		//board.addMouseListener(new SelectController(board, game));
 		
 		
 		getContentPane().add(splash, "Splash");

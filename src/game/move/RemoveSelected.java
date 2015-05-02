@@ -37,4 +37,3 @@ public class RemoveSelected extends gameMove{
 		// TODO Auto-generated method stub
 		return true;
 	}
-}

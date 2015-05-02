@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import common.LevelSaver;
 import common.entity.Level;
 import levelBuilder.boundary.EditPanel;
 import levelBuilder.boundary.LevelBuilderFrame;
@@ -23,10 +22,8 @@ public class SaveButtonController implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		Level l = this.builder.getLevel();
 		try {
-			LevelSaver.levelToJsonFile(l);
-			lbf.getEditor().getSpinner().setEnabled(false);
+			this.builder.getLevel().toJsonFile("temporaryname.json");
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(lbf,
 				    e1.getMessage(),
