@@ -3,7 +3,7 @@ package levelBuilder.move;
 import java.awt.Component;
 import java.awt.event.MouseListener;
 
-import levelBuilder.controller.GameTypeController;
+import levelBuilder.controller.GameTypeSpinnerController;
 import levelBuilder.entity.LevelBuilder;
 
 

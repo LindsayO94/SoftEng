@@ -49,8 +49,11 @@ public class Level {
 	int numRemove;
 	
 	int maxMoves;
+
+
 	int maxTime;
 	
+
 	int starScore[] = new int[3];
 	
 	public Level(String type, long seed) {
@@ -181,6 +184,10 @@ public class Level {
 	public int getStarScore(int index) {
 		return starScore[index];
 	}
+	
+	public int[] getStarScoreArray(){
+		return starScore;
+	}
 
 	public void setStarScore(int[] starScore) {
 		this.starScore = starScore;
@@ -264,5 +271,21 @@ public class Level {
 
 	public void setNumber(int num) {
 		this.levelNumber = num;
+	}
+	
+	public int getMaxMoves() {
+		return maxMoves;
+	}
+
+	public void setMaxMoves(int maxMoves) {
+		this.maxMoves = maxMoves;
+	}
+	
+	public int getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(int maxTime) {
+		this.maxTime = maxTime;
 	}
 }
