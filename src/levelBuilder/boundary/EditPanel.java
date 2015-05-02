@@ -117,6 +117,8 @@ public class EditPanel extends JPanel {
 		multiplierField_1 = new JTextField();
 		multiplierField_1.setText("1");
 		multiplierField_1.setColumns(10);
+		multiplierField_1.setText("" + editor.getLevel().getMultiplierFrequency(0));
+		
 		
 		multiplierField_2 = new JTextField();
 		multiplierField_2.setText("1");
@@ -255,7 +257,7 @@ public class EditPanel extends JPanel {
 		
 		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, builder));
 		btnUndo.addMouseListener(new UndoController(this, builder));
-		multiplierField_1.getDocument().addDocumentListener(new MultiplierFieldController(builder, multiplierField_1,0, this));
+		multiplierField_1.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_1,0, this));
 		
 		
 		
@@ -504,7 +506,7 @@ public class EditPanel extends JPanel {
 		probabilitieField_5.setText("" + editor.getLevel().getFrequency(4));
 		probabilitieField_6.setText("" + editor.getLevel().getFrequency(5));
 		
-		multiplierField_1.setText("" + editor.getLevel().getMultiplierFrequency(0));
+		
 		multiplierField_2.setText("" + editor.getLevel().getMultiplierFrequency(1));
 		multiplierField_3.setText("" + editor.getLevel().getMultiplierFrequency(2));
 		

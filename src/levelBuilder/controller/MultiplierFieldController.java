@@ -3,13 +3,16 @@ package levelBuilder.controller;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.text.Document;
+import javax.swing.undo.UndoableEdit;
 
 import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
 import levelBuilder.move.MultiplierFrequencyMove;
 
-public class MultiplierFieldController implements DocumentListener {
+public class MultiplierFieldController implements UndoableEditListener {
 	
 	LevelBuilder editor;
 	EditPanel editPanel;
@@ -25,37 +28,13 @@ public class MultiplierFieldController implements DocumentListener {
 	}
 	
 	@Override
-	public void insertUpdate(DocumentEvent e) {
-		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray());
+	public void undoableEditHappened(UndoableEditEvent e) {
+		UndoableEdit undo = e.getEdit();
+		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray(), undo);
 		if(move.doMove(editor)){
 			editor.pushMove(move);
-			System.out.println("yo");
-		}
-
-		
-	
+			
+		}	
 	}
-
-	@Override
-	public void removeUpdate(DocumentEvent e) {
-
-		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray());
-		if(move.doMove(editor)){
-			editor.pushMove(move);
-			System.out.println(editor.getLevel().getMultiplierFrequency(0));
-		}
 	
-		
-		
-	}
-
-	@Override
-	public void changedUpdate(DocumentEvent e) {
-	
-
-		
-		
-		
-	}
-
 }

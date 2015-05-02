@@ -5,6 +5,7 @@ import java.util.Random;
 
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.move.Move;
+import levelBuilder.move.MultiplierFrequencyMove;
 import common.entity.Board;
 import common.entity.Level;
 
@@ -94,8 +95,8 @@ public class LevelBuilder {
 
 		// Undo and refresh all widgets.
 		boolean status = m.undo(this);
+	
 		if (status) {
-			System.out.println("Undoing move");
 			frame.getEditor().refresh();
 		} else {
 			// if we can't undo the move, we push it back onto the stack
