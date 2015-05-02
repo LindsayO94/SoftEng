@@ -13,6 +13,7 @@ import common.entity.Cell;
 import common.entity.Level;
 
 import java.awt.CardLayout;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
@@ -26,10 +27,10 @@ public class GameFrame extends JFrame {
 	LevelSelectPanel levelSelect = new LevelSelectPanel();
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
-	BoardPanel board; 
+	BoardPanel board;
+	Random rand = new Random(); 
 	
 	public GameFrame(Game game) {
-		
 		this.game = game;
 		this.level = game.iterator().next();
 		
@@ -43,11 +44,13 @@ public class GameFrame extends JFrame {
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
-		levelSelect.getBackButton().addMouseListener(new BackToMainMenuController(this));
-		levelSelect.getPuzzle1Button().addMouseListener(new PlayGameController(this));
+		levelSelect.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		splash.addMouseListener(new SplashController(this));
 		board.addMouseMotionListener(new SelectController(board, game));
 		
+		for (String filename : levelSelect.getLevelButtons().keySet()) {
+			levelSelect.getLevelButton(filename).addMouseListener(new PlayGameController(this, filename));
+		}
 		
 		getContentPane().add(splash, "Splash");
 		getContentPane().add(mainMenu, "Main Menu");
@@ -62,5 +65,9 @@ public class GameFrame extends JFrame {
 
 	public PlayGamePanel getPlayView() {
 		return playGame;
+	}
+
+	public long getSeed() {
+		return rand.nextLong();
 	}
 }

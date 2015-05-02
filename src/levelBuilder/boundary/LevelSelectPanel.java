@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 
 import levelBuilder.controller.ChooseLevelButtonController;
 import common.LevelSaver;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * Main Menu Panel for level builder
@@ -34,6 +35,7 @@ import common.LevelSaver;
  */
 public class LevelSelectPanel extends JPanel {
 	HashMap<String, JButton> levelButtons = new HashMap<String, JButton>();
+	private JButton btnBackToMain;
 
 	public LevelSelectPanel(){
 		setBackground(new Color(255, 204, 102));
@@ -44,6 +46,7 @@ public class LevelSelectPanel extends JPanel {
 		lblSixesWildLevel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 32));
 		
 		JScrollPane puzzleScroll = new JScrollPane();
+		puzzleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		puzzleScroll.setBounds(35, 89, 150, 366);
 		
 		JScrollPane lightningScroll = new JScrollPane();
@@ -56,20 +59,20 @@ public class LevelSelectPanel extends JPanel {
 		releaseScroll.setBounds(590, 89, 150, 366);
 		
 		JPanel releasePanel = new JPanel();
-		releaseScroll.setColumnHeaderView(releasePanel);
+		releaseScroll.setViewportView(releasePanel);
 		releasePanel.setLayout(new BoxLayout(releasePanel, BoxLayout.Y_AXIS));
 		
 		JPanel eliminationPanel = new JPanel();
-		eliminationScroll.setColumnHeaderView(eliminationPanel);
+		eliminationScroll.setViewportView(eliminationPanel);
 		eliminationPanel.setLayout(new BoxLayout(eliminationPanel, BoxLayout.Y_AXIS));
 		
 		JPanel lightningPanel = new JPanel();
-		lightningScroll.setColumnHeaderView(lightningPanel);
+		lightningScroll.setViewportView(lightningPanel);
 		lightningPanel.setLayout(new BoxLayout(lightningPanel, BoxLayout.Y_AXIS));
 		setLayout(null);
 		
 		JPanel puzzlePanel = new JPanel();
-		puzzleScroll.setColumnHeaderView(puzzlePanel);
+		puzzleScroll.setViewportView(puzzlePanel);
 		puzzlePanel.setLayout(new BoxLayout(puzzlePanel, BoxLayout.Y_AXIS));
 		add(puzzleScroll);
 		add(lightningScroll);
@@ -100,6 +103,10 @@ public class LevelSelectPanel extends JPanel {
 		lblRelease.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		lblRelease.setBounds(590, 55, 150, 30);
 		add(lblRelease);
+		
+		btnBackToMain = new JButton("Back to Main Menu");
+		btnBackToMain.setBounds(622, 5, 150, 29);
+		add(btnBackToMain);
 		
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
@@ -136,5 +143,9 @@ public class LevelSelectPanel extends JPanel {
 
 	public JButton getLevelButton(String filename) {
 		return levelButtons.get(filename);
+	}
+	
+	public JButton getMainMenuButton() {
+		return btnBackToMain;
 	}
 }

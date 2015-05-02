@@ -18,6 +18,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import common.boundary.LevelSelectPanel;
 import common.entity.Level;
 
 /**
@@ -81,6 +82,7 @@ public class LevelBuilderFrame extends JFrame {
 	public void showLevelSelect() {
 		LevelSelectPanel levelSelect = new LevelSelectPanel();
 		
+		levelSelect.getMainMenuButton().addMouseListener(new BackToMainBuilderMenuController(this));
 		for (String filename : levelSelect.getLevelButtons().keySet()) {
 			ChooseLevelButtonController c = new ChooseLevelButtonController(this, filename, levelBuilder.getSeed());
 			levelSelect.getLevelButton(filename).addMouseListener(c);

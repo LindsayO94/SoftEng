@@ -18,7 +18,7 @@ public class GameTypeController implements MouseListener{
 	EditPanel options;
 	LevelBuilder editor;
 	
-	public GameTypeController(EditPanel options, LevelBuilder editor){
+	public GameTypeController(EditPanel options, LevelBuilder editor) {
 		this.options = options;
 		this.editor = editor;
 	}

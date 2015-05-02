@@ -84,6 +84,15 @@ public class LevelSaver {
 		
 		return file;
 	}
+	
+	public static Level levelFromJsonString(String json, long seed) {
+		Gson g = new GsonBuilder().setPrettyPrinting().create();
+		
+		Level l = g.fromJson(json, Level.class);
+		l.setRand(new Random(seed));
+		
+		return l;
+	}
 
 	public static Level levelFromJsonFile(String filename, long seed) throws FileNotFoundException {
 		Gson g = new GsonBuilder().setPrettyPrinting().create();

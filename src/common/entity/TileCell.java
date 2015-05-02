@@ -37,4 +37,12 @@ public class TileCell extends Cell {
 	public boolean isMarked() {
 		return marked;
 	}
+
+	public void setMarked(boolean b) {
+		this.marked = b;
+	}
+
+	public void setSelected(boolean b) {
+		this.selected = b;
+	}
 }

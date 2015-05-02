@@ -49,18 +49,4 @@ public class TilePanel extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
-	
-	
-	public void toggleNumber(){
-		if (label.isVisible())
-			setBackground(colors[6]);
-		else
-			setBackground(colors[tile.getOldValue()-1]);
-		label.setVisible(!(label.isVisible()));
-	}
-
-
-	public Tile getTile() {
-		return this.tile;
-	}
 }
