@@ -46,7 +46,7 @@ public class GameFrame extends JFrame {
 		levelSelect.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		levelSelect.getPuzzle1Button().addMouseListener(new PlayGameController(this));
 		splash.addMouseListener(new SplashController(this));
-		board.addMouseListener(new SelectController(board, game));
+		board.addMouseMotionListener(new SelectController(board, game));
 		
 		
 		getContentPane().add(splash, "Splash");

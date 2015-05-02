@@ -6,6 +6,7 @@ import game.move.SelectMove;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import levelBuilder.move.ChangeCellTypeMove;
 import common.boundary.BoardPanel;
@@ -17,7 +18,7 @@ import common.entity.Cell;
 
 
 
-public class SelectController implements MouseListener{
+public class SelectController implements MouseMotionListener{
 	BoardPanel board;
 	Game game;
 	boolean mousePressed = false;
@@ -40,7 +41,11 @@ public class SelectController implements MouseListener{
 
 	public void mouseDragged(MouseEvent me) {
 			
-		
+			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
+			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
+			m.doMove(game);
+			board.refresh();
+			((TileCellPanel) cell).refresh();
 		}
 		
 
@@ -68,6 +73,12 @@ public class SelectController implements MouseListener{
 	public boolean isPressed()
 	{
 		return mousePressed;
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
