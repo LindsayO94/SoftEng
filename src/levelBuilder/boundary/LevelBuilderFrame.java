@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import levelBuilder.controller.BackToMainBuilderMenuController;
+import levelBuilder.controller.ChooseLevelButtonController;
 import levelBuilder.controller.LoadLevelButtonController;
 import levelBuilder.controller.NewLevelButtonController;
 import levelBuilder.controller.SaveButtonController;
@@ -14,6 +15,7 @@ import levelBuilder.entity.LevelBuilder;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import common.entity.Level;
@@ -74,6 +76,17 @@ public class LevelBuilderFrame extends JFrame {
 		editor.getBtnSave().addMouseListener(new SaveButtonController(levelBuilder, this));
 
 		this.changePanel(editor);
+	}
+	
+	public void showLevelSelect() {
+		LevelSelectPanel levelSelect = new LevelSelectPanel();
+		
+		for (String filename : levelSelect.getLevelButtons().keySet()) {
+			ChooseLevelButtonController c = new ChooseLevelButtonController(this, filename, levelBuilder.getSeed());
+			levelSelect.getLevelButton(filename).addMouseListener(c);
+		}
+		
+		this.changePanel(levelSelect);
 	}
 	
 	public EditPanel getEditor(){

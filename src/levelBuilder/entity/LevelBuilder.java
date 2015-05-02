@@ -1,6 +1,8 @@
 package levelBuilder.entity;
 
 
+import java.util.Random;
+
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.move.Move;
 import common.entity.Board;
@@ -9,6 +11,8 @@ import common.entity.Level;
 public class LevelBuilder {
 	private Level level;
 	private Board board;
+	
+	private Random seedGenerator = new Random();
 	
 	private LevelBuilderFrame frame;
 	/** Stack of recent Moves */
@@ -33,6 +37,10 @@ public class LevelBuilder {
 	
 	public void setFrame(LevelBuilderFrame frame){
 		this.frame = frame;
+	}
+	
+	public long getSeed() {
+		return seedGenerator.nextLong();
 	}
 	
 	/**

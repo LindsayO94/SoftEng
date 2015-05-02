@@ -3,7 +3,7 @@ package levelBuilder.controller;
 import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
 
@@ -13,24 +13,27 @@ import levelBuilder.boundary.EditPanel;
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.entity.LevelBuilder;
 
-public class SaveButtonController implements MouseListener {
-	LevelBuilderFrame lbf;
-	LevelBuilder builder;
+public class ChooseLevelButtonController implements MouseListener {
+	LevelBuilderFrame LbF;
+	String filename;
+	long seed;
 	
-	public SaveButtonController(LevelBuilder builder, LevelBuilderFrame lbf) {
-		this.builder = builder;
-		this.lbf = lbf;
+	public ChooseLevelButtonController(LevelBuilderFrame lbF, String filename, long seed) {
+		this.LbF = lbF;
+		this.filename = filename;
+		this.seed = seed;
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		Level l = this.builder.getLevel();
 		try {
-			LevelSaver.levelToJsonFile(l);
-			lbf.getEditor().getSpinner().setEnabled(false);
-		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(lbf,
+			Level level = LevelSaver.levelFromJsonFile(filename, seed);
+			LbF.showEditor(level);
+			// Don't allow to change a level type because that messes up filenames
+			LbF.getEditor().getSpinner().setEnabled(false);
+		} catch (FileNotFoundException e1) {
+			JOptionPane.showMessageDialog(LbF,
 				    e1.getMessage(),
-				    "Save Error",
+				    "Error loading file",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 	}

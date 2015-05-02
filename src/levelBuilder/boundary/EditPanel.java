@@ -245,7 +245,7 @@ public class EditPanel extends JPanel {
 		
 		int i = 0;
 		for(Component c:spinner.getComponents()){
-			System.out.println("Component: "+c.toString());
+//			System.out.println("Component: "+c.toString());
 			if (i==0)
 				c.addMouseListener(gtc1);
 			else if (i==1)
