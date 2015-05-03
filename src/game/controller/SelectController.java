@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import levelBuilder.move.ChangeCellTypeMove;
 import levelBuilder.move.RemoveMove;
@@ -23,7 +24,9 @@ import common.entity.Cell;
 public class SelectController implements MouseMotionListener, MouseListener{
 	BoardPanel board;
 	Game game;
-	int num;
+	ArrayList<CellPanel> cells = new ArrayList<CellPanel>();
+	
+	
 	boolean mousePressed = false;
 	
 	public SelectController(BoardPanel board, Game game){
@@ -37,9 +40,10 @@ public class SelectController implements MouseMotionListener, MouseListener{
 		}
 
 	public void mouseDragged(MouseEvent me) {
-			num = 0;
+			
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), num);
+			cells.add(cell);
+			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
 			m.doMove(game);
 			board.refresh();
 			((TileCellPanel) cell).refresh();
@@ -62,14 +66,14 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	}
 
 	public void mouseReleased(MouseEvent me) {
-		
-		num = 1;
-		System.out.println(num);
-		CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-		SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), num);
+	
+		RemoveSelected m = new RemoveSelected(board.getBoardModel());
 		m.doMove(game);
-		board.refresh();
-		((TileCellPanel) cell).refresh();
+		//board.refresh();
+		for (int i = 0; i<cells.size(); i++)
+		{
+			((TileCellPanel) cells.get(i)).refresh();
+		}
 		
 	}
 	
