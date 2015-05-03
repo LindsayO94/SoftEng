@@ -33,6 +33,7 @@ public class TileFieldContoller implements UndoableEditListener {
 			editor.pushMove(move);
 			
 		}	
+		editPanel.refresh();
 	}
 
 }

@@ -52,7 +52,7 @@ public class PlayGamePanel extends JPanel {
 	public PlayGamePanel(Game game){	
 		this.game = game;
 		
-		lblPuzzleLevel = new JLabel("Puzzle Level 1");
+		lblPuzzleLevel = new JLabel("");
 		lblPuzzleLevel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblPuzzleLevel.setHorizontalAlignment(SwingConstants.CENTER);
 		button_1 = new JButton("Swap");
@@ -83,7 +83,7 @@ public class PlayGamePanel extends JPanel {
 		}
 		BoardPanel panel = new BoardPanel(board);
 		
-		
+		lblPuzzleLevel.setText(board.getLevel().getType()+" Level "+board.getLevel().getNumber());
 		panel.addMouseMotionListener(new SelectController(panel, game));
 		panel.addMouseListener(new SelectController(panel, game));
 		

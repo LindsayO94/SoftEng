@@ -20,7 +20,11 @@ public abstract class Board {
 		for (int i = 0; i < level.startingConfig.length; i++) {
 			cells.add(i, new ArrayList<Cell>(9));
 			for (int j = 0; j < level.startingConfig[i].length; j++) {
-				cells.get(i).add(j, createCell(i, j));
+				try{
+					cells.get(i).add(j, createCell(i, j));
+				}catch (IllegalArgumentException e){
+					throw e;
+				}
 			}
 		}
 		
@@ -73,7 +77,12 @@ public abstract class Board {
 	public Cell createCell(int i, int j) {
 		switch (level.startingConfig[i][j]) {
 		case TILE_CELL:
-			Tile tile = level.getRandomTile();
+			Tile tile;
+			try{
+				tile = level.getRandomTile();
+			}catch (IllegalArgumentException e){
+				throw e;
+			}
 			return new TileCell(i, j, tile);
 			
 		case INACTIVE_CELL:

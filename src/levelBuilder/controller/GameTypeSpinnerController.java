@@ -32,7 +32,7 @@ public class GameTypeSpinnerController implements MouseListener{
 			editor.pushMove(m);
 		}
 		
-		options.getBoardPanel().refresh();
+		options.refresh();
 		
 	}
 

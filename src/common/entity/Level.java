@@ -134,6 +134,9 @@ public class Level {
 		
 		int total = 0;
 		for (int freq : arr) total += freq;
+		if (total==0){
+			throw new IllegalArgumentException("At least one weight must be non-zero");
+		}
 		int num = rand.nextInt(total);
 		
 		for (int i = 0; i < arr.length; i++) {
@@ -148,7 +151,12 @@ public class Level {
 	}
 
 	public Tile getRandomTile() {
-		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
+		try{
+			return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
+		}catch (IllegalArgumentException e){
+			throw e;
+		}
+		
 	}
 
 	/**
