@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import common.entity.Level;
 
-public class Game {
+public class Game implements Iterable<Level> {
 	public ArrayList<Level> levels;
 	
 	public Game(ArrayList<Level> levels){

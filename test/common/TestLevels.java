@@ -274,7 +274,7 @@ public class TestLevels {
 			"}";;
 	
 	public static Board getBoard(String json) {
-		Level l = LevelSaver.levelFromJsonString(json, 0);;
+		Level l = LevelSaver.levelFromJsonString(json, 0);
 		return Board.makeBoard(l);
 	}
 }
