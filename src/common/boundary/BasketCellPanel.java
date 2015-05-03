@@ -39,7 +39,7 @@ public class BasketCellPanel extends CellPanel {
 	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, w, h, null);
+        g.drawImage(image, 0, 0, image.getWidth(null)/2, image.getHeight(null)/2, null);
     }
 
 }
