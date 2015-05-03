@@ -7,7 +7,7 @@ import common.entity.Board;
 import common.entity.Cell;
 import common.entity.TileCell;
 
-public class RemoveSelected extends GameMove{
+public class RemoveSelected extends gameMove{
 	
 	Board board;
 	
