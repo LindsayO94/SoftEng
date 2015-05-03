@@ -342,7 +342,6 @@ public class Level {
 
 	public int getRandomInt(int max) {
 		return rand.nextInt(max);
-	}
-	
+	}	
 	
 }
