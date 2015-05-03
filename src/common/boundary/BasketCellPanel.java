@@ -21,7 +21,7 @@ public class BasketCellPanel extends CellPanel {
 	public BasketCellPanel(BasketCell cell) {
 		super(cell);
 		setForeground(Color.GRAY);
-		setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		image = new ImageIcon("Images/BasketCell.png").getImage();
 	}

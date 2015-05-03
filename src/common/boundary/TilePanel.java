@@ -18,10 +18,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import common.entity.Tile;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TilePanel extends JPanel {
 	Tile tile;
-	JLabel label;
 	
 	final static Color colors[][] = {
 		{new Color(0xFE8048), new Color(0xE67441), new Color(0xD56B3C), new Color(0xC76438) },
@@ -37,28 +37,28 @@ public class TilePanel extends JPanel {
 		this.tile = tile;
 		
 		// HERE THERE BE WINDOW BUILDER		
-		label = new JLabel(tile.getValue() + "");
+		JLabel numberShadow = new JLabel(tile.getValue() + "");
 		if (tile.getValue() == 6) {
-			label.setForeground(new Color(255,255,255,166));
+			numberShadow.setBounds(0, -1, 45, 45);
+			numberShadow.setForeground(new Color(0,0,0,66));
+		} else {
+			numberShadow.setBounds(0, 1, 45, 45);
+			numberShadow.setForeground(new Color(255,255,255,66));
 		}
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Museo Slab", Font.PLAIN, 26));
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		setLayout(groupLayout);
+		numberShadow.setHorizontalAlignment(SwingConstants.CENTER);
+		numberShadow.setFont(new Font("Museo Slab", Font.PLAIN, 26));
+		setLayout(null);
+		add(numberShadow);
+		
+		JLabel number = new JLabel(tile.getValue() + "");
+		number.setBounds(0, 0, 45, 45);
+		if (tile.getValue() == 6) {
+			number.setForeground(new Color(255,255,255,166));
+		}
+		number.setHorizontalAlignment(SwingConstants.CENTER);
+		number.setFont(new Font("Museo Slab", Font.PLAIN, 26));
+		add(number);
+		add(numberShadow);
 	}
 	
 	private Color[] getColorArray() {
