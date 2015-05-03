@@ -75,4 +75,20 @@ public class BoardPanel extends JPanel {
 	public Board getBoardModel() {
 		return board;
 	}
+	
+	public int getNumBaskets() {
+		int i = 0;
+		for (ArrayList<Cell> row : board.getCells()) {
+			for (Cell cell : row) { 
+				switch (cell.getType()) {
+				case BASKET_CELL:
+					i++;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		return i;
+	}
 }
