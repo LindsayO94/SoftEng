@@ -15,21 +15,25 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class BasketCellPanel extends CellPanel {
-	
-	Image image;
+	static Image image;
+	static int w;
+	static int h;
+	static {
+		image = new ImageIcon("Images/BasketCell.png").getImage();
+		w = image.getWidth(null)/2;
+		h = image.getHeight(null)/2;
+	}
 
 	public BasketCellPanel(BasketCell cell) {
 		super(cell);
 		setForeground(Color.GRAY);
 		setBorder(new LineBorder(new Color(0, 0, 0), 1));
-		
-		image = new ImageIcon("Images/BasketCell.png").getImage();
 	}
 	
 	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, image.getWidth(null)/2, image.getHeight(null)/2, null);
+        g.drawImage(image, 0, 0, w, h, null);
     }
 
 }
