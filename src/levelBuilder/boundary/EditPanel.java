@@ -34,6 +34,7 @@ import levelBuilder.controller.ChangeCellTypeController;
 import levelBuilder.controller.GameTypeSpinnerController;
 import levelBuilder.controller.MovesFieldController;
 import levelBuilder.controller.MultiplierFieldController;
+import levelBuilder.controller.PreviewController;
 import levelBuilder.controller.RemoveFieldController;
 import levelBuilder.controller.ShuffleFieldController;
 import levelBuilder.controller.StarScoreFieldController;
@@ -285,6 +286,7 @@ public class EditPanel extends JPanel {
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves");
 		
 		btnPreview = new JButton("Preview");
+		btnPreview.addMouseListener(new PreviewController(this, builder));
 		
 		outputField = new JTextField();
 		outputField.setColumns(10);
@@ -295,6 +297,21 @@ public class EditPanel extends JPanel {
 		timeLimitTextField.setColumns(10);
 		((PlainDocument) timeLimitTextField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
 		timeLimitTextField.setText("" + editor.getLevel().getMaxTime());
+		if (editor.getLevel().getType().equals("Lightning")){
+			timeLimitTextField.setEnabled(true);
+			maxMovesField.setEnabled(false);
+			shuffleField.setEnabled(true);
+		}
+		else if(editor.getLevel().getType().equals("Release")){
+			shuffleField.setEnabled(false);
+			timeLimitTextField.setEnabled(false);
+			maxMovesField.setEnabled(true);
+		}
+		else{
+			timeLimitTextField.setEnabled(false);
+			maxMovesField.setEnabled(true);
+			shuffleField.setEnabled(true);
+		}
 		
 		lblNewLabel_3 = new JLabel("Time Limit");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -584,6 +601,10 @@ public class EditPanel extends JPanel {
 		return boardPanel;
 	}
 	
+	public JTextField getTimeLimitText(){
+		return timeLimitTextField;
+	}
+	
 	public void refresh(){
 		boardPanel.refresh();
 		
@@ -598,5 +619,15 @@ public class EditPanel extends JPanel {
 
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
+	}
+
+	public JTextField getMovesAllowed() {
+		// TODO Auto-generated method stub
+		return maxMovesField;
+	}
+
+	public JTextField getShuffle() {
+		// TODO Auto-generated method stub
+		return shuffleField;
 	}
 }
