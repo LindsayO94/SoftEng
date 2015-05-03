@@ -69,7 +69,7 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	
 		RemoveSelected m = new RemoveSelected(board.getBoardModel());
 		m.doMove(game);
-		//board.refresh();
+		board.refresh();
 		for (int i = 0; i<cells.size(); i++)
 		{
 			((TileCellPanel) cells.get(i)).refresh();
