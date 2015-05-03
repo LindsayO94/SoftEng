@@ -135,6 +135,12 @@ public class Level {
 		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
 	}
 
+	/**
+	 * 
+	 * @author Lindsay
+	 *
+	 */
+	
 	public void toggleCell(Cell cell) {
 		if (this.type.equals("Release")) {
 			switch (startingConfig[cell.column][cell.row]) {

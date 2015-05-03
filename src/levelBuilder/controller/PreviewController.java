@@ -3,36 +3,29 @@ package levelBuilder.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
-import levelBuilder.move.ChangeCellTypeMove;
-import levelBuilder.move.GameTypeMove;
-import levelBuilder.move.Move;
 
-import common.boundary.BoardPanel;
+/**
+ * 
+ * @author Lindsay
+ *
+ */
 
-public class GameTypeSpinnerController implements MouseListener{
-	EditPanel options;
+public class PreviewController implements MouseListener{
+	EditPanel panel;
 	LevelBuilder editor;
 	
-	public GameTypeSpinnerController(EditPanel options, LevelBuilder editor){
-		this.options = options;
+	
+	public PreviewController(EditPanel panel, LevelBuilder editor){
+		this.panel = panel;
 		this.editor = editor;
 	}
-	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		String newType = (String)options.getSpinner().getValue();
-		Move m = new GameTypeMove(newType, editor.getLevel().getType(), options);
-		if(m.doMove(editor)){
-			editor.pushMove(m);
-		};
-		
-		options.getBoardPanel().refresh();
+		editor.getBoard().refresh();
+		panel.refresh();
 		
 	}
 
@@ -59,6 +52,5 @@ public class GameTypeSpinnerController implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }

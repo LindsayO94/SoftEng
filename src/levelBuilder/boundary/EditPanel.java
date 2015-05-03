@@ -34,6 +34,7 @@ import levelBuilder.controller.ChangeCellTypeController;
 import levelBuilder.controller.GameTypeSpinnerController;
 import levelBuilder.controller.MovesFieldController;
 import levelBuilder.controller.MultiplierFieldController;
+import levelBuilder.controller.PreviewController;
 import levelBuilder.controller.RemoveFieldController;
 import levelBuilder.controller.ShuffleFieldController;
 import levelBuilder.controller.StarScoreFieldController;
@@ -47,7 +48,7 @@ import levelBuilder.entity.LevelBuilder;
 /**
  * Panel which displays visual elements of the editor
  * put all of the controllers under the "controllers go here" comment
- * @author August
+ * @author August, Lindsay
  *
  */
 public class EditPanel extends JPanel {
@@ -295,6 +296,21 @@ public class EditPanel extends JPanel {
 		timeLimitTextField.setColumns(10);
 		((PlainDocument) timeLimitTextField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
 		timeLimitTextField.setText("" + editor.getLevel().getMaxTime());
+		if (editor.getLevel().getType().equals("Lightning")){
+			timeLimitTextField.setEnabled(true);
+			maxMovesField.setEnabled(false);
+			shuffleField.setEnabled(true);
+		}
+		else if(editor.getLevel().getType().equals("Release")){
+			shuffleField.setEnabled(false);
+			timeLimitTextField.setEnabled(false);
+			maxMovesField.setEnabled(true);
+		}
+		else{
+			timeLimitTextField.setEnabled(false);
+			maxMovesField.setEnabled(true);
+			shuffleField.setEnabled(true);
+		}
 		
 		lblNewLabel_3 = new JLabel("Time Limit");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -316,6 +332,7 @@ public class EditPanel extends JPanel {
 		
 		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, builder));
 		btnUndo.addMouseListener(new UndoButtonController(this, builder));
+		btnPreview.addMouseListener(new PreviewController(this, builder));
 		
 		
 		multiplierField_1.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_1,0, this));
@@ -584,6 +601,10 @@ public class EditPanel extends JPanel {
 		return boardPanel;
 	}
 	
+	public JTextField getTimeLimitText(){
+		return timeLimitTextField;
+	}
+	
 	public void refresh(){
 		boardPanel.refresh();
 		
@@ -598,5 +619,15 @@ public class EditPanel extends JPanel {
 
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
+	}
+
+	public JTextField getMovesAllowed() {
+		// TODO Auto-generated method stub
+		return maxMovesField;
+	}
+
+	public JTextField getShuffle() {
+		// TODO Auto-generated method stub
+		return shuffleField;
 	}
 }
