@@ -7,6 +7,12 @@ import common.entity.Board;
 import common.entity.Cell;
 import common.entity.Level;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class ChangeCellTypeMove extends Move{
 	
 	Cell cell;

@@ -1,6 +1,6 @@
 package common.entity;
 
-//import common.boundary.TilePanel;
+
 
 public class BasketCell extends Cell {
 	Tile tile;

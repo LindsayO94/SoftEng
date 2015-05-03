@@ -9,6 +9,12 @@ import common.entity.Cell;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class BasketCellPanel extends CellPanel {
 
 	public BasketCellPanel(BasketCell cell) {

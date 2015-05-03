@@ -14,6 +14,12 @@ import levelBuilder.move.Move;
 
 import common.boundary.BoardPanel;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class GameTypeController implements MouseListener{
 	EditPanel options;
 	LevelBuilder editor;

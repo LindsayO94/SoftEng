@@ -10,6 +10,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class SplashPanel extends JPanel{
 	public SplashPanel() {
 		setBackground(new Color(0, 51, 153));
