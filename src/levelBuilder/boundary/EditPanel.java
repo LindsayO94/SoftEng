@@ -261,10 +261,6 @@ public class EditPanel extends JPanel {
 		btnSave = new JButton("Save");
 		
 		btnQuit = new JButton("Back");
-		btnQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		shuffleField = new JTextField();
 		shuffleField.setColumns(10);
@@ -288,6 +284,7 @@ public class EditPanel extends JPanel {
 		btnPreview = new JButton("Preview");
 		
 		outputField = new JTextField();
+		outputField.setEditable(false);
 		outputField.setColumns(10);
 		
 		JButton btnUndo = new JButton("Undo");
@@ -609,8 +606,6 @@ public class EditPanel extends JPanel {
 		boardPanel.refresh();
 		
 		spinner.setValue(editor.getLevel().getType());
-
-		
 	}
 
 	public JButton getBtnSave() {

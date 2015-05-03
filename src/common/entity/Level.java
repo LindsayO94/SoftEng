@@ -80,6 +80,10 @@ public class Level {
 			frequency[i] = 1;
 		}
 		
+		if (type.equals("Release")) {
+			frequency[5] = 0;
+		}
+		
 		// Temporary - For now, all multiplierFrequency are 1
 		for (int i = 0; i < multiplierFrequency.length; i++) {
 			multiplierFrequency[i] = 1;
@@ -338,6 +342,12 @@ public class Level {
 	public void setNumActiveCells(int numActiveCells) {
 		this.numActiveCells = numActiveCells;
 	}
-	
-	
+
+	public int getRandomMultiplier() {
+		return getWeightedRandomIndex(multiplierFrequency) + 1;
+	}
+
+	public int getRandomInt(int max) {
+		return rand.nextInt(max);
+	}	
 }

@@ -9,8 +9,8 @@ public class InactiveCellPanel extends CellPanel {
 
 	public InactiveCellPanel(InactiveCell cell) {
 		super(cell);
-		setForeground(Color.GRAY);
-		setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		setBackground(new Color(0x4C4C4C));
+		setBorder(new LineBorder(new Color(0, 0, 0), 1));
 	}
 
 }

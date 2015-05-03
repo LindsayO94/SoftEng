@@ -36,7 +36,7 @@ public class TileCellPanel extends CellPanel {
 		} else if (cell.isMarked()) {
 			setBorder(new LineBorder(new Color(255, 255, 255), 2));
 		} else {
-			setBorder(new LineBorder(new Color(0, 0, 0), 2));
+			setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		}
 	}
 }
