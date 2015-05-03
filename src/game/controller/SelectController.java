@@ -1,14 +1,17 @@
 package game.controller;
 
 import game.entities.Game;
+import game.move.RemoveSelected;
 import game.move.SelectMove;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import levelBuilder.move.ChangeCellTypeMove;
+import levelBuilder.move.RemoveMove;
 import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
@@ -18,9 +21,12 @@ import common.entity.Cell;
 
 
 
-public class SelectController implements MouseMotionListener{
+public class SelectController implements MouseMotionListener, MouseListener{
 	BoardPanel board;
 	Game game;
+	ArrayList<CellPanel> cells = new ArrayList<CellPanel>();
+	
+	
 	boolean mousePressed = false;
 	
 	public SelectController(BoardPanel board, Game game){
@@ -30,18 +36,13 @@ public class SelectController implements MouseMotionListener{
 	}
 	
 	public void mousePressed(MouseEvent me) {
-			System.out.println("Cell pressed");
-			//mousePressed = true;
-			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
-			m.doMove(game);
-			board.refresh();
-			((TileCellPanel) cell).refresh();
+			
 		}
 
 	public void mouseDragged(MouseEvent me) {
 			
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
+			cells.add(cell);
 			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
 			m.doMove(game);
 			board.refresh();
@@ -64,16 +65,18 @@ public class SelectController implements MouseMotionListener{
 		// TODO Auto-generated method stub
 	}
 
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent me) {
 	
-		
+		RemoveSelected m = new RemoveSelected(board.getBoardModel());
+		m.doMove(game);
+		//board.refresh();
+		for (int i = 0; i<cells.size(); i++)
+		{
+			((TileCellPanel) cells.get(i)).refresh();
+		}
 		
 	}
 	
-	public boolean isPressed()
-	{
-		return mousePressed;
-	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {

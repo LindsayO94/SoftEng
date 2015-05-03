@@ -57,8 +57,8 @@ public abstract class Board {
 	}
 	
 	public void gravity() {
-		for (int i=cells.size(); i>0; i--) {
-			for (int j=cells.get(i).size(); j>0; j--)
+		for (int i=cells.size()-1; i>0; i--) {
+			for (int j=cells.get(i).size()-1; j>0; j--)
 			{
 				Cell temp = cells.get(i).get(j);
 				switch(temp.getType())

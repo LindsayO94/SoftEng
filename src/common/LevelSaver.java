@@ -109,7 +109,6 @@ public class LevelSaver {
 	
 	public static String[] getLevelFilenames(final String type) {
 		File folder = getSaveLocation();
-		System.out.println("loading "+type+" levels");
 		
 		FilenameFilter filter = new FilenameFilter() {
 			public boolean accept(File dir, String name) {

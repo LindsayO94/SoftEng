@@ -11,7 +11,6 @@ import common.boundary.LevelSelectPanel;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.Level;
-
 import java.awt.CardLayout;
 import java.util.Random;
 
@@ -47,6 +46,7 @@ public class GameFrame extends JFrame {
 		levelSelect.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		splash.addMouseListener(new SplashController(this));
 		board.addMouseMotionListener(new SelectController(board, game));
+		board.addMouseListener(new SelectController(board, game));
 		
 		for (String filename : levelSelect.getLevelButtons().keySet()) {
 			levelSelect.getLevelButton(filename).addMouseListener(new PlayGameController(this, filename));

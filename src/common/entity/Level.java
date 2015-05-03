@@ -48,13 +48,18 @@ public class Level {
 	int numSwap;
 	int numRemove;
 	
+	//All levels but lightning use maxMoves
 	int maxMoves;
 
-
+	//attributes required for weird levels!
 	int maxTime;
+	int numBaskets;
+	int numActiveCells;
 	
-
+	//array for star achieving thresholds
 	int starScore[] = new int[3];
+
+	
 	
 	public Level(String type, long seed) {
 		if (!Arrays.asList(Level.allowedTypes).contains(type)) {
@@ -135,6 +140,12 @@ public class Level {
 		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
 	}
 
+	/**
+	 * 
+	 * @author Lindsay
+	 *
+	 */
+	
 	public void toggleCell(Cell cell) {
 		if (this.type.equals("Release")) {
 			switch (startingConfig[cell.column][cell.row]) {
@@ -304,4 +315,22 @@ public class Level {
 	public void setMaxTime(int maxTime) {
 		this.maxTime = maxTime;
 	}
+	
+	public int getNumBaskets(){
+		return numBaskets;
+	}
+	
+	public void setNumBaskets(int numBaskets){
+		this.numBaskets = numBaskets;
+	}
+
+	public int getNumActiveCells() {
+		return numActiveCells;
+	}
+
+	public void setNumActiveCells(int numActiveCells) {
+		this.numActiveCells = numActiveCells;
+	}
+	
+	
 }

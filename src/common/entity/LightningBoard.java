@@ -15,9 +15,10 @@ public class LightningBoard extends Board {
 	public boolean isWon() {
 		// reach a certain score (before the time limit ends)
 		//if the high score is higher than the lowest star score value, then the level is won
-		if (level.starScore[0] < level.highScore){
+		if (level.getStar1Score() < this.getScore()){
 			return true;
 		}
+		
 		return false;
 	}
 

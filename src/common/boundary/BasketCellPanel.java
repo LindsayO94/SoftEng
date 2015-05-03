@@ -14,6 +14,12 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class BasketCellPanel extends CellPanel {
 	static Image image;
 	static int w;

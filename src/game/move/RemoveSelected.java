@@ -20,7 +20,23 @@ public class RemoveSelected extends GameMove{
 	public boolean doMove(Game game) {
 		if(valid(game)==true)
 		{
-			
+			ArrayList<ArrayList<Cell>> temp = board.getCells();
+			for (int i = 0; i < temp.size(); i++ )
+			{
+				for (int j = 0; j < temp.get(i).size(); j++)
+				{
+					switch (temp.get(i).get(j).getType())
+					{
+					case TILE_CELL:
+						((TileCell) temp.get(i).get(j)).unSelect();
+						((TileCell) temp.get(i).get(j)).setTile(null);
+						board.gravity();
+						
+					case INACTIVE_CELL:
+						break;
+					}
+				}
+			}
 			return true;
 		}
 		return false;

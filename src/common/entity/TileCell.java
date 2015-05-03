@@ -24,6 +24,11 @@ public class TileCell extends Cell {
 	{
 		this.selected = true;
 	}
+	
+	public void unSelect()
+	{
+		this.selected = false;
+	}
 
 	@Override
 	public Cell.Type getType() {

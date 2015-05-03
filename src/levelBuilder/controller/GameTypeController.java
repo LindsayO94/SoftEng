@@ -14,6 +14,12 @@ import levelBuilder.move.Move;
 
 import common.boundary.BoardPanel;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class GameTypeController implements MouseListener{
 	EditPanel options;
 	LevelBuilder editor;
@@ -27,7 +33,7 @@ public class GameTypeController implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		String newType = (String)options.getSpinner().getValue();
-		Move m = new GameTypeMove(newType, editor.getLevel().getType());
+		Move m = new GameTypeMove(newType, editor.getLevel().getType(), options);
 		if(m.doMove(editor)){
 			editor.pushMove(m);
 		};
