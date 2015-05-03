@@ -85,7 +85,7 @@ public class PlayGamePanel extends JPanel {
 		
 		
 		panel.addMouseMotionListener(new SelectController(panel, game));
-		
+		panel.addMouseListener(new SelectController(panel, game));
 		
 		JLabel lblMovesRemaining_1 = new JLabel("0 Moves Remaining");
 		
