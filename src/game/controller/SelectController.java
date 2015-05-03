@@ -1,6 +1,7 @@
 package game.controller;
 
 import game.entities.Game;
+import game.move.RemoveSelected;
 import game.move.SelectMove;
 
 import java.awt.Component;
@@ -9,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import levelBuilder.move.ChangeCellTypeMove;
+import levelBuilder.move.RemoveMove;
 import common.boundary.BoardPanel;
 import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
@@ -18,9 +20,10 @@ import common.entity.Cell;
 
 
 
-public class SelectController implements MouseMotionListener{
+public class SelectController implements MouseMotionListener, MouseListener{
 	BoardPanel board;
 	Game game;
+	int num;
 	boolean mousePressed = false;
 	
 	public SelectController(BoardPanel board, Game game){
@@ -30,19 +33,13 @@ public class SelectController implements MouseMotionListener{
 	}
 	
 	public void mousePressed(MouseEvent me) {
-			System.out.println("Cell pressed");
-			//mousePressed = true;
-			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
-			m.doMove(game);
-			board.refresh();
-			((TileCellPanel) cell).refresh();
+			
 		}
 
 	public void mouseDragged(MouseEvent me) {
-			
+			num = 0;
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
+			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), num);
 			m.doMove(game);
 			board.refresh();
 			((TileCellPanel) cell).refresh();
@@ -64,16 +61,18 @@ public class SelectController implements MouseMotionListener{
 		// TODO Auto-generated method stub
 	}
 
-	public void mouseReleased(MouseEvent arg0) {
-	
+	public void mouseReleased(MouseEvent me) {
 		
+		num = 1;
+		System.out.println(num);
+		CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
+		SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), num);
+		m.doMove(game);
+		board.refresh();
+		((TileCellPanel) cell).refresh();
 		
 	}
 	
-	public boolean isPressed()
-	{
-		return mousePressed;
-	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {

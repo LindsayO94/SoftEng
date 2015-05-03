@@ -41,4 +41,354 @@ public abstract class Cell {
 		//TODO $$$$$$$$$ isn't this just checking to see if they are in the same row or column, not that they are within one cell of one another? -Arty
 		return this.getColumn() == other.getColumn() ^ this.getRow() == other.getRow();
 	}
+	
+	public boolean hasSelectedNeighbor(Board board)
+	{
+		int col = this.getColumn();
+		int row = this.getRow();
+		
+		if (col == 0)
+		{
+			Cell top = board.getCells().get(row+1).get(col);
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			return false;
+			
+		}
+		
+		if (row == 0)
+		{
+			Cell top = board.getCells().get(row+1).get(col);
+			Cell left = board.getCells().get(row).get(col-1);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			return false;
+		}
+		
+		if (col == 8)
+		{
+			Cell top = board.getCells().get(row+1).get(col);
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell left = board.getCells().get(row).get(col-1);
+			
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			return false;
+		}
+		
+		if (row==8)
+		{
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell left = board.getCells().get(row).get(col-1);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			return false;
+		}
+		
+		if (row == 0 && col == 0)
+		{
+			Cell top = board.getCells().get(row+1).get(col);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			return false;
+		}
+		
+		if (row == 0 && col == 8)
+		{
+			Cell left = board.getCells().get(row).get(col-1);
+			Cell top = board.getCells().get(row+1).get(col);
+			
+			
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			return false;
+		}
+		
+		if (row == 8 && col == 0)
+		{
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			return false;
+		}
+		
+		if (row == 8 && col == 8)
+		{
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell left = board.getCells().get(row).get(col-1);
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			return false;
+		}
+		
+		if(col!=0 && row!=0)
+		{
+			Cell bot = board.getCells().get(row-1).get(col);
+			Cell left = board.getCells().get(row).get(col-1);
+			Cell top = board.getCells().get(row+1).get(col);
+			Cell right = board.getCells().get(row).get(col+1);
+			
+			switch (bot.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) bot).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			
+			switch (left.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) left).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			switch (top.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) top).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			switch (right.getType())
+			{
+			case TILE_CELL:
+				if (((TileCell) right).isSelected() == true)
+				{
+					return true;
+				}
+			case INACTIVE_CELL:
+				break;
+			}
+			return false;
+		}
+		return false;
+	}
 }
+
+
+
+
+
+
+
+
