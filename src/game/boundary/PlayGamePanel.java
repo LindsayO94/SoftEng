@@ -24,6 +24,7 @@ import common.entity.Cell;
 import common.entity.Level;
 
 import java.awt.Component;
+import java.util.Timer;
 
 import javax.swing.ImageIcon;
 
@@ -48,6 +49,8 @@ public class PlayGamePanel extends JPanel {
 	private JLabel labelStar1;
 	private JLabel labelStar2;
 	private JLabel labelStar3;
+	private JLabel lblMovesRemaining_Shuffle;
+	private JLabel lblNumber;
 	
 	public PlayGamePanel(Game game){	
 		this.game = game;
@@ -87,11 +90,17 @@ public class PlayGamePanel extends JPanel {
 		panel.addMouseMotionListener(new SelectController(panel, game));
 		panel.addMouseListener(new SelectController(panel, game));
 		
-		JLabel lblMovesRemaining_1 = new JLabel("0 Moves Remaining");
+		JLabel lblMovesRemaining_Swap = new JLabel("0");
+		lblMovesRemaining_Swap.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovesRemaining_Swap.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
-		JLabel lblMovesRemaining_2 = new JLabel("2 Moves Remaining");
+		JLabel lblMovesRemaining_Remove = new JLabel("2");
+		lblMovesRemaining_Remove.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblMovesRemaining_Remove.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblMovesRemaing = new JLabel("4 Moves Remaining");
+		JLabel lblMovesRemaining_Shuffle = new JLabel("4");
+		lblMovesRemaining_Shuffle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovesRemaining_Shuffle.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
 		labelStar2 = new JLabel("2");
 		labelStar2.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -101,71 +110,89 @@ public class PlayGamePanel extends JPanel {
 		labelStar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		labelStar3.setIcon(new ImageIcon(inactivePath)); //AWESOME!3 
 		
+		JLabel lblTimeLeft = new JLabel("Time Left:");
+		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		lblNumber = new JLabel("NUM");
+		lblNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumber.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
-					.addGap(35)
-					.addComponent(mainMenuButton)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblScore)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(button_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnShuffle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblMovesRemaining_Remove, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+								.addComponent(lblMovesRemaining_Swap, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+								.addComponent(lblMovesRemaining_Shuffle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
 						.addComponent(lblMovesRemaining)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnShuffle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnRemove, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(button_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblMovesRemaining_2)
-								.addComponent(lblMovesRemaining_1)
-								.addComponent(lblMovesRemaing))))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
-					.addGap(55))
+						.addComponent(mainMenuButton)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblTimeLeft)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblNumber, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+								.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+					.addGap(126))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(mainMenuButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblPuzzleLevel)
+						.addComponent(mainMenuButton))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblMovesRemaining)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblScore)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 								.addComponent(labelStar2)
 								.addComponent(labelStar3))
-							.addGap(37)
+							.addGap(30)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMovesRemaining_1))
-							.addGap(47)
+								.addComponent(lblTimeLeft)
+								.addComponent(lblNumber))
+							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblMovesRemaining_Swap))
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnRemove, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMovesRemaining_2))
-							.addGap(47)
+								.addComponent(lblMovesRemaining_Remove))
+							.addGap(21)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnShuffle, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMovesRemaing)))
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE))
-					.addGap(62))
+								.addComponent(lblMovesRemaining_Shuffle, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+							.addGap(24))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {labelStar1, labelStar2, labelStar3});
