@@ -79,17 +79,17 @@ public class AchievementsPanel extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(672, Short.MAX_VALUE)
+					.addContainerGap(341, Short.MAX_VALUE)
 					.addComponent(mainMenuButton)
 					.addGap(17))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(262)
-					.addComponent(lblAchievements, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-					.addGap(262))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(131)
-					.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+					.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
 					.addGap(130))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(210)
+					.addComponent(lblAchievements, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+					.addGap(220))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -98,7 +98,7 @@ public class AchievementsPanel extends JPanel {
 					.addComponent(lblAchievements)
 					.addGap(103)
 					.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
 					.addComponent(mainMenuButton)
 					.addGap(15))
 		);
