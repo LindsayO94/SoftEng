@@ -295,20 +295,32 @@ public class EditPanel extends JPanel {
 		timeLimitTextField.setColumns(10);
 		((PlainDocument) timeLimitTextField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
 		timeLimitTextField.setText("" + editor.getLevel().getMaxTime());
+		
+		//Sets enabled and disabled text fields based on level type being loaded.
 		if (editor.getLevel().getType().equals("Lightning")){
 			timeLimitTextField.setEnabled(true);
 			maxMovesField.setEnabled(false);
 			shuffleField.setEnabled(true);
+			removeField.setEnabled(true);
+			swapField.setEnabled(true);
+			probabilitieField_6.setEnabled(true);
 		}
 		else if(editor.getLevel().getType().equals("Release")){
 			shuffleField.setEnabled(false);
+			removeField.setEnabled(false);
+			swapField.setEnabled(false);
 			timeLimitTextField.setEnabled(false);
 			maxMovesField.setEnabled(true);
+			probabilitieField_6.setText("0");
+			probabilitieField_6.setEnabled(false);
 		}
 		else{
 			timeLimitTextField.setEnabled(false);
 			maxMovesField.setEnabled(true);
 			shuffleField.setEnabled(true);
+			removeField.setEnabled(true);
+			swapField.setEnabled(true);
+			probabilitieField_6.setEnabled(true);
 		}
 		
 		lblNewLabel_3 = new JLabel("Time Limit:");
@@ -603,6 +615,10 @@ public class EditPanel extends JPanel {
 		return timeLimitTextField;
 	}
 	
+	public JTextField getOutputField() {
+		return outputField;
+	}
+	
 	public void refresh(){
 		boardPanel.refresh();
 		
@@ -626,4 +642,17 @@ public class EditPanel extends JPanel {
 		// TODO Auto-generated method stub
 		return shuffleField;
 	}
+	
+	public JTextField getRemove() {
+		return removeField;
+	}
+	
+	public JTextField getSwap() {
+		return swapField;
+	}
+	
+	public JTextField getSixProbabilityField() {
+		return probabilitieField_6;
+	}
+	
 }
