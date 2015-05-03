@@ -3,7 +3,7 @@ package common.entity;
 
 public class PuzzleBoard extends Board {
 
-	int movesLeft;
+	int movesLeft; //decremented upon executing a move
 	
 	public PuzzleBoard(Level level) {
 		super(level);

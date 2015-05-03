@@ -71,6 +71,9 @@ public class Level {
 		this.type = type;
 		
 		this.rand = new Random(seed);
+	
+		// Temporary - For now, all tiles are active
+		this.numActiveCells = 81;
 		
 		// Temporary - For now, all frequencies are 1
 		for (int i = 0; i < frequency.length; i++) {
@@ -83,10 +86,14 @@ public class Level {
 		}
 		
 		
+		
+		
+		
 		// Temporary - For now, all cells are tile cells
+		//will have to initialize numActiveTiles for elimination mode around here
 		for (int i = 0; i < startingConfig.length; i++) {
 			for (int j = 0; j < startingConfig[i].length; j++) {
-				startingConfig[i][j] = Cell.Type.TILE_CELL;
+				startingConfig[i][j] = Cell.Type.TILE_CELL;  
 			}
 		}
 		

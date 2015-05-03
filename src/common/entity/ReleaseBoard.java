@@ -3,8 +3,8 @@ package common.entity;
 
 public class ReleaseBoard extends Board {
 
-	int movesLeft;
-	int basketsLeft;
+	int movesLeft; //decremented upon executing a move
+	int basketsLeft; //decremented upon filling a basket
 	
 	public ReleaseBoard(Level level) {
 		super(level);
