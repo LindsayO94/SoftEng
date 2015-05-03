@@ -13,6 +13,12 @@ import common.boundary.TileCellPanel;
 import common.boundary.TilePanel;
 import common.entity.Cell;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class ChangeCellTypeController implements MouseListener{
 	BoardPanel board;
 	LevelBuilder editor;

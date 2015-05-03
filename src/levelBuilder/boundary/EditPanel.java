@@ -48,7 +48,7 @@ import levelBuilder.entity.LevelBuilder;
 /**
  * Panel which displays visual elements of the editor
  * put all of the controllers under the "controllers go here" comment
- * @author August
+ * @author August, Lindsay
  *
  */
 public class EditPanel extends JPanel {
@@ -286,7 +286,6 @@ public class EditPanel extends JPanel {
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves");
 		
 		btnPreview = new JButton("Preview");
-		btnPreview.addMouseListener(new PreviewController(this, builder));
 		
 		outputField = new JTextField();
 		outputField.setColumns(10);
@@ -333,6 +332,7 @@ public class EditPanel extends JPanel {
 		
 		boardPanel.addMouseListener(new ChangeCellTypeController(boardPanel, builder));
 		btnUndo.addMouseListener(new UndoButtonController(this, builder));
+		btnPreview.addMouseListener(new PreviewController(this, builder));
 		
 		
 		multiplierField_1.getDocument().addUndoableEditListener(new MultiplierFieldController(builder, multiplierField_1,0, this));

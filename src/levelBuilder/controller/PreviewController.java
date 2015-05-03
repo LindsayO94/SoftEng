@@ -6,6 +6,12 @@ import java.awt.event.MouseListener;
 import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class PreviewController implements MouseListener{
 	EditPanel panel;
 	LevelBuilder editor;
