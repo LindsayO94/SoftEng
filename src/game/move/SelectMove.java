@@ -15,13 +15,13 @@ public class SelectMove extends gameMove{
 	
 	Cell cell;
 	Board board;
-	int num;
+	
 	ArrayList<Cell> selectedCells = new ArrayList<Cell>();
 	
-	public SelectMove(Cell cell, Board board, int num){
+	public SelectMove(Cell cell, Board board){
 		this.cell = cell;
 		this.board = board;
-		this.num = num;
+		
 	}
 
 	
@@ -29,8 +29,7 @@ public class SelectMove extends gameMove{
 	public boolean doMove(Game game) {
 		if(valid(game)==true)
 		{
-			if (num == 0)
-			{
+		
 			if(selectedCells.isEmpty() == true)
 			{
 			((TileCell) cell).setSelected();
@@ -50,25 +49,9 @@ public class SelectMove extends gameMove{
 			//board.refreshCell(cell);
 			
 			return false;
-		} 
-		return false;
 		}
-		
-		
-		if (num == 1)
-		{
-			System.out.println(num);
-			for (int i = 0; i<selectedCells.size(); i++)
-			{
-				TileCell temp = (TileCell) selectedCells.get(i);
-				temp.setTile(null);
-				temp.unSelect();
-			}
-			board.gravity();
-			return true;
-		}
-		
 		return false;
+		
 	}
 
 	@Override
