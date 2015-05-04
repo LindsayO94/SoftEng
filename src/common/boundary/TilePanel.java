@@ -35,6 +35,8 @@ public class TilePanel extends JPanel {
 
 	JLabel numberShadow;
 	JLabel number;
+	private JLabel multiplier;
+	private JLabel multiplierShadow;
 	
 	public TilePanel(Tile tile) {
 		this.tile = tile;
@@ -61,6 +63,20 @@ public class TilePanel extends JPanel {
 		number.setFont(new Font("Museo Slab", Font.PLAIN, 26));
 		add(number);
 		add(numberShadow);
+		
+		if (tile.showMultiplier()) {
+			multiplierShadow = new JLabel(tile.getMultiplier()+"x");
+			multiplierShadow.setHorizontalAlignment(SwingConstants.CENTER);
+			multiplierShadow.setFont(new Font("Museo Slab", Font.PLAIN, 12));
+			multiplierShadow.setForeground(new Color(255,255,255,66));
+			add(multiplierShadow);
+			
+			multiplier = new JLabel(tile.getMultiplier()+"x");
+			multiplier.setHorizontalAlignment(SwingConstants.CENTER);
+			multiplier.setFont(new Font("Museo Slab", Font.PLAIN, 12));
+			add(multiplier);
+		}
+		
 	}
 	
 	private Color[] getColorArray() {
@@ -75,6 +91,10 @@ public class TilePanel extends JPanel {
         int h = getHeight();
         numberShadow.setBounds(0, 1, w, h);
         number.setBounds(0, 0, w, h);
+        if (tile.showMultiplier()) {
+        	multiplierShadow.setBounds(w - 20, h - 14, 20, 15);
+        	multiplier.setBounds(w - 20, h - 15, 20, 15);
+        }
         LinearGradientPaint gp = new LinearGradientPaint(
             0, 0, 0, h, positions, getColorArray());
         g2d.setPaint(gp);

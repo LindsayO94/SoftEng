@@ -31,6 +31,10 @@ public class Tile {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public boolean showMultiplier() {
+		return value != 6 && multiplier != 1;
+	}
 	
 
 }
