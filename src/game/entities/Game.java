@@ -3,6 +3,7 @@ package game.entities;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import common.entity.Board;
 import common.entity.Level;
 
 public class Game implements Iterable<Level> {

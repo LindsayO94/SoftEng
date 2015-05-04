@@ -27,10 +27,6 @@ public class BoardPanel extends JPanel {
 	public CellPanel[] cells = new CellPanel[81]; 
 	
 	public BoardPanel(Board board) {
-		if (board == null) {
-			throw new IllegalArgumentException("Can't pass a null board to BoardPanel");
-		}
-		
 		this.board = board;
 		
 		setLayout(new GridLayout(9, 9, 0, 0));
@@ -39,6 +35,8 @@ public class BoardPanel extends JPanel {
 	}
 	
 	public void refresh() {
+		if (board == null) return;
+		
 		removeAll();
 		int i = 0;
 		for (ArrayList<Cell> row : board.getCells()) {
@@ -70,6 +68,10 @@ public class BoardPanel extends JPanel {
 	
 	public CellPanel[] getCellPanel(){
 		return cells;
+	}
+	
+	public void setBoard(Board b) {
+		this.board = b;
 	}
 	
 	public Board getBoardModel() {

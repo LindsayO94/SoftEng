@@ -20,22 +20,17 @@ import java.util.Timer;
 public class GameFrame extends JFrame {
 	//Entities
 	Game game;
-	Board Eboard;
-	Level level;
 	
 	AchievementsPanel achievements;
 	PlayGamePanel playGame;
 	LevelSelectPanel levelSelect = new LevelSelectPanel();
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
-	BoardPanel board;
 	Random rand = new Random(); 	
 	
 	public GameFrame(Game game) {
 		this.game = game;
-		this.level = game.iterator().next();
 		
-		board = new BoardPanel(Board.makeBoard(level));
 		achievements = new AchievementsPanel(game);
 		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
@@ -48,13 +43,11 @@ public class GameFrame extends JFrame {
 		
 		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		playGame.getSwapButton().addMouseListener(new SwapController(this));
-		playGame.getRemoveButton().addMouseListener(new RemoveController(this)); //CHANGE TO REMOVECONTROLLER WHEN IMPLEMENTED
-		playGame.getShuffleButton().addMouseListener(new ShuffleController(this)); //CHANGE TO SHUFFLECONTROLLER WHEN IMPLEMENTED
+		playGame.getRemoveButton().addMouseListener(new RemoveController(this)); 
+		playGame.getShuffleButton().addMouseListener(new ShuffleController(this));
 		
 		levelSelect.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		splash.addMouseListener(new SplashController(this));
-		board.addMouseMotionListener(new SelectController(board, game));
-		board.addMouseListener(new SelectController(board, game));
 		
 		for (String filename : levelSelect.getLevelButtons().keySet()) {
 			levelSelect.getLevelButton(filename).addMouseListener(new PlayGameController(this, filename));
@@ -77,6 +70,10 @@ public class GameFrame extends JFrame {
 
 	public long getSeed() {
 		return rand.nextLong();
+	}
+	
+	public Game getGame() {
+		return game;
 	}
 		
 }

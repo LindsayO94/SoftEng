@@ -35,7 +35,6 @@ public class PlayGamePanel extends JPanel {
 	Level level;
 	Board board;
 	Game game;
-	Cell cell;
 	
 	String inactivePath = "Images/InactiveStar.png";
 	String activePath = "Images/Star.png";
@@ -63,6 +62,7 @@ public class PlayGamePanel extends JPanel {
 	private JLabel lblMovesRemainingSwap;
 	private JLabel lblMovesRemainingRemove;
 	private JLabel lblMovesRemainingShuffle;
+	BoardPanel panel;
 	
 	
 	public PlayGamePanel(Game game){	
@@ -84,6 +84,14 @@ public class PlayGamePanel extends JPanel {
 		labelStar1.setIcon(new ImageIcon(inactivePath)); //AWESOME!
 		labelStar1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
+		labelStar2 = new JLabel("2");
+		labelStar2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		labelStar2.setIcon(new ImageIcon(inactivePath)); //AWESOME! 2
+		
+		labelStar3 = new JLabel("3");
+		labelStar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		labelStar3.setIcon(new ImageIcon(inactivePath)); //AWESOME!3 
+		
 		lblTimeLeft = new JLabel("Time Left:");
 		lblTimeLeftValue = new JLabel("<NUM>");
 		
@@ -95,98 +103,12 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemainingSwap = new JLabel("<SWAP>");
 		lblMovesRemainingRemove = new JLabel("<REMOVE>");
 		lblMovesRemainingShuffle = new JLabel("<SHUFFLE>");
-		
-		refresh();
-	}
-	
-	
-	
-	// TODO: Some of this should probably be in the constructor
-	public void refresh() {
-		if (board == null) {
-			return;
-		}
-		BoardPanel panel = new BoardPanel(board);
-		
-		//Set up Title...and put a mouse listener on it? TODO
-		lblPuzzleLevel.setText(board.getLevel().getType()+" Level "+board.getLevel().getNumber());
+		panel = new BoardPanel(board);
 		panel.addMouseMotionListener(new SelectController(panel, game));
 		panel.addMouseListener(new SelectController(panel, game));
-		
-		lblTimeLeftValue.setVisible(true);
-		lblTimeLeft.setVisible(true);
-		
-		//If it's not lightning, hide the time stuff. TODO Probably should go in constructor
-		//TODO Why doesn't this work?
-		System.out.println("Accessed board type is: " + board.getLevel().getType());
-		System.out.println("Accessed board type equals Lightning:");
-		System.out.println(board.getLevel().getType().equals("Lightning"));
-		
-		//TODO can uncomment this when below code for identifying board type works
-		lblMovesRemaining.setVisible(false);
-		
+		panel.addMouseMotionListener(new SelectController(panel, game));
+		panel.addMouseListener(new SelectController(panel, game));
 
-		//If it's not lightning, we want to see the moves remaining and not the timer
-		if (!board.getLevel().getType().equals("Lightning")){ //TODO figure out how to ID it as a lightning level
-			lblTimeLeftValue.setVisible(false);
-			lblTimeLeft.setVisible(false);
-			lblMovesRemaining.setVisible(true);
-		}
-	
-		
-		//refresh number of regular moves remaining
-		lblMovesRemaining.setText("Moves Remaining: " + board.getMovesRemaining());
-		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		//Refresh score
-		lblScore.setText("Score: " + board.getScore());
-		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		//refresh number of special moves remaining
-		lblMovesRemainingSwap.setText("" + board.getSwapsRemaining());
-		lblMovesRemainingSwap.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMovesRemainingSwap.setFont(new Font("Tahoma", Font.BOLD, 22));
-		
-		lblMovesRemainingRemove.setText("" + board.getRemovesRemaining());
-		lblMovesRemainingRemove.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblMovesRemainingRemove.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		lblMovesRemainingShuffle.setText("" + board.getShufflesRemaining());
-		lblMovesRemainingShuffle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMovesRemainingShuffle.setFont(new Font("Tahoma", Font.BOLD, 22));
-		
-		//if any of the special moves are out of moves, disable the buttons
-		if (board.getSwapsRemaining() == 0){
-			btnSwap.setEnabled(false);
-		}
-		
-		if (board.getRemovesRemaining() == 0){
-			btnRemove.setEnabled(false);
-		}
-		
-		if (board.getShufflesRemaining() == 0){
-			btnShuffle.setEnabled(false);
-		}
-		
-		
-		labelStar2 = new JLabel("2");
-		labelStar2.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		labelStar2.setIcon(new ImageIcon(inactivePath)); //AWESOME! 2
-		
-		labelStar3 = new JLabel("3");
-		labelStar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		labelStar3.setIcon(new ImageIcon(inactivePath)); //AWESOME!3 
-		
-		//TODO Combine these two time labels, no point keeping them separate
-		lblTimeLeft.setText("Time Left:");
-		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-		lblTimeLeftValue.setText("" + board.getTimeLeft());
-		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
-		
-		
-		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -268,6 +190,88 @@ public class PlayGamePanel extends JPanel {
 		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		setLayout(groupLayout);
+		
+		refresh();
+	}
+	
+	
+	
+	// TODO: Some of this should probably be in the constructor
+	public void refresh() {
+		if (board == null) {
+			return;
+		}
+		
+		//Set up Title...and put a mouse listener on it? TODO
+		lblPuzzleLevel.setText(board.getLevel().getType()+" Level "+board.getLevel().getNumber());
+		
+		lblTimeLeftValue.setVisible(true);
+		lblTimeLeft.setVisible(true);
+		
+		//If it's not lightning, hide the time stuff. TODO Probably should go in constructor
+		System.out.println("Accessed board type is: " + board.getLevel().getType());
+		System.out.println("Accessed board type equals Lightning:");
+		System.out.println(board.getLevel().getType().equals("Lightning"));
+		
+		lblMovesRemaining.setVisible(false);
+		
+
+		//If it's not lightning, we want to see the moves remaining and not the timer
+		if (!board.getLevel().getType().equals("Lightning")){ //TODO figure out how to ID it as a lightning level
+			lblTimeLeftValue.setVisible(false);
+			lblTimeLeft.setVisible(false);
+			lblMovesRemaining.setVisible(true);
+		}
+	
+		
+		//refresh number of regular moves remaining
+		lblMovesRemaining.setText("Moves Remaining: " + board.getMovesRemaining());
+		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		//Refresh score
+		lblScore.setText("Score: " + board.getScore());
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		//refresh number of special moves remaining
+		lblMovesRemainingSwap.setText("" + board.getSwapsRemaining());
+		lblMovesRemainingSwap.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovesRemainingSwap.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		lblMovesRemainingRemove.setText("" + board.getRemovesRemaining());
+		lblMovesRemainingRemove.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblMovesRemainingRemove.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblMovesRemainingShuffle.setText("" + board.getShufflesRemaining());
+		lblMovesRemainingShuffle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMovesRemainingShuffle.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		//if any of the special moves are out of moves, disable the buttons
+		if (board.getSwapsRemaining() == 0){
+			btnSwap.setEnabled(false);
+		}
+		
+		if (board.getRemovesRemaining() == 0){
+			btnRemove.setEnabled(false);
+		}
+		
+		if (board.getShufflesRemaining() == 0){
+			btnShuffle.setEnabled(false);
+		}
+		
+		
+		
+		
+		//TODO Combine these two time labels, no point keeping them separate
+		lblTimeLeft.setText("Time Left:");
+		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		
+		lblTimeLeftValue.setText("" + board.getTimeLeft());
+		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
+		
+		panel.refresh();
+		
 	}
 
 
@@ -286,6 +290,7 @@ public class PlayGamePanel extends JPanel {
 	
 	public void setBoard(Board board) {
 		this.board = board;
+		panel.setBoard(board);
 	}
 	
 	public JLabel getStar(int starNum){
