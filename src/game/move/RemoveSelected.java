@@ -21,7 +21,7 @@ public class RemoveSelected extends gameMove {
 	@Override
 	public boolean doMove(Game game) {
 		if (valid(game)) {
-			Tile tile = new Tile(1, 1);
+			//Tile tile = new Tile(1, 1);
 
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
 			for (int i = 0; i < temp.size(); i++) {
@@ -30,7 +30,7 @@ public class RemoveSelected extends gameMove {
 					case TILE_CELL:
 						if (((TileCell) temp.get(i).get(j)).isSelected() == true) {
 							((TileCell) temp.get(i).get(j)).unSelect();
-							((TileCell) temp.get(i).get(j)).setTile(tile);
+							((TileCell) temp.get(i).get(j)).setTile(null);
 						}
 					case INACTIVE_CELL:
 					case BASKET_CELL:

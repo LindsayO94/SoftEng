@@ -41,6 +41,9 @@ public class TilePanel extends JPanel {
 	public TilePanel(Tile tile) {
 		this.tile = tile;
 		
+		if (tile == null) {
+			return;
+		}
 		numberShadow = new JLabel(tile.getValue() + "");
 		if (tile.getValue() == 6) {
 			numberShadow.setBounds(0, -1, 45, 45);
@@ -85,6 +88,7 @@ public class TilePanel extends JPanel {
 	
 	@Override
     public void paintComponent(Graphics g) {
+		if (tile == null) return;
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         int w = getWidth();
