@@ -49,7 +49,7 @@ public class SelectController implements MouseMotionListener, MouseListener{
 			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), cells);
 			m.doMove(game);
 			board.refresh();
-			((TileCellPanel) cell).refresh();
+			//((TileCellPanel) cell).refresh();
 		}
 		
 
