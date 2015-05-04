@@ -84,4 +84,9 @@ public class MainMenuPanel extends JPanel {
 		setLayout(groupLayout);
 		
 	}
+	
+	public void dispose(){
+		newLvlButton = null;
+		loadButton = null;
+	}
 }

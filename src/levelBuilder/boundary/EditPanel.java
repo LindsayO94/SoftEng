@@ -82,7 +82,7 @@ public class EditPanel extends JPanel {
 	private JTextField swapField;
 	private JButton btnPreview;
 	private JTextField outputField;
-	LevelBuilder editor;
+	private LevelBuilder editor;
 	private JButton btnSave;
 	private JTextField timeLimitTextField;
 	private JLabel lblNewLabel_3;
@@ -292,14 +292,14 @@ public class EditPanel extends JPanel {
 		
 		JButton btnUndo = new JButton("Undo");
 		
-		timeLimitTextField = new JTextField();
-		timeLimitTextField.setColumns(10);
-		((PlainDocument) timeLimitTextField.getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
-		timeLimitTextField.setText("" + editor.getLevel().getMaxTime());
+		setTimeLimitTextField(new JTextField());
+		getTimeLimitTextField().setColumns(10);
+		((PlainDocument) getTimeLimitTextField().getDocument()).setDocumentFilter(new LevelBuilderDocumentFilter());
+		getTimeLimitTextField().setText("" + editor.getLevel().getMaxTime());
 		
 		//Sets enabled and disabled text fields based on level type being loaded.
 		if (editor.getLevel().getType().equals("Lightning")){
-			timeLimitTextField.setEnabled(true);
+			getTimeLimitTextField().setEnabled(true);
 			maxMovesField.setEnabled(false);
 			shuffleField.setEnabled(true);
 			removeField.setEnabled(true);
@@ -310,13 +310,13 @@ public class EditPanel extends JPanel {
 			shuffleField.setEnabled(false);
 			removeField.setEnabled(false);
 			swapField.setEnabled(false);
-			timeLimitTextField.setEnabled(false);
+			getTimeLimitTextField().setEnabled(false);
 			maxMovesField.setEnabled(true);
 			probabilitieField_6.setText("0");
 			probabilitieField_6.setEnabled(false);
 		}
 		else{
-			timeLimitTextField.setEnabled(false);
+			getTimeLimitTextField().setEnabled(false);
 			maxMovesField.setEnabled(true);
 			shuffleField.setEnabled(true);
 			removeField.setEnabled(true);
@@ -368,7 +368,7 @@ public class EditPanel extends JPanel {
 		
 		maxMovesField.getDocument().addUndoableEditListener(new MovesFieldController(builder, maxMovesField, this));
 		
-		timeLimitTextField.getDocument().addUndoableEditListener(new TimeLimitFieldController(builder, timeLimitTextField, this));
+		getTimeLimitTextField().getDocument().addUndoableEditListener(new TimeLimitFieldController(builder, getTimeLimitTextField(), this));
 		
 	
 		
@@ -470,7 +470,7 @@ public class EditPanel extends JPanel {
 									.addGap(18)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 
-										.addComponent(timeLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(getTimeLimitTextField(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(maxMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -518,7 +518,7 @@ public class EditPanel extends JPanel {
 									.addComponent(maxMovesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(timeLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(getTimeLimitTextField(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblNewLabel_3))))
 							.addGap(18)
 							.addComponent(lblNewLabel)
@@ -616,7 +616,7 @@ public class EditPanel extends JPanel {
 	}
 	
 	public JTextField getTimeLimitText(){
-		return timeLimitTextField;
+		return getTimeLimitTextField();
 	}
 	
 	public JTextField getOutputField() {
@@ -678,6 +678,56 @@ public class EditPanel extends JPanel {
 	
 	public JTextField getSixProbabilityField() {
 		return probabilitieField_6;
+	}
+	
+	public JTextField getTimeLimitTextField() {
+		return timeLimitTextField;
+	}
+
+	public void setTimeLimitTextField(JTextField timeLimitTextField) {
+		this.timeLimitTextField = timeLimitTextField;
+	}
+
+	public void dispose(){
+		maxMovesField = null;
+		multiplierField_1  = null;
+		multiplierField_2  = null;
+		multiplierField_3  = null;
+		probabilitieField_1  = null;
+		probabilitieField_2  = null;
+		probabilitieField_3  = null;
+		probabilitieField_4  = null;
+		probabilitieField_5  = null;
+		probabilitieField_6 = null;
+		scoreField_1  = null;
+		scoreField_2  = null;
+		scoreField_3  = null;
+		
+		lblLevel  = null;
+		
+		JSpinner spinner  = null;
+		
+		JLabel lblAllowedMoves  = null;
+		
+		JLabel lblNewLabel  = null;
+		JLabel lblNewLabel_2  = null;
+		
+		JButton btnQuit;
+		boardPanel  = null;
+		shuffleField  = null;
+		removeField  = null;
+		swapField  = null;
+		btnPreview  = null;
+		outputField  = null;
+		
+		editor = null;
+		btnSave  = null;
+		setTimeLimitTextField(null);
+		lblNewLabel_3  = null;
+	}
+
+	public JTextField getMaxMovesTextField() {
+		return maxMovesField;
 	}
 	
 }

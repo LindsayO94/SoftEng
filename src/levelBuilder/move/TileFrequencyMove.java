@@ -27,7 +27,15 @@ public class TileFrequencyMove extends Move{
 	@Override
 	public boolean doMove(LevelBuilder editor) {
 		if(valid(editor)){
-			int newIntValue = Integer.parseInt(newValue);
+			int newIntValue;
+			if(newValue.matches("")){
+				newIntValue = 0;
+			}
+			else{
+				newIntValue = Integer.parseInt(newValue);
+			}
+			
+			
 			int newTileFrequencies[] = new int[6];
 					
 			for(int i = 0; i <6; i++){
@@ -56,7 +64,7 @@ public class TileFrequencyMove extends Move{
 
 	@Override
 	public boolean valid(LevelBuilder editor) {
-		return newValue.matches("[0-9]+");
+		return newValue.matches("[0-9]+")  || newValue.matches("");
 	}
 
 }

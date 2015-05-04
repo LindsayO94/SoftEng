@@ -107,5 +107,15 @@ public class LevelBuilder {
 		return status;
 	}
 	
+	public void dispose(){
+		
+		
+		this.level = null;
+		this.board = null;
+		this.frame = null;
+		
+		this.seedGenerator = null;
+	}
+	
 	
 }
