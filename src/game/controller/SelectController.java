@@ -19,12 +19,14 @@ import common.boundary.TilePanel;
 import common.entity.Cell;
 
 
-
+//basket cases need to accounted for. Just add to the switch statements
+//also there is a point where assumed click on TileCell, change that to Cell and error check on click or select or whatever. 
 
 public class SelectController implements MouseMotionListener, MouseListener{
 	BoardPanel board;
 	Game game;
 	ArrayList<CellPanel> cells = new ArrayList<CellPanel>();
+	ArrayList<Cell> cellsM = new ArrayList<Cell>();
 	
 	
 	boolean mousePressed = false;
@@ -40,10 +42,11 @@ public class SelectController implements MouseMotionListener, MouseListener{
 		}
 
 	public void mouseDragged(MouseEvent me) {
-			
+			//move the array to the move class
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
 			cells.add(cell);
-			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel());
+			cellsM.add(cell.getCellModel());
+			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), cells);
 			m.doMove(game);
 			board.refresh();
 			((TileCellPanel) cell).refresh();
@@ -66,13 +69,19 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	}
 
 	public void mouseReleased(MouseEvent me) {
-	
-		RemoveSelected m = new RemoveSelected(board.getBoardModel());
+		//gravity not working b/c tiles are null when trying to refresh 
+		RemoveSelected m = new RemoveSelected(board.getBoardModel(), cellsM);
 		m.doMove(game);
+		cells.clear();
+		cellsM.clear();
 		board.refresh();
 		for (int i = 0; i<cells.size(); i++)
 		{
-			((TileCellPanel) cells.get(i)).refresh();
+			
+			
+				((TileCellPanel) cells.get(i)).refresh();
+			
+			
 		}
 		
 	}
