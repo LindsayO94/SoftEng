@@ -43,8 +43,14 @@ public class GameFrame extends JFrame {
 		
 		mainMenu.getPlayGameButton().addMouseListener(new LevelSelectController(this));
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
+		
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		
 		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		playGame.getSwapButton().addMouseListener(new SwapController(this));
+		playGame.getRemoveButton().addMouseListener(new RemoveController(this)); //CHANGE TO REMOVECONTROLLER WHEN IMPLEMENTED
+		playGame.getShuffleButton().addMouseListener(new ShuffleController(this)); //CHANGE TO SHUFFLECONTROLLER WHEN IMPLEMENTED
+		
 		levelSelect.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		splash.addMouseListener(new SplashController(this));
 		board.addMouseMotionListener(new SelectController(board, game));

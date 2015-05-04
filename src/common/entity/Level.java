@@ -39,22 +39,23 @@ public class Level {
 	int frequency[] = new int[6];
 	int multiplierFrequency[] = new int[3];
 	
-	boolean shuffleAllowed;
 	boolean swapAllowed;
 	boolean removeAllowed;
+	boolean shuffleAllowed;
 	
 	//integers representing the number of each move type a player is given at the start of a level
-	int numShuffle;
 	int numSwap;
 	int numRemove;
+	int numShuffle;
+
 	
 	//All levels but lightning use maxMoves
 	int maxMoves;
 
 	//attributes required for weird levels!
-	int maxTime;
-	int numBaskets;
-	int numActiveCells;
+	int maxTime; 		//Lightning
+	int numBaskets; 	//Release
+	int numActiveCells; //Elimination
 	
 	//array for star achieving thresholds
 	int starScore[] = new int[3];
@@ -106,11 +107,10 @@ public class Level {
 			starScore[i] = 1;
 		}
 		
-		//Temporary - for now 1 of each move is allowed
-		numShuffle = 1;
-		numSwap = 1;
-		numRemove = 1;
-		
+		//Temporary - for now 3 of each move is allowed
+		numShuffle = 3;
+		numSwap = 3;
+		numRemove = 3;
 		
 	}
 
