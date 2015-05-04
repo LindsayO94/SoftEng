@@ -31,6 +31,7 @@ public class SwapFieldController implements UndoableEditListener {
 		if(move.doMove(editor)){
 			editor.pushMove(move);
 		}	
+		editPanel.refresh();
 	} 
 
 }

@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
 import levelBuilder.move.ChangeCellTypeMove;
 import levelBuilder.move.Move;
@@ -20,23 +21,23 @@ import common.entity.Cell;
  */
 
 public class ChangeCellTypeController implements MouseListener{
-	BoardPanel board;
+	EditPanel editPanel;
 	LevelBuilder editor;
 	
-	public ChangeCellTypeController(BoardPanel board, LevelBuilder editor){
-		this.board = board; 
+	public ChangeCellTypeController(EditPanel editPanel, LevelBuilder editor){
+		this.editPanel = editPanel; 
 		this.editor = editor;
 		
 	}
 	
 	public void mousePressed(MouseEvent me) {
-		CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
-		Move m = new ChangeCellTypeMove(cell.getCellModel(), board.getBoardModel());
+		CellPanel cell = (CellPanel) editPanel.getBoard().getComponentAt(me.getPoint());
+		Move m = new ChangeCellTypeMove(cell.getCellModel(), editPanel.getBoard().getBoardModel());
 		if(m.doMove(editor)){
 			editor.pushMove(m);
 		};
 		
-		board.refresh();
+		editPanel.refresh();
 		// TODO Auto-generated method stub
 		
 	}

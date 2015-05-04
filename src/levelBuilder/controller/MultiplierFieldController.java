@@ -33,7 +33,8 @@ public class MultiplierFieldController implements UndoableEditListener {
 		MultiplierFrequencyMove move = new MultiplierFrequencyMove(field.getText(), index, editor.getLevel().getMultiplierFrequencyArray(), undo);
 		if(move.doMove(editor)){
 			editor.pushMove(move);
-		}	
+		}
+		editPanel.refresh();
 	}
 	
 }

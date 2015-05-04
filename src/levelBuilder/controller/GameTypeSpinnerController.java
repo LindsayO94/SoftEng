@@ -30,9 +30,9 @@ public class GameTypeSpinnerController implements MouseListener{
 		Move m = new GameTypeMove(newType, editor.getLevel().getType(), options);
 		if(m.doMove(editor)){
 			editor.pushMove(m);
-		};
+		}
 		
-		options.getBoardPanel().refresh();
+		options.refresh();
 		
 	}
 

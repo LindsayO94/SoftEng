@@ -39,22 +39,23 @@ public class Level {
 	int frequency[] = new int[6];
 	int multiplierFrequency[] = new int[3];
 	
-	boolean shuffleAllowed;
 	boolean swapAllowed;
 	boolean removeAllowed;
+	boolean shuffleAllowed;
 	
 	//integers representing the number of each move type a player is given at the start of a level
-	int numShuffle;
 	int numSwap;
 	int numRemove;
+	int numShuffle;
+
 	
 	//All levels but lightning use maxMoves
 	int maxMoves;
 
 	//attributes required for weird levels!
-	int maxTime;
-	int numBaskets;
-	int numActiveCells;
+	int maxTime; 		//Lightning
+	int numBaskets; 	//Release
+	int numActiveCells; //Elimination
 	
 	//array for star achieving thresholds
 	int starScore[] = new int[3];
@@ -71,6 +72,9 @@ public class Level {
 		this.type = type;
 		
 		this.rand = new Random(seed);
+	
+		// Temporary - For now, all tiles are active
+		this.numActiveCells = 81;
 		
 		// Temporary - For now, all frequencies are 1
 		for (int i = 0; i < frequency.length; i++) {
@@ -87,10 +91,14 @@ public class Level {
 		}
 		
 		
+		
+		
+		
 		// Temporary - For now, all cells are tile cells
+		//will have to initialize numActiveTiles for elimination mode around here
 		for (int i = 0; i < startingConfig.length; i++) {
 			for (int j = 0; j < startingConfig[i].length; j++) {
-				startingConfig[i][j] = Cell.Type.TILE_CELL;
+				startingConfig[i][j] = Cell.Type.TILE_CELL;  
 			}
 		}
 		
@@ -99,11 +107,10 @@ public class Level {
 			starScore[i] = 1;
 		}
 		
-		//Temporary - for now 1 of each move is allowed
-		numShuffle = 1;
-		numSwap = 1;
-		numRemove = 1;
-		
+		//Temporary - for now 3 of each move is allowed
+		numShuffle = 3;
+		numSwap = 3;
+		numRemove = 3;
 		
 	}
 
@@ -127,6 +134,9 @@ public class Level {
 		
 		int total = 0;
 		for (int freq : arr) total += freq;
+		if (total==0){
+			throw new IllegalArgumentException("At least one weight must be non-zero");
+		}
 		int num = rand.nextInt(total);
 		
 		for (int i = 0; i < arr.length; i++) {
@@ -141,7 +151,12 @@ public class Level {
 	}
 
 	public Tile getRandomTile() {
-		return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
+		try{
+			return new Tile(getWeightedRandomIndex(frequency) + 1, getWeightedRandomIndex(multiplierFrequency) + 1);
+		}catch (IllegalArgumentException e){
+			throw e;
+		}
+		
 	}
 
 	/**

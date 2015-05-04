@@ -25,7 +25,7 @@ public class Main {
 		Game game = new Game(levels);
 		//System.out.println(game.iter.next().getHighScore());
 		GameFrame f = new GameFrame(game);
-		f.setVisible(true);
+		f.setVisible(true);		
 	}
 	
 	
