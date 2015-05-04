@@ -116,12 +116,26 @@ public abstract class Board {
 		
 		int rf = focus.getRow();
 		int cf = focus.getColumn();
+		if(rf == 0)
+		{
+			return level.getRandomTile();
+		}
+		else
+		{
 		TileCell nextCell = (TileCell)cells.get(rf-1).get(cf);
 		Tile nextTile = nextCell.getTile();
+		nextCell.setTile(null);
 		return nextTile;
+		}
 	}
 	
-	public void gravity() {
+	public ArrayList<ArrayList<Tile>> getTileArray()
+	{
+		return new ArrayList<ArrayList<Tile>>();
+	}
+	
+	public void gravity(Board board) {
+		cells = board.getCells();
 		for (int i=cells.size()-1; i>0; i--) {
 			for (int j=cells.get(i).size()-1; j>0; j--)
 			{
@@ -130,25 +144,15 @@ public abstract class Board {
 				{
 				case TILE_CELL:
 					TileCell focus = (TileCell) temp;
+					int cf = focus.getColumn();
+					int rf = focus.getRow();
 					if (focus.getTile() == null)
 					{
 						Tile tile = getNext(focus);
-						for(int k=focus.getRow()-1; k>=0; k--)
+						for (int k = rf-1; k>=0; k--)
+						if (tile == null)
 						{
-							if (tile == null && k ==0)
-							{
-								Tile tempTile = level.getRandomTile();
-								focus.setTile(tempTile);
-							}
-							if (tile != null)
-							{
-								focus.setTile(tile);
-								break;
-							}
-							else
-							{
-								tile = getNext((TileCell)cells.get(k).get(j));
-							}
+							tile = getNext((TileCell) cells.get(k).get(cf));
 						}
 					}
 				default:
