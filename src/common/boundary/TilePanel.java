@@ -32,12 +32,14 @@ public class TilePanel extends JPanel {
 		{new Color(0x6817A6), new Color(0x5E1496), new Color(0x541385), new Color(0x4A1076) },
 	};
 	final static float positions[] = { 0.0f, 0.5f, 0.501f, 1.0f };
+
+	JLabel numberShadow;
+	JLabel number;
 	
 	public TilePanel(Tile tile) {
 		this.tile = tile;
 		
-		// HERE THERE BE WINDOW BUILDER		
-		JLabel numberShadow = new JLabel(tile.getValue() + "");
+		numberShadow = new JLabel(tile.getValue() + "");
 		if (tile.getValue() == 6) {
 			numberShadow.setBounds(0, -1, 45, 45);
 			numberShadow.setForeground(new Color(0,0,0,66));
@@ -50,7 +52,7 @@ public class TilePanel extends JPanel {
 		setLayout(null);
 		add(numberShadow);
 		
-		JLabel number = new JLabel(tile.getValue() + "");
+		number = new JLabel(tile.getValue() + "");
 		number.setBounds(0, 0, 45, 45);
 		if (tile.getValue() == 6) {
 			number.setForeground(new Color(255,255,255,166));
@@ -71,6 +73,8 @@ public class TilePanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         int w = getWidth();
         int h = getHeight();
+        numberShadow.setBounds(0, 1, w, h);
+        number.setBounds(0, 0, w, h);
         LinearGradientPaint gp = new LinearGradientPaint(
             0, 0, 0, h, positions, getColorArray());
         g2d.setPaint(gp);
