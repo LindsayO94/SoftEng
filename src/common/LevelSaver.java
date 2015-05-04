@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -116,7 +118,17 @@ public class LevelSaver {
 			}
 		};
 		
-		return folder.list(filter);
+		String[] filenames = folder.list(filter);
+		
+		Arrays.sort(filenames, new Comparator<String>() {
+			public int compare(String a, String b) {
+				int aVal = Integer.parseInt(a.replaceAll("[^\\d]+", ""));
+				int bVal = Integer.parseInt(b.replaceAll("[^\\d]+", ""));
+				return Integer.compare(aVal, bVal);
+			}
+		});
+		
+		return filenames;
 	}
 	
 	public static String filenameToLevelName(String name) {
