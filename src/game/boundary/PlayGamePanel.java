@@ -120,23 +120,21 @@ public class PlayGamePanel extends JPanel {
 		//TODO Why doesn't this work?
 		System.out.println("Accessed board type is: " + board.getLevel().getType());
 		System.out.println("Accessed board type equals Lightning:");
-		System.out.println(board.getLevel().getType() == "Lightning");
+		System.out.println(board.getLevel().getType().equals("Lightning"));
 		
 		//TODO can uncomment this when below code for identifying board type works
-		//lblMovesRemaining.setVisible(false));
+		lblMovesRemaining.setVisible(false);
 		
-		/*
-		 * 
+
 		//If it's not lightning, we want to see the moves remaining and not the timer
-		if (board.getLevel().getType() != "Lightning"){ //TODO figure out how to ID it as a lightning level
+		if (!board.getLevel().getType().equals("Lightning")){ //TODO figure out how to ID it as a lightning level
 			lblTimeLeftValue.setVisible(false);
 			lblTimeLeft.setVisible(false);
 			lblMovesRemaining.setVisible(true);
 		}
-		*/
+	
 		
 		//refresh number of regular moves remaining
-		System.out.println("" + board.getMovesRemaining());
 		lblMovesRemaining.setText("Moves Remaining: " + board.getMovesRemaining());
 		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
