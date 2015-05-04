@@ -10,7 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 public class TestUtil {
 	private TestUtil() {} // Prevent instantiation
 	
-	public static void displayView(final JPanel panel, int w, int h) {
+	public static void displayView(final JPanel panel, final int w, final int h) {
 		// Java is *weird*
 		JFrame f = new JFrame() {
 			{

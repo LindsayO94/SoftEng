@@ -50,20 +50,22 @@ public abstract class Board {
 				int totalSixesNeeded = 0;
 				int currentSixesNeeded = 0;
 				boolean bufferNeeded = false;
+				boolean isAboveBasket = false;
 				for (int col = cells.size()-1; col >= 0; col--) {
 					Cell cell = cells.get(col).get(row);
 					if (cell.getType() == Cell.Type.BASKET_CELL) {
 						currentSixesNeeded += 1;
 						totalSixesNeeded += 1;
 						bufferNeeded = true;
+						isAboveBasket = true;
 					} else if (cell.getType() == Cell.Type.TILE_CELL) {
 						if (bufferNeeded) {
 							bufferNeeded = false;
-						} else if (currentSixesNeeded > 0) {
+						} else if (isAboveBasket && currentSixesNeeded > 0) {
 							// This six is accounted for
 							currentSixesNeeded -= 1;
 							cellsAllowedToHaveSixes.add(cell);
-						} else {
+						} else if (isAboveBasket) {
 							cellsAllowedToHaveSixes.add(cell);
 						}
 					}
