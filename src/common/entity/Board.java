@@ -146,6 +146,8 @@ public abstract class Board {
 						Tile tile = getNext(focus);
 						focus.setTile(tile);
 					}
+					break;
+					
 				default:
 					break;
 
