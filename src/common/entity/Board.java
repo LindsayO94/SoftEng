@@ -5,10 +5,24 @@ import java.util.ArrayList;
 public abstract class Board {
 	ArrayList<ArrayList<Cell>> cells;
 	public Level level;
+	
+	int movesRemaining;
 	int score;
+	int timeLeft;
+	
+	int swapsRemaining;
+	int removesRemaining;
+	int shufflesRemaining;
 	
 	public Board(Level level) {
 		this.level = level;
+		
+		this.swapsRemaining = level.numSwap;
+		this.removesRemaining = level.numRemove;
+		this.shufflesRemaining = level.numShuffle;
+		
+		this.movesRemaining = level.maxMoves;
+		this.timeLeft = level.maxTime;
 		
 		this.refresh();
 	}
@@ -16,11 +30,16 @@ public abstract class Board {
 	public abstract boolean isWon();
 	
 	public void refresh() {
+		
 		cells = new ArrayList<ArrayList<Cell>>(9);
 		for (int i = 0; i < level.startingConfig.length; i++) {
 			cells.add(i, new ArrayList<Cell>(9));
 			for (int j = 0; j < level.startingConfig[i].length; j++) {
-				cells.get(i).add(j, createCell(i, j));
+				try{
+					cells.get(i).add(j, createCell(i, j));
+				}catch (IllegalArgumentException e){
+					throw e;
+				}
 			}
 		}
 		
@@ -73,7 +92,12 @@ public abstract class Board {
 	public Cell createCell(int i, int j) {
 		switch (level.startingConfig[i][j]) {
 		case TILE_CELL:
-			Tile tile = level.getRandomTile();
+			Tile tile;
+			try{
+				tile = level.getRandomTile();
+			}catch (IllegalArgumentException e){
+				throw e;
+			}
 			return new TileCell(i, j, tile);
 			
 		case INACTIVE_CELL:
@@ -171,6 +195,7 @@ public abstract class Board {
 		}*/
 	}
 	
+	//Score
 	public int getScore(){
 		return score;
 	}
@@ -183,4 +208,49 @@ public abstract class Board {
 	public Level getLevel(){
 		return level;
 	}
+
+	//Time
+	public int getTimeLeft() {
+		return timeLeft;
+	}
+
+	public void setTimeLeft(int timeLeft) {
+		this.timeLeft = timeLeft;
+	}
+
+	//Regular Moves Remaining
+	public int getMovesRemaining() {
+		return movesRemaining;
+	}
+
+	public void setMovesRemaining(int movesRemaining) {
+		this.movesRemaining = movesRemaining;
+	}
+
+	//Special Moves Remaining
+	public int getSwapsRemaining() {
+		return swapsRemaining;
+	}
+
+	public void setSwapsRemaining(int swapsRemaining) {
+		this.swapsRemaining = swapsRemaining;
+	}
+
+	public int getRemovesRemaining() {
+		return removesRemaining;
+	}
+
+	public void setRemovesRemaining(int removesRemaining) {
+		this.removesRemaining = removesRemaining;
+	}
+
+	public int getShufflesRemaining() {
+		return shufflesRemaining;
+	}
+
+	public void setShufflesRemaining(int shufflesRemaining) {
+		this.shufflesRemaining = shufflesRemaining;
+	}
+	
+	
 }

@@ -29,7 +29,8 @@ public class ShuffleFieldController implements UndoableEditListener {
 		ShuffleMove move = new ShuffleMove(field.getText(), editor.getLevel().getNumShuffle(), undo);
 		if(move.doMove(editor)){
 			editor.pushMove(move);
-		}	
+		}
+		editPanel.refresh();
 	} 
 
 }

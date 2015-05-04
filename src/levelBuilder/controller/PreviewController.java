@@ -24,9 +24,11 @@ public class PreviewController implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		editor.getBoard().refresh();
-		panel.refresh();
-		
+		if (panel.getOutputField().getText().equals("")){
+			panel.getSaveButton().setEnabled(true);
+		}else{
+			panel.getSaveButton().setEnabled(false);
+		}
 	}
 
 	@Override
