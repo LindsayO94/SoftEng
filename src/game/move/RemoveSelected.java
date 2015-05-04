@@ -10,9 +10,11 @@ import common.entity.TileCell;
 public class RemoveSelected extends gameMove{
 	
 	Board board;
+	ArrayList<Cell> cells = new ArrayList<Cell>();
 	
-	public RemoveSelected(Board board){
+	public RemoveSelected(Board board, ArrayList<Cell> cells){
 		this.board = board;
+		this.cells = cells;
 	}
 
 	
@@ -29,8 +31,8 @@ public class RemoveSelected extends gameMove{
 					{
 					case TILE_CELL:
 						((TileCell) temp.get(i).get(j)).unSelect();
-						((TileCell) temp.get(i).get(j)).setTile(null);
-						board.gravity();
+						//((TileCell) temp.get(i).get(j)).setTile(null);
+						//board.gravity();
 						
 					case INACTIVE_CELL:
 						break;

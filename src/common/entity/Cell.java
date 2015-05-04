@@ -49,9 +49,9 @@ public abstract class Cell {
 		
 		if (col == 0)
 		{
-			Cell top = board.getCells().get(row+1).get(col);
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell top = board.getCells().get(col).get(row+1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (top.getType())
 			{
@@ -91,9 +91,9 @@ public abstract class Cell {
 		
 		if (row == 0)
 		{
-			Cell top = board.getCells().get(row+1).get(col);
-			Cell left = board.getCells().get(row).get(col-1);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell top = board.getCells().get(col).get(row+1);
+			Cell left = board.getCells().get(col-1).get(row);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (top.getType())
 			{
@@ -132,9 +132,9 @@ public abstract class Cell {
 		
 		if (col == 8)
 		{
-			Cell top = board.getCells().get(row+1).get(col);
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell left = board.getCells().get(row).get(col-1);
+			Cell top = board.getCells().get(col).get(row+1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell left = board.getCells().get(col-1).get(row);
 			
 			switch (top.getType())
 			{
@@ -173,9 +173,9 @@ public abstract class Cell {
 		
 		if (row==8)
 		{
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell left = board.getCells().get(row).get(col-1);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell left = board.getCells().get(col-1).get(row);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (bot.getType())
 			{
@@ -215,8 +215,8 @@ public abstract class Cell {
 		
 		if (row == 0 && col == 0)
 		{
-			Cell top = board.getCells().get(row+1).get(col);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell top = board.getCells().get(col).get(row+1);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (top.getType())
 			{
@@ -244,8 +244,8 @@ public abstract class Cell {
 		
 		if (row == 0 && col == 8)
 		{
-			Cell left = board.getCells().get(row).get(col-1);
-			Cell top = board.getCells().get(row+1).get(col);
+			Cell left = board.getCells().get(col-1).get(row);
+			Cell top = board.getCells().get(col).get(row+1);
 			
 			
 			switch (top.getType())
@@ -274,8 +274,8 @@ public abstract class Cell {
 		
 		if (row == 8 && col == 0)
 		{
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (bot.getType())
 			{
@@ -304,8 +304,8 @@ public abstract class Cell {
 		
 		if (row == 8 && col == 8)
 		{
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell left = board.getCells().get(row).get(col-1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell left = board.getCells().get(col-1).get(row);
 			
 			switch (bot.getType())
 			{
@@ -333,10 +333,10 @@ public abstract class Cell {
 		
 		if(col!=0 && row!=0)
 		{
-			Cell bot = board.getCells().get(row-1).get(col);
-			Cell left = board.getCells().get(row).get(col-1);
-			Cell top = board.getCells().get(row+1).get(col);
-			Cell right = board.getCells().get(row).get(col+1);
+			Cell bot = board.getCells().get(col).get(row-1);
+			Cell left = board.getCells().get(col-1).get(row);
+			Cell top = board.getCells().get(col).get(row+1);
+			Cell right = board.getCells().get(col+1).get(row);
 			
 			switch (bot.getType())
 			{
