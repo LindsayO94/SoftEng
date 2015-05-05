@@ -13,6 +13,10 @@ public abstract class Board {
 	int swapsRemaining;
 	int removesRemaining;
 	int shufflesRemaining;
+	
+	boolean star1Active;
+	boolean star2Active;
+	boolean star3Active;
 
 	public Board(Level level) {
 		this.level = level;
@@ -23,6 +27,10 @@ public abstract class Board {
 
 		this.movesRemaining = level.maxMoves;
 		this.timeLeft = level.maxTime;
+		
+		boolean star1Active = false;
+		boolean star2Active = false;
+		boolean star3Active = false;
 
 		this.refresh();
 	}
@@ -191,7 +199,8 @@ public abstract class Board {
 	}
 
 	public int incrementScore(int delta) {
-		score = +delta;
+		score += delta;
+		System.out.println("Score is now "+score);
 		return score;
 	}
 
@@ -240,6 +249,31 @@ public abstract class Board {
 
 	public void setShufflesRemaining(int shufflesRemaining) {
 		this.shufflesRemaining = shufflesRemaining;
+	}
+
+	public boolean getStar1Active() {
+		return star1Active;
+	}
+	
+	public boolean getStar2Active() {
+		return star2Active;
+	}
+	
+	public boolean getStar3Active() {
+		return star3Active;
+	}
+	
+	
+	public void checkStars(){
+		if (score > getLevel().getStar1Score()){
+			star1Active = true;
+		}
+		if (score > getLevel().getStar2Score()){
+			star2Active = true;
+		}
+		if (score > getLevel().getStar3Score()){
+			star3Active = true;
+		}
 	}
 
 }

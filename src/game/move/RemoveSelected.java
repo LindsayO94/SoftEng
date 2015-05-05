@@ -12,16 +12,22 @@ public class RemoveSelected extends gameMove {
 
 	Board board;
 	ArrayList<Cell> cells = new ArrayList<Cell>();
+	int numCells;
+	int multiplier;
 
 	public RemoveSelected(Board board, ArrayList<Cell> cells) {
 		this.board = board;
 		this.cells = cells;
+		numCells = 0;
+		multiplier = 1;
 	}
 
 	@Override
 	public boolean doMove(Game game) {
 		if (valid(game)) {
-			//Tile tile = new Tile(1, 1);
+			board.incrementScore(10*numCells*multiplier);
+			board.checkStars();
+			
 
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
 			for (int i = 0; i < temp.size(); i++) {
@@ -80,6 +86,8 @@ public class RemoveSelected extends gameMove {
 					if (((TileCell) temp.get(i).get(j)).isSelected() == true) {
 						count += ((TileCell) temp.get(i).get(j)).getTile()
 								.getValue();
+						numCells++;
+						multiplier *=  ((TileCell) temp.get(i).get(j)).getTile().getMultiplier();
 					}
 				case INACTIVE_CELL:
 					break;

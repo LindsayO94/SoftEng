@@ -1,5 +1,6 @@
 package game.controller;
 
+import game.boundary.PlayGamePanel;
 import game.entities.Game;
 import game.move.RemoveSelected;
 import game.move.SelectMove;
@@ -27,13 +28,15 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	Game game;
 	ArrayList<CellPanel> cells = new ArrayList<CellPanel>();
 	ArrayList<Cell> cellsM = new ArrayList<Cell>();
+	PlayGamePanel gamePanel;
 	
 	
 	boolean mousePressed = false;
 	
-	public SelectController(BoardPanel board, Game game){
+	public SelectController(BoardPanel board, Game game, PlayGamePanel gamePanel){
 		this.board = board;
 		this.game = game;
+		this.gamePanel = gamePanel;
 		
 	}
 	
@@ -49,6 +52,7 @@ public class SelectController implements MouseMotionListener, MouseListener{
 			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), cells);
 			m.doMove(game);
 			board.refresh();
+			
 			//((TileCellPanel) cell).refresh();
 		}
 		
@@ -75,6 +79,7 @@ public class SelectController implements MouseMotionListener, MouseListener{
 		cells.clear();
 		cellsM.clear();
 		board.refresh();
+		gamePanel.refresh();
 		for (int i = 0; i<cells.size(); i++)
 		{
 			

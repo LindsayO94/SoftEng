@@ -104,10 +104,10 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemainingRemove = new JLabel("<REMOVE>");
 		lblMovesRemainingShuffle = new JLabel("<SHUFFLE>");
 		panel = new BoardPanel(board);
-		panel.addMouseMotionListener(new SelectController(panel, game));
-		panel.addMouseListener(new SelectController(panel, game));
-		panel.addMouseMotionListener(new SelectController(panel, game));
-		panel.addMouseListener(new SelectController(panel, game));
+		panel.addMouseMotionListener(new SelectController(panel, game, this));
+		panel.addMouseListener(new SelectController(panel, game, this));
+//		panel.addMouseMotionListener(new SelectController(panel, game));
+//		panel.addMouseListener(new SelectController(panel, game));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -229,6 +229,7 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemaining.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		//Refresh score
+		System.out.println("The score is "+board.getScore());
 		lblScore.setText("Score: " + board.getScore());
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
@@ -258,7 +259,15 @@ public class PlayGamePanel extends JPanel {
 			btnShuffle.setEnabled(false);
 		}
 		
-		
+		if (board.getStar1Active()){
+			labelStar1.setIcon(new ImageIcon(activePath));
+		}
+		if (board.getStar2Active()){
+			labelStar2.setIcon(new ImageIcon(activePath));
+		}
+		if (board.getStar3Active()){
+			labelStar3.setIcon(new ImageIcon(activePath));
+		}
 		
 		
 		//TODO Combine these two time labels, no point keeping them separate
