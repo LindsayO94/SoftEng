@@ -302,4 +302,11 @@ public abstract class Board {
 		}
 	}
 
+	public void saveHighScore() {
+		if (this.isWon() && this.score > level.getHighScore()) {
+			this.level.setIsWon(true);
+			this.level.setHighScore(score);
+		}
+	}
+
 }

@@ -22,5 +22,6 @@ public class GameBoundaryTest {
 		gf.setBoard(Board.makeBoard( new Level("Puzzle", 0) ));
 		PlayGamePanel view = gf.playGame;
 		assertTrue(view.board != null);
+		view.refresh();
 	}
 }

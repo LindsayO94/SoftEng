@@ -39,10 +39,6 @@ public class Level {
 	int frequency[] = new int[6];
 	int multiplierFrequency[] = new int[3];
 	
-	boolean swapAllowed;
-	boolean removeAllowed;
-	boolean shuffleAllowed;
-	
 	//integers representing the number of each move type a player is given at the start of a level
 	int numSwap;
 	int numRemove;
@@ -367,5 +363,9 @@ public class Level {
 	
 	public void setLocked(boolean locked){
 		this.locked = locked;
+	}
+
+	public void setIsWon(boolean b) {
+		this.isWon = b;
 	}
 }
