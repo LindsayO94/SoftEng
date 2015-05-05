@@ -15,7 +15,11 @@ import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.entity.LevelBuilder;
 
 
-
+/**
+ * Main file for LevelBuilder project. Run the LevelBuilder from this file
+ * @author August
+ *
+ */
 public class Main {
 	public static void main(String args[]) {
 		LevelBuilder model = new LevelBuilder();

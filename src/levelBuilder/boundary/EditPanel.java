@@ -52,6 +52,7 @@ import levelBuilder.entity.LevelBuilder;
  *
  */
 public class EditPanel extends JPanel {
+
 	JTextField maxMovesField;
 	JTextField multiplierField_1;
 	JTextField multiplierField_2;
@@ -87,6 +88,10 @@ public class EditPanel extends JPanel {
 	JTextField timeLimitTextField;
 	JLabel lblNewLabel_3;
 	
+	/**
+	 * EditPanel: Constructor for EditPanel object
+	 * @param builder Level builder to be saved in the EditPanel
+	 */
 	public EditPanel(LevelBuilder builder){
 		this.editor = builder;
 		this.boardPanel = new BoardPanel(builder.getBoard());
@@ -623,6 +628,9 @@ public class EditPanel extends JPanel {
 		return outputField;
 	}
 	
+	/**
+	 * refresh method for Edit Panel
+	 */
 	public void refresh(){
 		
 		try {
@@ -688,6 +696,9 @@ public class EditPanel extends JPanel {
 		this.timeLimitTextField = timeLimitTextField;
 	}
 
+	/**
+	 * Method which cleans the edit panel object, use before setting edit panel to null
+	 */
 	public void dispose(){
 		maxMovesField = null;
 		multiplierField_1  = null;

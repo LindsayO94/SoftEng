@@ -5,6 +5,12 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
 
+/**
+ * Custom document filter used to restrict the contents of the Level Builder's text fields to numerals and the empty string
+ * @author August
+ *
+ */
+
 public class LevelBuilderDocumentFilter extends DocumentFilter {
 	   @Override
 	   public void insertString(FilterBypass fb, int offset, String string,
@@ -20,6 +26,12 @@ public class LevelBuilderDocumentFilter extends DocumentFilter {
 	      } 
 	   }
 
+	   
+	   /**
+	    * Method which tests to see if a string is acceptable for entry
+	    * @param text
+	    * @return boolean
+	    */
 	   private boolean test(String text) {
 		   if(text.matches("") || text.matches("[0-9]+")){
 				return true;
