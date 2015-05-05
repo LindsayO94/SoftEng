@@ -101,11 +101,11 @@ public class RemoveSelected extends gameMove {
 		}
 	}
 
-	private Tile getNextTile(TileCell cell) {
-		int cf = cell.getColumn();
-		int rf = cell.getRow();
-		TileCell nextCell = (TileCell) board.getCells().get(rf - 1).get(cf);
-		Tile nextTile = nextCell.getTile();
-		return nextTile;
-	}
+//	private Tile getNextTile(TileCell cell) {
+//		int cf = cell.getColumn();
+//		int rf = cell.getRow();
+//		TileCell nextCell = (TileCell) board.getCells().get(rf - 1).get(cf);
+//		Tile nextTile = nextCell.getTile();
+//		return nextTile;
+//	}
 }

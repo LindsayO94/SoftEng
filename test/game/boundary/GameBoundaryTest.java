@@ -8,10 +8,8 @@ import game.entities.Game;
 
 import org.junit.Test;
 
-import common.LevelSaver;
 import common.entity.Board;
 import common.entity.Level;
-import common.entity.PuzzleBoard;
 
 public class GameBoundaryTest {
 

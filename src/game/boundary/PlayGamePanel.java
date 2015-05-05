@@ -341,4 +341,9 @@ public class PlayGamePanel extends JPanel {
 	public JLabel getMovesRemainingShuffle(){
 		return lblMovesRemainingShuffle;
 	}
+
+
+	public BoardPanel getBoardPanel() {
+		return panel;
+	}
 }
