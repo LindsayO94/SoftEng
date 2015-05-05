@@ -35,7 +35,7 @@ public class BoardPanel extends JPanel {
 	}
 	
 	public void refresh() {
-		if (board == null) return;
+		if (board == null) throw new IllegalArgumentException("Board cannot be null");
 		
 		removeAll();
 		int i = 0;

@@ -61,6 +61,8 @@ public class TileCellTest {
 		// Test things that shouldn't be neighbors
 		assertFalse(center.isNeighborCell(diagonal));
 		assertFalse(center.isNeighborCell(farAway));
+		
+		
 
 	}
 

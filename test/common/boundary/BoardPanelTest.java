@@ -38,9 +38,9 @@ public class BoardPanelTest {
 		assertEquals(view.cells[0], cellView);
 		cellView = (CellPanel) view.getComponentAt(5, 395);
 		assertEquals(view.cells[72], cellView);
-		cellView = (CellPanel) view.getComponentAt(395, 5);
+		cellView = (CellPanel) view.getComponentAt(380, 10);
 		assertEquals(view.cells[8], cellView);
-		cellView = (CellPanel) view.getComponentAt(395, 395);
+		cellView = (CellPanel) view.getComponentAt(375, 375);
 		assertEquals(view.cells[80], cellView);
 		
 		// Test getters
@@ -67,9 +67,9 @@ public class BoardPanelTest {
 		assertEquals(view.cells[0], inactiveView);
 		CellPanel cellView = (CellPanel) view.getComponentAt(5, 395);
 		assertEquals(view.cells[72], cellView);
-		cellView = (CellPanel) view.getComponentAt(395, 5);
+		cellView = (CellPanel) view.getComponentAt(380, 10);
 		assertEquals(view.cells[8], cellView);
-		inactiveView = (InactiveCellPanel) view.getComponentAt(395, 395);
+		inactiveView = (InactiveCellPanel) view.getComponentAt(375, 375);
 		assertEquals(view.cells[80], inactiveView);
 	}
 }
