@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
+
 
 /**
  * @author August Beers, Lindsay O'Donnell

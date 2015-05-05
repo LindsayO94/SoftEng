@@ -52,21 +52,21 @@ import levelBuilder.entity.LevelBuilder;
  *
  */
 public class EditPanel extends JPanel {
-	private JTextField maxMovesField;
-	private JTextField multiplierField_1;
-	private JTextField multiplierField_2;
-	private JTextField multiplierField_3;
-	private JTextField probabilitieField_1;
-	private JTextField probabilitieField_2;
-	private JTextField probabilitieField_3;
-	private JTextField probabilitieField_4;
-	private JTextField probabilitieField_5;
-	private JTextField probabilitieField_6;
-	private JTextField scoreField_1;
-	private JTextField scoreField_2;
-	private JTextField scoreField_3;
+	JTextField maxMovesField;
+	JTextField multiplierField_1;
+	JTextField multiplierField_2;
+	JTextField multiplierField_3;
+	JTextField probabilitieField_1;
+	JTextField probabilitieField_2;
+	JTextField probabilitieField_3;
+	JTextField probabilitieField_4;
+	JTextField probabilitieField_5;
+	JTextField probabilitieField_6;
+	JTextField scoreField_1;
+	JTextField scoreField_2;
+	JTextField scoreField_3;
 	
-	private JLabel lblLevel;
+	JLabel lblLevel;
 	
 	JSpinner spinner;
 	
@@ -76,16 +76,16 @@ public class EditPanel extends JPanel {
 	JLabel lblNewLabel_2;
 	
 	JButton btnQuit;
-	private BoardPanel boardPanel;
-	private JTextField shuffleField;
-	private JTextField removeField;
-	private JTextField swapField;
-	private JButton btnPreview;
-	private JTextField outputField;
-	private LevelBuilder editor;
-	private JButton btnSave;
-	private JTextField timeLimitTextField;
-	private JLabel lblNewLabel_3;
+	BoardPanel boardPanel;
+	JTextField shuffleField;
+	JTextField removeField;
+	JTextField swapField;
+	JButton btnPreview;
+	JTextField outputField;
+	LevelBuilder editor;
+	JButton btnSave;
+	JTextField timeLimitTextField;
+	JLabel lblNewLabel_3;
 	
 	public EditPanel(LevelBuilder builder){
 		this.editor = builder;

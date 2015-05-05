@@ -17,18 +17,16 @@ public class LevelBuilderDocumentFilter extends DocumentFilter {
 
 	      if (test(sb.toString())) {
 	         super.insertString(fb, offset, string, attr);
-	      } else {
-	         // warn the user and don't allow the insert
-	      }
+	      } 
 	   }
 
 	   private boolean test(String text) {
-	      try {
-	         Integer.parseInt(text);
-	         return true;
-	      } catch (NumberFormatException e) {
-	         return false;
-	      }
+		   if(text.matches("") || text.matches("[0-9]+")){
+				return true;
+			}
+			else{
+				return false;
+			}
 	   }
 
 	   @Override
@@ -42,9 +40,7 @@ public class LevelBuilderDocumentFilter extends DocumentFilter {
 
 	      if (test(sb.toString())) {
 	         super.replace(fb, offset, length, text, attrs);
-	      } else {
-	         // warn the user and don't allow the insert
-	      }
+	      } 
 
 	   }
 
@@ -58,8 +54,6 @@ public class LevelBuilderDocumentFilter extends DocumentFilter {
 
 	      if (test(sb.toString())) {
 	         super.remove(fb, offset, length);
-	      } else {
-	         // warn the user and don't allow the insert
 	      }
 
 	   } 

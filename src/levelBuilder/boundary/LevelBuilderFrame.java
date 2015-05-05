@@ -97,7 +97,7 @@ public class LevelBuilderFrame extends JFrame {
 
 	public void dispose(){
 
-		mainMenu.dispose();
+		
 		editor.dispose();
 		levelBuilder.dispose();;
 
