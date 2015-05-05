@@ -8,6 +8,7 @@ import game.entities.Game;
 
 import org.junit.Test;
 
+import common.LevelSaver;
 import common.entity.Board;
 import common.entity.Level;
 import common.entity.PuzzleBoard;
@@ -19,10 +20,9 @@ public class GameBoundaryTest {
 		ArrayList<Level> levels = new ArrayList<Level>();
 		levels.add(new Level("Puzzle", 0));
 		Game game = new Game(levels);
-		PlayGamePanel view = new PlayGamePanel(game);
-		Board board = new PuzzleBoard(levels.get(0));
-		view.board = board;
-		view.refresh();
+		GameFrame gf = new GameFrame(game);
+		gf.setBoard(Board.makeBoard( new Level("Puzzle", 0) ));
+		PlayGamePanel view = gf.playGame;
 		assertTrue(view.board != null);
 	}
 }

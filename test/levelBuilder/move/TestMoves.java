@@ -273,9 +273,7 @@ public class TestMoves{
 		
 	}
 
-	
 
-	
 	
 	
 

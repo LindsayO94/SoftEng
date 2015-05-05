@@ -47,10 +47,10 @@ public class BoardPanelTest {
 		assertArrayEquals(view.cells, view.getCellPanel());
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void testConstructorWithNull() {
-		new BoardPanel(null);
-	}
+//	@Test(expected=IllegalArgumentException.class)
+//	public void testConstructorWithNull() {
+//		new BoardPanel(null);
+//	}
 	
 	@Test
 	public void testInactiveCells() {
