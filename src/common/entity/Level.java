@@ -112,10 +112,12 @@ public class Level {
 		numSwap = 3;
 		numRemove = 3;
 		
+		
 	}
 
 	public Level(long seed) {
 		this("Puzzle", seed);
+		locked = false;
 	}
 
 	
@@ -357,5 +359,13 @@ public class Level {
 
 	public int getRandomInt(int max) {
 		return rand.nextInt(max);
-	}	
+	}
+	
+	public boolean getLocked(){
+		return locked;
+	}
+	
+	public void setLocked(boolean locked){
+		this.locked = locked;
+	}
 }

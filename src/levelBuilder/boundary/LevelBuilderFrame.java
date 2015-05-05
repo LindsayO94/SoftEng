@@ -80,7 +80,7 @@ public class LevelBuilderFrame extends JFrame {
 	}
 	
 	public void showLevelSelect() {
-		LevelSelectPanel levelSelect = new LevelSelectPanel();
+		LevelSelectPanel levelSelect = new LevelSelectPanel(false);
 		
 		levelSelect.getMainMenuButton().addMouseListener(new BackToMainBuilderMenuController(this));
 		for (String filename : levelSelect.getLevelButtons().keySet()) {

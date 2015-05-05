@@ -23,7 +23,7 @@ public class GameFrame extends JFrame {
 	
 	AchievementsPanel achievements;
 	PlayGamePanel playGame;
-	LevelSelectPanel levelSelect = new LevelSelectPanel();
+	LevelSelectPanel levelSelect = new LevelSelectPanel(true);
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
 	Random rand = new Random(); 	
