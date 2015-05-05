@@ -41,7 +41,7 @@ public class GameFrame extends JFrame {
 		
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
 		
-		playGame.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		playGame.getBackButton().addMouseListener(new ExitLevelController(this, playGame));
 		playGame.getSwapButton().addMouseListener(new SwapController(this));
 		playGame.getRemoveButton().addMouseListener(new RemoveController(this)); 
 		playGame.getShuffleButton().addMouseListener(new ShuffleController(this));

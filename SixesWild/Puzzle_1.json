@@ -2,7 +2,7 @@
   "levelNumber": 1,
   "locked": false,
   "isWon": false,
-  "highScore": 0,
+  "highScore": 360,
   "type": "Puzzle",
   "startingConfig": [
     [
@@ -118,9 +118,6 @@
     5,
     1
   ],
-  "swapAllowed": false,
-  "removeAllowed": false,
-  "shuffleAllowed": false,
   "numSwap": 3,
   "numRemove": 3,
   "numShuffle": 3,
