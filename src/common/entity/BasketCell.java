@@ -21,6 +21,10 @@ public class BasketCell extends Cell {
 	
 	public boolean filled(){
 		//if there is no tile yet put into the basket, its tile will be null
-		return (this.tile == null);
+		return (this.tile != null);
+	}
+
+	public void setTile(Tile tile) {
+		this.tile = tile;
 	}
 }

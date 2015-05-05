@@ -47,6 +47,11 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	public void mouseDragged(MouseEvent me) {
 			//move the array to the move class
 			CellPanel cell = (CellPanel) board.getComponentAt(me.getPoint());
+			if (cell == null) {
+				System.out.println("Drag event occurred with no component");
+				return;
+			}
+			
 			cells.add(cell);
 			cellsM.add(cell.getCellModel());
 			SelectMove m = new SelectMove(cell.getCellModel(), board.getBoardModel(), cells);

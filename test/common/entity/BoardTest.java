@@ -58,6 +58,14 @@ public class BoardTest {
 		neighbor = c.hasSelectedNeighbor(b);
 		assertFalse(neighbor);
 		
+		c = b.cells.get(0).get(5);
+		neighbor = c.hasSelectedNeighbor(b);
+		assertFalse(neighbor);
+		
+		c = b.cells.get(3).get(0);
+		neighbor = c.hasSelectedNeighbor(b);
+		assertFalse(neighbor);
+		
 		c = b.cells.get(4).get(7);
 		neighbor = c.hasSelectedNeighbor(b);
 		assertFalse(neighbor);
@@ -66,12 +74,15 @@ public class BoardTest {
 	@Test
 	public void testMakeReleaseBoard() {
 		Level l = new Level("Release", 13);
+		l.toggleCell(new InactiveCell(8, 8));
+		l.toggleCell(new InactiveCell(8, 8));
 		Board b = Board.makeBoard(l);
 		
 		assertTrue(b instanceof ReleaseBoard);
 		assertEquals(l, b.level);
 		
 		b.gravity(b);
+		
 		
 		b.incrementScore(5);
 		b.incrementScore(5);

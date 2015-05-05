@@ -142,6 +142,25 @@ public abstract class Board {
 		}
 	}
 
+	// This is identical to getNext except:
+	// 1. It returns null if the recursion gets to the top row of the board, instead of a random tile
+	// 2. It doesn't remove the tile from the cell it belongs to
+	private Tile peekNext(Cell focus) {
+		int rf = focus.getRow();
+		int cf = focus.getColumn();
+		if (cf == 0) {
+			return null;
+		} else {
+			Cell nextCell = cells.get(cf - 1).get(rf);
+			if (nextCell.getType() != Cell.Type.TILE_CELL || ((TileCell) nextCell).getTile() == null) {
+				return peekNext(nextCell);
+			} else {
+				Tile nextTile = ((TileCell) nextCell).getTile();
+				return nextTile;
+			}
+		}
+	}
+
 	public void gravity(Board board) {
 		cells = board.getCells();
 		for (int row = cells.size() - 1; row >= 0; row--) {
@@ -153,6 +172,18 @@ public abstract class Board {
 					if (focus.getTile() == null) {
 						Tile tile = getNext(focus);
 						focus.setTile(tile);
+					}
+					break;
+					
+				case BASKET_CELL:
+					BasketCell basket = (BasketCell) currentCell;
+					// Treat filled baskets the same as inactive tiles
+					if (basket.filled()) break;
+					// Otherwise look to see if the next tile is a 6
+					Tile tileAbove = peekNext(basket);
+					if (tileAbove != null && tileAbove.getValue() == 6) {
+						Tile tile = getNext(basket);
+						basket.setTile(tile);
 					}
 					break;
 					
@@ -186,11 +217,6 @@ public abstract class Board {
 		} else {
 			throw new IllegalArgumentException("Unknown board type");
 		}
-		/*
-		 * switch (level.type) { case "Puzzle": return new PuzzleBoard(level);
-		 * 
-		 * default: throw new IllegalArgumentException("Unknown board type"); }
-		 */
 	}
 
 	// Score
