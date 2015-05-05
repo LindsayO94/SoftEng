@@ -17,6 +17,9 @@ import java.awt.Component;
  */
 
 public class SplashPanel extends JPanel{
+	/**
+	 * SplashPanel: Constructor for a SplashPanel Object
+	 */
 	public SplashPanel() {
 		setBackground(new Color(0, 51, 153));
 		

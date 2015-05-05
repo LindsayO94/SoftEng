@@ -22,7 +22,7 @@ import common.boundary.LevelSelectPanel;
 import common.entity.Level;
 
 /**
- * Frame for level editor
+ * Frame for level editor, allows for three main layouts, Main Menu, Edit Panel, and Level Select
  * @author August
  *
  */
@@ -35,6 +35,10 @@ public class LevelBuilderFrame extends JFrame {
 	EditPanel editor;
 	SplashPanel splash;
 	
+	/**
+	 * LevelBuilderFrame: Constructor for the level builder frame
+	 * @param levelBuilder: Copy of the LevelBuilder Entitiry for the LevelBuilderFrame
+	 */
 	public LevelBuilderFrame(LevelBuilder levelBuilder) {
 		this.levelBuilder = levelBuilder;
 		
@@ -46,6 +50,10 @@ public class LevelBuilderFrame extends JFrame {
 		this.changePanel(splash);
 	}
 	
+	/**
+	 * changePanel: Method which changes the current panel being displayed, accessible only through one of the show methods
+	 * @param panel: JPane to be set.
+	 */
 	private void changePanel(JPanel panel) {
 		getContentPane().removeAll();
 		
@@ -61,6 +69,9 @@ public class LevelBuilderFrame extends JFrame {
 		getContentPane().setLayout(groupLayout);
 	}
 
+	/**
+	 * showMainMenu: Method which constructs a new main menu panel, adds appropriate controllers and then sets the Main Menu to be visible
+	 */
 	public void showMainMenu() {
 		mainMenu = new MainMenuPanel();
 		mainMenu.getLoadButton().addMouseListener(new LoadLevelButtonController(levelBuilder, this));
@@ -69,6 +80,10 @@ public class LevelBuilderFrame extends JFrame {
 		this.changePanel(mainMenu);
 	}
 	
+	/**
+	 * showEditor: Method which constructs a new EditPanel given a level to edit and makes it visible
+	 * @param level
+	 */
 	public void showEditor(Level level) {
 		levelBuilder.setLevel(level);
 		
@@ -79,6 +94,9 @@ public class LevelBuilderFrame extends JFrame {
 		this.changePanel(editor);
 	}
 	
+	/**
+	 * showLevelSelect: Method which constructs a LevelSelectPanel and then changes the frame to display it.
+	 */
 	public void showLevelSelect() {
 		LevelSelectPanel levelSelect = new LevelSelectPanel(false);
 		
@@ -95,6 +113,9 @@ public class LevelBuilderFrame extends JFrame {
 		return editor;
 	}
 
+	/**
+	 * dispose: Cleans the LevelBuilderFrame and the objects it posseses.
+	 */
 	public void dispose(){
 
 		
