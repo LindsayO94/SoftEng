@@ -47,11 +47,6 @@ public class BoardPanelTest {
 		assertArrayEquals(view.cells, view.getCellPanel());
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void testConstructorWithNull() {
-		new BoardPanel(null);
-	}
-	
 	@Test
 	public void testInactiveCells() {
 		Board model = TestLevels.getBoard(TestLevels.puzzleHalfInactive);
