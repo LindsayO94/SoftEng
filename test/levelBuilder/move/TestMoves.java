@@ -11,7 +11,12 @@ import common.entity.TileCell;
 import javax.swing.text.GapContent;
 import javax.swing.undo.UndoableEdit;
 
-import junit.framework.TestCase;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.entity.LevelBuilder;
 
@@ -19,13 +24,13 @@ import levelBuilder.entity.LevelBuilder;
 /**
  * @author August Beers
  */
-public class TestMoves extends TestCase {
+public class TestMoves{
 
 	//"Puzzle", "Lightning", "Elimination", "Release" 
 	LevelBuilder editor;
 	LevelBuilderFrame frame;
 	
-	@Override
+	@Before
 	public void setUp() {
 		editor = new LevelBuilder();
 		frame = new LevelBuilderFrame(editor) ;
@@ -35,8 +40,8 @@ public class TestMoves extends TestCase {
 		frame.showMainMenu();
 		frame.showEditor(editor.getLevel());
 	}
-
-	@Override
+	
+	@After
 	public void tearDown() {
 		frame.dispose();
 		editor.dispose();
@@ -47,6 +52,7 @@ public class TestMoves extends TestCase {
 		
 	}
 	
+	@Test
 	public void testTimeLimitMove(){
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		TimeLimitMove move = new TimeLimitMove("6", 2, edit);
@@ -71,6 +77,7 @@ public class TestMoves extends TestCase {
 		
 	}
 	
+	@Test
 	public void testTileFrequencyMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		TileFrequencyMove move = new TileFrequencyMove("6", 0, editor.getLevel().getFrequencyArray(), edit);
@@ -93,6 +100,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getFrequency(0),0);
 	}
 	
+	@Test
 	public void testSwapMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		SwapMove move = new SwapMove("6", 2, edit);
@@ -115,6 +123,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getNumSwap(),0);
 	}
 	
+	@Test
 	public void testShuffleMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		ShuffleMove move = new ShuffleMove("6", 2, edit);
@@ -137,6 +146,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getNumShuffle(),0);
 	}
 	
+	@Test
 	public void testRemoveMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		RemoveMove move = new RemoveMove("6", 2, edit);
@@ -159,6 +169,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getNumRemove(),0);
 	}
 	
+	@Test
 	public void testScoreMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		ScoreMove move = new ScoreMove("6", 0, editor.getLevel().getFrequencyArray(), edit);
@@ -181,6 +192,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getStarScore(0),0);
 	}
 	
+	@Test
 	public void testMultiplierFrequencyMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		MultiplierFrequencyMove move = new MultiplierFrequencyMove("6", 0, editor.getLevel().getFrequencyArray(), edit);
@@ -203,6 +215,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getMultiplierFrequency(0),0);
 	}
 	
+	@Test
 	public void testMaxMovesMove() {
 		DummyUndoableEdit edit = new DummyUndoableEdit();
 		MaxMovesMove move = new MaxMovesMove("6", 2, edit);
@@ -225,6 +238,7 @@ public class TestMoves extends TestCase {
 		assertEquals(editor.getLevel().getMaxMoves(),0);
 	}
 	
+	@Test
 	public void testGameTypeMove(){
 		
 		GameTypeMove move = new GameTypeMove("Elimination", "Puzzle", frame.getEditor());
@@ -258,9 +272,8 @@ public class TestMoves extends TestCase {
 //		assertEquals(editor.getLevel().getType(),"Release" );
 		
 	}
-	
 
-	
+
 	
 	
 
