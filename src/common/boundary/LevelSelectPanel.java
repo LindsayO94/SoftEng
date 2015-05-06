@@ -45,6 +45,7 @@ public class LevelSelectPanel extends JPanel {
 	JScrollPane puzzleScroll;
 	
 	boolean disableLockedLevels;
+
 	JScrollPane lightningScroll;
 	JScrollPane eliminationScroll;
 	JScrollPane releaseScroll;
@@ -52,6 +53,7 @@ public class LevelSelectPanel extends JPanel {
 	JPanel eliminationPanel;
 	JPanel lightningPanel;
 	JPanel puzzlePanel;
+
 
 	public LevelSelectPanel(boolean disableLockedLevels){
 		this.disableLockedLevels = disableLockedLevels;

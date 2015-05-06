@@ -1,10 +1,10 @@
 package game.move;
 
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 import common.boundary.CellPanel;
-import common.boundary.TileCellPanel;
+//import common.boundary.TileCellPanel;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.TileCell;
@@ -70,7 +70,6 @@ public class SelectMove extends gameMove {
 
 	@Override
 	public boolean undo(Game game) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
