@@ -1,7 +1,7 @@
 {
   "levelNumber": 2,
-  "locked": false,
-  "isWon": true,
+  "locked": true,
+  "isWon": false,
   "highScore": 0,
   "type": "Release",
   "startingConfig": [
