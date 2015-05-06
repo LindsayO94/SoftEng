@@ -66,8 +66,6 @@ public class AchievementsPanelNew extends JPanel {
 	private JLabel lblNumSwaps;
 	private JLabel lblNumRemoves;
 	private JLabel lblNumShuffles;
-	private JLabel lblNumActiveCells;
-	private JLabel lblNumBaskets;
 
 
 	public AchievementsPanelNew(Game game){
@@ -155,8 +153,9 @@ public class AchievementsPanelNew extends JPanel {
 		add(lblHighScoreHeader);
 		
 		lblLevelName = new JLabel("");
+		lblLevelName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLevelName.setBounds(35, 339, 335, 14);
+		lblLevelName.setBounds(35, 349, 335, 26);
 		add(lblLevelName);
 		
 		lblHighScore = new JLabel("");
@@ -179,43 +178,33 @@ public class AchievementsPanelNew extends JPanel {
 		
 		lblMax = new JLabel("");
 		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMax.setBounds(35, 364, 335, 14);
+		lblMax.setBounds(35, 449, 335, 14);
 		add(lblMax);
 		
 		lblLocked = new JLabel("");
 		lblLocked.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLocked.setBounds(35, 389, 335, 14);
+		lblLocked.setBounds(35, 386, 335, 14);
 		add(lblLocked);
 		
 		lblIsWon = new JLabel("");
 		lblIsWon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIsWon.setBounds(35, 414, 335, 14);
+		lblIsWon.setBounds(35, 411, 335, 14);
 		add(lblIsWon);
 		
 		lblNumSwaps = new JLabel("");
 		lblNumSwaps.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumSwaps.setBounds(35, 439, 335, 14);
+		lblNumSwaps.setBounds(35, 487, 335, 14);
 		add(lblNumSwaps);
 		
 		lblNumRemoves = new JLabel("");
 		lblNumRemoves.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumRemoves.setBounds(35, 464, 335, 14);
+		lblNumRemoves.setBounds(35, 512, 335, 14);
 		add(lblNumRemoves);
 		
 		lblNumShuffles = new JLabel("");
 		lblNumShuffles.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumShuffles.setBounds(35, 486, 335, 14);
+		lblNumShuffles.setBounds(35, 534, 335, 14);
 		add(lblNumShuffles);
-		
-		lblNumActiveCells = new JLabel("");
-		lblNumActiveCells.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumActiveCells.setBounds(35, 509, 335, 14);
-		add(lblNumActiveCells);
-		
-		lblNumBaskets = new JLabel("");
-		lblNumBaskets.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumBaskets.setBounds(35, 534, 335, 14);
-		add(lblNumBaskets);
 		
 		Level level = new Level(0);
 		
@@ -363,15 +352,6 @@ public class AchievementsPanelNew extends JPanel {
 	
 	public JLabel getLblNumShuffles() {
 		return lblNumShuffles;
-	}
-	
-	public JLabel getLblNumActiveCells() {
-		return lblNumActiveCells;
-	}
-
-	public JLabel getLblNumBaskets() {
-		return lblNumBaskets;
-	}
-	
+	}	
 	
 }

@@ -30,13 +30,7 @@ public class AchievementsSwitchLevelController implements MouseListener{
 
 		gf.getAchievementsPanel().getLevelNameLabel().setText(level.filename());
 		
-		//Max amount of time/moves
-		//if it's lightning, display max time and not max moves
-		if (level.getType().equals("Lightning")){
-			gf.getAchievementsPanel().getMaxLabel().setText("Max Time: " + level.getMaxTime());
-		} else{
-			gf.getAchievementsPanel().getMaxLabel().setText("Max Moves: " + level.getMaxMoves());
-		}
+		
 		
 		//high score
 		gf.getAchievementsPanel().getHighScoreLabel().setText("" + level.getHighScore());
@@ -58,32 +52,39 @@ public class AchievementsSwitchLevelController implements MouseListener{
 		//Locked
 		if (level.getLocked()){
 			gf.getAchievementsPanel().getLblLocked().setText("Availability: Locked");
+			
+			gf.getAchievementsPanel().getMaxLabel().setText("Unlock level for more info!");
+			gf.getAchievementsPanel().getLblIsWon().setText("");
+			gf.getAchievementsPanel().getLblNumSwaps().setText("");
+			gf.getAchievementsPanel().getLblNumRemoves().setText("");
+			gf.getAchievementsPanel().getLblNumShuffles().setText("");
+			
 		} else {
 			gf.getAchievementsPanel().getLblLocked().setText("Availability: Unlocked");
+			
+			//Max amount of time/moves
+			//if it's lightning, display max time and not max moves
+			if (level.getType().equals("Lightning")){
+				gf.getAchievementsPanel().getMaxLabel().setText("Max Time: " + level.getMaxTime());
+			} else{
+				gf.getAchievementsPanel().getMaxLabel().setText("Max Moves: " + level.getMaxMoves());
+			}
+
+			//isWon
+			if (level.getIsWon()){
+				gf.getAchievementsPanel().getLblIsWon().setText("Completion Status: Complete");
+			} else {
+				gf.getAchievementsPanel().getLblIsWon().setText("Completion Status: Incomplete");
+			}
+			
+			//number of special moves allowed
+			gf.getAchievementsPanel().getLblNumSwaps().setText("Number of Swaps Allowed: " + level.getNumSwap());
+			gf.getAchievementsPanel().getLblNumRemoves().setText("Number of Removes Allowed: " + level.getNumRemove());
+			gf.getAchievementsPanel().getLblNumShuffles().setText("Number of Shuffles Allowed: " + level.getNumShuffle());
 		}
 		
-		//isWon
-		if (level.getIsWon()){
-			gf.getAchievementsPanel().getLblIsWon().setText("Win Status: Won");
-		} else {
-			gf.getAchievementsPanel().getLblIsWon().setText("Win Status: Incomplete");
-		}
 		
-		//number of special moves allowed
-		gf.getAchievementsPanel().getLblNumSwaps().setText("Number of Swaps Allowed: " + level.getNumSwap());
-		gf.getAchievementsPanel().getLblNumRemoves().setText("Number of Removes Allowed: " + level.getNumRemove());
-		gf.getAchievementsPanel().getLblNumShuffles().setText("Number of Shuffles Allowed: " + level.getNumShuffle());
-		
-		//Active Cells
-		gf.getAchievementsPanel().getLblNumActiveCells().setText("Number of Active Cells: " + level.getNumActiveCells());
-		
-		if (level.getType().equals("Release")){
-			gf.getAchievementsPanel().getLblNumBaskets().setText("numBaskets");
-		} else {
-			gf.getAchievementsPanel().getLblNumBaskets().setText("");
-		}
-		
-		
+				
 	}
 
 	public void mousePressed(MouseEvent e) {

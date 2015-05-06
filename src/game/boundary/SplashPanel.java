@@ -29,9 +29,9 @@ public class SplashPanel extends JPanel{
 		lblAugustBeers.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblAugustBeers.setForeground(new Color(51, 255, 255));
 		
-		JLabel lblArtyKica = new JLabel("Arty Kica is the worst");
+		JLabel lblArtyKica = new JLabel("Arty Kica");
 		lblArtyKica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblArtyKica.setFont(new Font("Lucida Grande", Font.BOLD, 25));
+		lblArtyKica.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblArtyKica.setForeground(new Color(51, 255, 255));
 		
 		JLabel lblAndrewLaManna = new JLabel("Andrew La Manna");
