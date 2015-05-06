@@ -32,9 +32,9 @@ public class TileCellPanel extends CellPanel {
 	
 	public void refresh() {
 		if (cell.isSelected()) {
-			setBorder(new LineBorder(new Color(0, 255, 255), 2));
+			setBorder(new LineBorder(Color.BLACK, 4));
 		} else if (cell.isMarked()) {
-			setBorder(new LineBorder(new Color(255, 255, 255), 2));
+			setBorder(new LineBorder(Color.WHITE, 4));
 		} else {
 			setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		}

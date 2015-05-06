@@ -36,6 +36,9 @@ public class RemoveSelected extends gameMove {
 					case TILE_CELL:
 						if (((TileCell) temp.get(i).get(j)).isSelected() == true) {
 							((TileCell) temp.get(i).get(j)).unSelect();
+							if (board.getLevel().getType().equals("Elimination")) {
+								((TileCell) temp.get(i).get(j)).setMarked(true);
+							}
 							((TileCell) temp.get(i).get(j)).setTile(null);
 						}
 					case INACTIVE_CELL:
@@ -47,7 +50,7 @@ public class RemoveSelected extends gameMove {
 			int moves = board.getMovesRemaining();
 			board.setMovesRemaining(moves-1);
 			board.gravity(board);
-
+			
 			return true;
 		} else {
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
