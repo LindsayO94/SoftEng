@@ -1,8 +1,11 @@
 package common.entity;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import common.LevelSaver;
 import common.entity.Cell.Type;
 
 public abstract class Board {
@@ -20,6 +23,11 @@ public abstract class Board {
 	boolean star1Active;
 	boolean star2Active;
 	boolean star3Active;
+	
+	// These are needed to detect when the board has just been won/completed
+	// so it doesn't run the isWon/isCompleted actions every time.
+	boolean isAlreadyWon;
+	boolean isAlreadyCompleted;
 
 	public Board(Level level) {
 		this.level = level;
@@ -39,6 +47,8 @@ public abstract class Board {
 	}
 
 	public abstract boolean isWon();
+	
+	public abstract boolean isCompleted();
 
 	public void refresh() {
 
@@ -305,6 +315,42 @@ public abstract class Board {
 		if (this.isWon() && this.score > level.getHighScore()) {
 			this.level.setIsWon(true);
 			this.level.setHighScore(score);
+		}
+	}
+
+	public void checkWin() {
+		if (!this.isAlreadyWon && this.isWon()) {
+			this.isAlreadyWon = true;
+			onWinAction();
+		} else if (!this.isAlreadyCompleted && this.isCompleted()) {
+			this.isAlreadyCompleted = true;
+			onCompleteAction();
+		}
+	}
+
+	private void onCompleteAction() {
+		
+	}
+
+	private void onWinAction() {
+		// Save this level's win
+		level.setIsWon(true);
+		level.setHighScore(score);
+		try {
+			LevelSaver.levelToJsonFile(level);
+		} catch (IOException e1) {
+			System.out.println("Couldn't save level");
+		}
+		
+		// Unlock the next level
+		try {
+			Level nextLevel = LevelSaver.levelFromJsonFile(level.getNextLevelFilename(), 0);
+			nextLevel.setLocked(false);
+			LevelSaver.levelToJsonFile(nextLevel);
+		} catch (FileNotFoundException e) {
+			// Then there is no level to unlock
+		} catch (IOException e) {
+			System.out.println("Couldn't update next level to unlocked");
 		}
 	}
 

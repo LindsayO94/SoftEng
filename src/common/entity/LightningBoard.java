@@ -22,4 +22,9 @@ public class LightningBoard extends Board {
 		return false;
 	}
 
+	@Override
+	public boolean isCompleted() {
+		return timeLeft <= 0;
+	}
+
 }

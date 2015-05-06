@@ -368,4 +368,8 @@ public class Level {
 	public void setIsWon(boolean b) {
 		this.isWon = b;
 	}
+
+	public String getNextLevelFilename() {
+		return this.type + "_" + (this.levelNumber+1) + ".json";
+	}
 }

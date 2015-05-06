@@ -78,7 +78,6 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	}
 
 	public void mouseReleased(MouseEvent me) {
-		//gravity not working b/c tiles are null when trying to refresh 
 		RemoveSelected m = new RemoveSelected(board.getBoardModel(), cellsM);
 		m.doMove(game);
 		cells.clear();

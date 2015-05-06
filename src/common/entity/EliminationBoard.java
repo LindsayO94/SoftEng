@@ -2,14 +2,11 @@ package common.entity;
 
 
 public class EliminationBoard extends Board {
-
-	int movesLeft; //decremented upon executing a move
 	int cellsLeftToMark; //this is decremented upon marking a cell
 	
 	public EliminationBoard(Level level) {
 		super(level);
 		
-		this.movesLeft = level.maxMoves;
 		this.cellsLeftToMark = level.getNumActiveCells();
 	}
 
@@ -20,6 +17,11 @@ public class EliminationBoard extends Board {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isCompleted() {
+		return this.getMovesRemaining() <= 0;
 	}
 
 }
