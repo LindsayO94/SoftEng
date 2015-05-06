@@ -18,6 +18,7 @@ import common.boundary.CellPanel;
 import common.boundary.TileCellPanel;
 import common.boundary.TilePanel;
 import common.entity.Cell;
+import common.entity.PuzzleBoard;
 import common.entity.Tile;
 import common.entity.TileCell;
 
@@ -112,10 +113,22 @@ public class SelectController implements MouseMotionListener, MouseListener{
 						gamePanel.getSwapButton().setSelected(false);
 						
 						int currentMovesRemaining = boardPanel.getBoardModel().getMovesRemaining();
-						boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
-						
 						int currentSwapsRemaining = boardPanel.getBoardModel().getSwapsRemaining();
-						boardPanel.getBoardModel().setSwapsRemaining(currentSwapsRemaining - 1);
+						PuzzleBoard pboard;
+						if (boardPanel.getBoardModel() instanceof PuzzleBoard)
+						{
+							pboard = (PuzzleBoard)boardPanel.getBoardModel();
+							if (!pboard.getEndlessMode()){
+								boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
+								boardPanel.getBoardModel().setSwapsRemaining(currentSwapsRemaining - 1);
+							}
+						}else
+						{
+							boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
+							
+							
+							boardPanel.getBoardModel().setSwapsRemaining(currentSwapsRemaining - 1);
+						}
 						
 						return;
 					}
@@ -160,10 +173,22 @@ public class SelectController implements MouseMotionListener, MouseListener{
 					gamePanel.getRemoveButton().setSelected(false);
 					
 					int currentMovesRemaining = boardPanel.getBoardModel().getMovesRemaining();
-					boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
-					
 					int currentRemovesRemaining = boardPanel.getBoardModel().getRemovesRemaining();
-					boardPanel.getBoardModel().setRemovesRemaining(currentRemovesRemaining - 1);
+					PuzzleBoard pboard;
+					if (boardPanel.getBoardModel() instanceof PuzzleBoard)
+					{
+						pboard = (PuzzleBoard)boardPanel.getBoardModel();
+						if (!pboard.getEndlessMode()){
+							boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
+							boardPanel.getBoardModel().setRemovesRemaining(currentRemovesRemaining - 1);
+						}
+					}else
+					{
+						boardPanel.getBoardModel().setMovesRemaining(currentMovesRemaining - 1);
+						
+						
+						boardPanel.getBoardModel().setRemovesRemaining(currentRemovesRemaining - 1);
+					}
 					
 					return;
 					

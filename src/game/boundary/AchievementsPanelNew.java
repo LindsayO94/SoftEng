@@ -60,7 +60,7 @@ public class AchievementsPanelNew extends JPanel {
 	private JLabel lblLevelName;
 
 
-public AchievementsPanelNew(Game game){
+	public AchievementsPanelNew(Game game){
 		//this.disableLockedLevels = disableLockedLevels;
 		setBackground(new Color(255, 204, 102));
 		
@@ -172,7 +172,7 @@ public AchievementsPanelNew(Game game){
 		lblMaxMoves.setBounds(35, 412, 335, 14);
 		add(lblMaxMoves);
 		
-Level level = new Level(0);
+		Level level = new Level(0);
 		
 		puzzlePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
