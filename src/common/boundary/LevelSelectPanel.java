@@ -1,5 +1,7 @@
 package common.boundary;
 
+import game.controller.PlayGameController;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -123,11 +125,7 @@ public class LevelSelectPanel extends JPanel {
 		btnBackToMain.setBounds(622, 5, 150, 29);
 		add(btnBackToMain);
 		
-		refresh();
-	}
-	
-	public void refresh() {
-		Level level = new Level(0);
+Level level = new Level(0);
 		
 		puzzlePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
@@ -203,6 +201,24 @@ public class LevelSelectPanel extends JPanel {
 				btnNewButton.setEnabled(!level.getLocked());
 			}
 			levelButtons.put(filename, btnNewButton);
+		}
+	}
+	
+	public void refresh() {
+		Level level = new Level(0);
+		
+		for (String filename : getLevelButtons().keySet()) {
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				getLevelButton(filename).setEnabled(!level.getLocked());
+			}
 		}
 	}
 
