@@ -212,7 +212,6 @@ public class SelectController implements MouseMotionListener, MouseListener{
 	}
 
 	public void mouseReleased(MouseEvent me) {
-<<<<<<< HEAD
 		
 		//We don't want mouseReleased to do anything if the person is trying to do a special move
 		if (gamePanel.getSwapButton().isSelected() || gamePanel.getRemoveButton().isSelected() ){
@@ -221,9 +220,6 @@ public class SelectController implements MouseMotionListener, MouseListener{
 		
 		//gravity not working b/c tiles are null when trying to refresh 
 		RemoveSelected m = new RemoveSelected(boardPanel.getBoardModel(), cellsM);
-=======
-		RemoveSelected m = new RemoveSelected(board.getBoardModel(), cellsM);
->>>>>>> 4f7f960ddb45818914638ce1a283d7b60fc48a77
 		m.doMove(game);
 		cells.clear();
 		cellsM.clear();

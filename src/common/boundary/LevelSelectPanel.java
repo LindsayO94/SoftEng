@@ -43,12 +43,7 @@ public class LevelSelectPanel extends JPanel {
 	JScrollPane puzzleScroll;
 	
 	boolean disableLockedLevels;
-<<<<<<< HEAD
-	private JPanel releasePanel;
-	private JPanel eliminationPanel;
-	private JPanel lightningPanel;
-	private JPanel puzzlePanel;
-=======
+
 	JScrollPane lightningScroll;
 	JScrollPane eliminationScroll;
 	JScrollPane releaseScroll;
@@ -56,7 +51,7 @@ public class LevelSelectPanel extends JPanel {
 	JPanel eliminationPanel;
 	JPanel lightningPanel;
 	JPanel puzzlePanel;
->>>>>>> 4f7f960ddb45818914638ce1a283d7b60fc48a77
+
 
 	public LevelSelectPanel(boolean disableLockedLevels){
 		this.disableLockedLevels = disableLockedLevels;
@@ -134,10 +129,6 @@ public class LevelSelectPanel extends JPanel {
 	}
 	
 	public void refresh() {
-<<<<<<< HEAD
-		
-=======
->>>>>>> 4f7f960ddb45818914638ce1a283d7b60fc48a77
 		Level level = new Level(0);
 		
 		puzzlePanel.removeAll();
