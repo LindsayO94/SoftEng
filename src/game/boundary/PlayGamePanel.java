@@ -26,6 +26,7 @@ import common.boundary.TilePanel;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.Level;
+import common.entity.LightningBoard;
 
 import java.awt.Component;
 import java.util.Timer;
@@ -300,18 +301,12 @@ public class PlayGamePanel extends JPanel {
 		
 		lblTimeLeftValue.setVisible(true);
 		lblTimeLeft.setVisible(true);
-		
-		//If it's not lightning, hide the time stuff. TODO Probably should go in constructor
-		
-		//Just some testing printlns:
-		//System.out.println("Accessed board type is: " + board.getLevel().getType());
-		//System.out.println("Accessed board type equals Lightning:");
-		//System.out.println(board.getLevel().getType().equals("Lightning"));
 
 		//Set up star scores visually
 		lblStarScore1.setText("" + board.getLevel().getStar1Score());
 		lblStarScore2.setText("" + board.getLevel().getStar2Score());
 		lblStarScore3.setText("" + board.getLevel().getStar3Score());
+
 		
 		
 		//make moves remaining false if you're not playing lightning
@@ -377,12 +372,18 @@ public class PlayGamePanel extends JPanel {
 		
 		if (board.getStar1Active()){
 			labelStar1.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar1.setIcon(new ImageIcon(inactivePath));
 		}
 		if (board.getStar2Active()){
 			labelStar2.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar2.setIcon(new ImageIcon(inactivePath));
 		}
 		if (board.getStar3Active()){
 			labelStar3.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar3.setIcon(new ImageIcon(inactivePath));
 		}
 		
 		
@@ -390,9 +391,10 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeft.setText("Time Left:");
 		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		lblTimeLeftValue.setText("" + board.getTimeLeft());
+		refreshTimeRemaining();
 		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
 		
 
 		winPanel.setVisible(board.shouldShowCompletedMessage());
@@ -471,5 +473,13 @@ public class PlayGamePanel extends JPanel {
 
 	public BoardPanel getBoardPanel() {
 		return panel;
+	}
+
+
+
+	public void refreshTimeRemaining() {
+		if (board instanceof LightningBoard) {
+			lblTimeLeftValue.setText("" + ((LightningBoard) board).getTimeLeft());
+		}
 	}
 }

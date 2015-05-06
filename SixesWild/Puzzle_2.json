@@ -1,8 +1,14 @@
 {
   "levelNumber": 2,
+<<<<<<< HEAD
   "locked": false,
   "isWon": true,
   "highScore": 4370,
+=======
+  "locked": true,
+  "isWon": false,
+  "highScore": 2070,
+>>>>>>> 16efb35f5f94b80351c1ab2708c6e15162f6556b
   "type": "Puzzle",
   "startingConfig": [
     [

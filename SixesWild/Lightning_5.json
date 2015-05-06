@@ -1,6 +1,6 @@
 {
   "levelNumber": 5,
-  "locked": false,
+  "locked": true,
   "isWon": false,
   "highScore": 0,
   "type": "Lightning",
