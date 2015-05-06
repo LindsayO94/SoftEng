@@ -26,6 +26,7 @@ public class ExitLevelController implements MouseListener{
 		Board b = playGamePanel.getBoard();
 		
 		b.saveHighScore();
+		b.onExitLevelAction();
 		
 		try {
 			LevelSaver.levelToJsonFile(b.getLevel());

@@ -26,6 +26,7 @@ import common.boundary.TilePanel;
 import common.entity.Board;
 import common.entity.Cell;
 import common.entity.Level;
+import common.entity.LightningBoard;
 
 import java.awt.Component;
 import java.util.Timer;
@@ -353,7 +354,7 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeft.setText("Time Left:");
 		lblTimeLeft.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		lblTimeLeftValue.setText("" + board.getTimeLeft());
+		refreshTimeRemaining();
 		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
@@ -434,5 +435,13 @@ public class PlayGamePanel extends JPanel {
 
 	public BoardPanel getBoardPanel() {
 		return panel;
+	}
+
+
+
+	public void refreshTimeRemaining() {
+		if (board instanceof LightningBoard) {
+			lblTimeLeftValue.setText("" + ((LightningBoard) board).getTimeLeft());
+		}
 	}
 }

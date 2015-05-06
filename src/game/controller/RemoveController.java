@@ -60,6 +60,9 @@ public class RemoveController implements MouseListener{
 			//ABOVE IS TEMPORARY FOR TESTING
 		}
 		
+		gf.getPlayView().getBoard().checkWin();
+		gf.getPlayView().getBoard().moveMade(gf.getPlayView());
+		
 		return;	
 		
 	}

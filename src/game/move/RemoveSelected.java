@@ -2,6 +2,8 @@ package game.move;
 
 import java.util.ArrayList;
 
+import game.boundary.GameFrame;
+import game.boundary.PlayGamePanel;
 import game.entities.Game;
 import common.entity.Board;
 import common.entity.Cell;
@@ -14,10 +16,12 @@ public class RemoveSelected extends gameMove {
 	ArrayList<TileCell> cells = new ArrayList<TileCell>();
 	int numCells;
 	int multiplier;
+	PlayGamePanel panel;
 
-	public RemoveSelected(Board board, ArrayList<TileCell> cellsM) {
+	public RemoveSelected(Board board, ArrayList<TileCell> cellsM, PlayGamePanel gamePanel) {
 		this.board = board;
 		this.cells = cellsM;
+		this.panel = gamePanel;
 		numCells = 0;
 		multiplier = 1;
 	}
@@ -76,6 +80,7 @@ public class RemoveSelected extends gameMove {
 		}
 		
 		board.checkWin();
+		board.moveMade(panel);
 		return true;
 	}
 

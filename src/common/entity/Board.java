@@ -1,5 +1,9 @@
 package common.entity;
 
+import game.boundary.GameFrame;
+import game.boundary.PlayGamePanel;
+import game.entities.Game;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +18,6 @@ public abstract class Board {
 
 	int movesRemaining;
 	int score;
-	int timeLeft;
 
 	int swapsRemaining;
 	int removesRemaining;
@@ -37,7 +40,6 @@ public abstract class Board {
 		this.shufflesRemaining = level.numShuffle;
 
 		this.movesRemaining = level.maxMoves;
-		this.timeLeft = level.maxTime;
 		
 		boolean star1Active = false;
 		boolean star2Active = false;
@@ -243,15 +245,6 @@ public abstract class Board {
 		return level;
 	}
 
-	// Time
-	public int getTimeLeft() {
-		return timeLeft;
-	}
-
-	public void setTimeLeft(int timeLeft) {
-		this.timeLeft = timeLeft;
-	}
-
 	// Regular Moves Remaining
 	public int getMovesRemaining() {
 		return movesRemaining;
@@ -328,7 +321,7 @@ public abstract class Board {
 		}
 	}
 
-	private void onCompleteAction() {
+	protected void onCompleteAction() {
 		// Designed to be overridden
 	}
 
@@ -357,6 +350,14 @@ public abstract class Board {
 	public boolean shouldShowCompletedMessage() {
 		// On most levels this is always isCompleted, but puzzle overrides it
 		return this.isCompleted();
+	}
+
+	public void moveMade(PlayGamePanel panel) {
+		// Designed to be optionally overridden
+	}
+
+	public void onExitLevelAction() {
+		// Designed to be optionally overridden
 	}
 
 }
