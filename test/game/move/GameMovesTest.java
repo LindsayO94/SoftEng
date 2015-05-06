@@ -42,7 +42,7 @@ public class GameMovesTest {
 		
 		((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(2)).setSelected();
 		((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(2)).setSelected();
-		RemoveSelected rm = new RemoveSelected(gf.getPlayView().getBoard(), cells);
+		RemoveSelected rm = new RemoveSelected(gf.getPlayView().getBoard(), cells, gf.getPlayView());
 		rm.doMove(game);
 		assertTrue(oldCell != gf.getPlayView().getBoard().getCells().get(2).get(1));
 	}
