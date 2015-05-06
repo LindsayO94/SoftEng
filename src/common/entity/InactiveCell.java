@@ -10,7 +10,7 @@ public class InactiveCell extends Cell {
 	@Override
 	public Type getType() {
 		return Cell.Type.INACTIVE_CELL;
-	}
+	} 
 
 	
 

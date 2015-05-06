@@ -27,7 +27,7 @@ public class SelectMove extends gameMove {
 
 	@Override
 	public boolean doMove(Game game) {
-		if (valid(game) == true) {
+		if (valid(game) == true) { 
 			if (hasSelected(board) == false) {
 
 				switch (cell.getType()) {

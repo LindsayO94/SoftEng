@@ -29,7 +29,7 @@ public class RemoveSelected extends gameMove {
 
 	@Override
 	public boolean doMove(Game game) {
-		if (valid(game)) {
+		if (valid(game)) { 
 						
 			PuzzleBoard pboard;
 			if (board instanceof PuzzleBoard)

@@ -11,7 +11,7 @@ public abstract class Cell {
 	public Cell(int column, int row) {
 		if (column < 0 || column >= 9 || row < 0 || row >= 9) {
 			throw new IllegalArgumentException(
-					"Illegal row or column passed to cell constructor");
+					"Illegal row or column passed to cell constructor"); 
 		}
 
 		this.column = column;

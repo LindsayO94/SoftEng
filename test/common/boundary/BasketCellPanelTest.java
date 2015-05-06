@@ -28,9 +28,11 @@ public class BasketCellPanelTest {
 		assertEquals(cell, absCp.getCellModel());
 		assertEquals(null, absCp.getTileView()); 
 		
+		//test that a Basket cell still can have a tile 
 		Tile tile = new Tile(1, 1);
 		cell.setTile(tile);
 		
+		//tests that the tile can be get and set
 		assertTrue(cell.getTile() != null);
 		assertTrue(cell.getTile().getValue() != 6);
 	}
