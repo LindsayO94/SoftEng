@@ -1,6 +1,12 @@
 package common.entity;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import common.LevelSaver;
+import common.entity.Cell.Type;
 
 public abstract class Board {
 	ArrayList<ArrayList<Cell>> cells;
@@ -17,6 +23,11 @@ public abstract class Board {
 	boolean star1Active;
 	boolean star2Active;
 	boolean star3Active;
+	
+	// These are needed to detect when the board has just been won/completed
+	// so it doesn't run the isWon/isCompleted actions every time.
+	boolean isAlreadyWon;
+	boolean isAlreadyCompleted;
 
 	public Board(Level level) {
 		this.level = level;
@@ -36,6 +47,8 @@ public abstract class Board {
 	}
 
 	public abstract boolean isWon();
+	
+	public abstract boolean isCompleted();
 
 	public void refresh() {
 
@@ -53,49 +66,45 @@ public abstract class Board {
 
 		// Place sixes properly in Release
 		if (level.type.equals("Release")) {
-			for (int row = cells.size() - 1; row >= 0; row--) {
-				ArrayList<Cell> cellsAllowedToHaveSixes = new ArrayList<Cell>();
-				int totalSixesNeeded = 0;
-				int currentSixesNeeded = 0;
-				boolean bufferNeeded = false;
-				boolean isAboveBasket = false;
-				for (int col = cells.size() - 1; col >= 0; col--) {
+			// This has to go from top-down because higher-up baskets have more 
+			// restrictive requirements
+			for (int row = 0; row < cells.size(); row++) {
+				for (int col = 0; col < cells.get(row).size(); col++) {
 					Cell cell = cells.get(col).get(row);
 					if (cell.getType() == Cell.Type.BASKET_CELL) {
-						currentSixesNeeded += 1;
-						totalSixesNeeded += 1;
-						bufferNeeded = true;
-						isAboveBasket = true;
-					} else if (cell.getType() == Cell.Type.TILE_CELL) {
-						if (bufferNeeded) {
-							bufferNeeded = false;
-						} else if (isAboveBasket && currentSixesNeeded > 0) {
-							// This six is accounted for
-							currentSixesNeeded -= 1;
-							cellsAllowedToHaveSixes.add(cell);
-						} else if (isAboveBasket) {
-							cellsAllowedToHaveSixes.add(cell);
-						}
+						putSixAbove(cell);
 					}
-				}
-
-				if (currentSixesNeeded > 0) {
-					throw new IllegalStateException(
-							"This column needs more sixes than it has room for");
-				}
-
-				for (int x = 0; x < totalSixesNeeded; x++) {
-					int i = level.getRandomInt(cellsAllowedToHaveSixes.size());
-					Cell cellToMake6 = cellsAllowedToHaveSixes.remove(i);
-					Tile tile = new Tile(6, level.getRandomMultiplier());
-					TileCell newCell = new TileCell(cellToMake6.getColumn(),
-							cellToMake6.getRow(), tile);
-
-					cells.get(newCell.getColumn()).set(newCell.getRow(),
-							newCell);
 				}
 			}
 		}
+	}
+
+	private void putSixAbove(Cell c) {
+		boolean bufferNeeded = false;
+		ArrayList<Cell> validCells = new ArrayList<Cell>();
+		
+		// This has to iterate bottom-to-top so it can record
+		// bufferNeeded properly
+		for (int col = c.getColumn(); col >= 0; col--) {
+			Cell cell = cells.get(col).get(c.getRow());
+			if (cell.getType() == Cell.Type.BASKET_CELL) {
+				bufferNeeded = true;
+			} else if (cell.getType() == Cell.Type.TILE_CELL) {
+				if (bufferNeeded) {
+					bufferNeeded = false;
+				} else if (((TileCell) cell).getTile().getValue() != 6) {
+					validCells.add(cell);
+				}
+			}
+		}
+		
+		Cell cellToMake6 = validCells.get(level.getRandomInt(validCells.size()));
+		Tile tile = new Tile(6, level.getRandomMultiplier());
+		TileCell newCell = new TileCell(cellToMake6.getColumn(),
+				cellToMake6.getRow(), tile);
+
+		cells.get(newCell.getColumn()).set(newCell.getRow(),
+				newCell);
 	}
 
 	public void refreshCell(Cell c) {
@@ -307,6 +316,47 @@ public abstract class Board {
 			this.level.setIsWon(true);
 			this.level.setHighScore(score);
 		}
+	}
+
+	public void checkWin() {
+		if (!this.isAlreadyWon && this.isWon()) {
+			this.isAlreadyWon = true;
+			onWinAction();
+		} else if (!this.isAlreadyCompleted && this.isCompleted()) {
+			this.isAlreadyCompleted = true;
+			onCompleteAction();
+		}
+	}
+
+	private void onCompleteAction() {
+		// Designed to be overridden
+	}
+
+	private void onWinAction() {
+		// Save this level's win
+		level.setIsWon(true);
+		level.setHighScore(score);
+		try {
+			LevelSaver.levelToJsonFile(level);
+		} catch (IOException e1) {
+			System.out.println("Couldn't save level");
+		}
+		
+		// Unlock the next level
+		try {
+			Level nextLevel = LevelSaver.levelFromJsonFile(level.getNextLevelFilename(), 0);
+			nextLevel.setLocked(false);
+			LevelSaver.levelToJsonFile(nextLevel);
+		} catch (FileNotFoundException e) {
+			// Then there is no level to unlock
+		} catch (IOException e) {
+			System.out.println("Couldn't update next level to unlocked");
+		}
+	}
+
+	public boolean shouldShowCompletedMessage() {
+		// On most levels this is always isCompleted, but puzzle overrides it
+		return this.isCompleted();
 	}
 
 }

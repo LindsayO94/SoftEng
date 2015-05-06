@@ -2,13 +2,12 @@ package common.entity;
 
 
 public class PuzzleBoard extends Board {
-
-	int movesLeft; //decremented upon executing a move
 	
+	boolean isEndlessMode;
+
 	public PuzzleBoard(Level level) {
 		super(level);
-		
-		this.movesLeft = level.getMaxMoves();
+		isEndlessMode = false;
 	}
 
 	@Override
@@ -19,6 +18,20 @@ public class PuzzleBoard extends Board {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isCompleted() {
+		return this.getMovesRemaining() <= 0;
+	}
+	
+	@Override
+	public boolean shouldShowCompletedMessage() {
+		return isCompleted() && !isEndlessMode;
+	}
+	
+	public void setEndlessMode(boolean b) {
+		this.isEndlessMode = b;
 	}
 
 }

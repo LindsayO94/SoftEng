@@ -42,6 +42,10 @@ public class LevelSelectPanel extends JPanel {
 	private JButton btnBackToMain;
 	
 	boolean disableLockedLevels;
+	private JPanel releasePanel;
+	private JPanel eliminationPanel;
+	private JPanel lightningPanel;
+	private JPanel puzzlePanel;
 
 	public LevelSelectPanel(boolean disableLockedLevels){
 		this.disableLockedLevels = disableLockedLevels;
@@ -65,20 +69,20 @@ public class LevelSelectPanel extends JPanel {
 		JScrollPane releaseScroll = new JScrollPane();
 		releaseScroll.setBounds(590, 89, 150, 366);
 		
-		JPanel releasePanel = new JPanel();
+		releasePanel = new JPanel();
 		releaseScroll.setViewportView(releasePanel);
 		releasePanel.setLayout(new BoxLayout(releasePanel, BoxLayout.Y_AXIS));
 		
-		JPanel eliminationPanel = new JPanel();
+		eliminationPanel = new JPanel();
 		eliminationScroll.setViewportView(eliminationPanel);
 		eliminationPanel.setLayout(new BoxLayout(eliminationPanel, BoxLayout.Y_AXIS));
 		
-		JPanel lightningPanel = new JPanel();
+		lightningPanel = new JPanel();
 		lightningScroll.setViewportView(lightningPanel);
 		lightningPanel.setLayout(new BoxLayout(lightningPanel, BoxLayout.Y_AXIS));
 		setLayout(null);
 		
-		JPanel puzzlePanel = new JPanel();
+		puzzlePanel = new JPanel();
 		puzzleScroll.setViewportView(puzzlePanel);
 		puzzlePanel.setLayout(new BoxLayout(puzzlePanel, BoxLayout.Y_AXIS));
 		add(puzzleScroll);
@@ -115,13 +119,19 @@ public class LevelSelectPanel extends JPanel {
 		btnBackToMain.setBounds(622, 5, 150, 29);
 		add(btnBackToMain);
 		
+		refresh();
+	}
+	
+	public void refresh() {
+		
 		Level level = new Level(0);
 		
+		puzzlePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 			puzzlePanel.add(btnNewButton);
-			if (!disableLockedLevels){
+			if (disableLockedLevels){
 				try {
 					level = LevelSaver.levelFromJsonFile(filename, 0);
 				} catch (FileNotFoundException e) {
@@ -135,11 +145,12 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		lightningPanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Lightning")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 			lightningPanel.add(btnNewButton);
-			if (!disableLockedLevels){
+			if (disableLockedLevels){
 				try {
 					level = LevelSaver.levelFromJsonFile(filename, 0);
 				} catch (FileNotFoundException e) {
@@ -153,11 +164,12 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		eliminationPanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Elimination")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 			eliminationPanel.add(btnNewButton);
-			if (!disableLockedLevels){
+			if (disableLockedLevels){
 				try {
 					level = LevelSaver.levelFromJsonFile(filename, 0);
 				} catch (FileNotFoundException e) {
@@ -171,11 +183,12 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		releasePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Release")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 			releasePanel.add(btnNewButton);
-			if (!disableLockedLevels){
+			if (disableLockedLevels){
 				try {
 					level = LevelSaver.levelFromJsonFile(filename, 0);
 				} catch (FileNotFoundException e) {

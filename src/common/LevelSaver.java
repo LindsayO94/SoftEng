@@ -48,7 +48,7 @@ public class LevelSaver {
 	
 	private static void updateNextLevelNumber(String type, int number) {
 		if (nextLevelNumber.get(type) <= number) {
-			nextLevelNumber.put(type, number);
+			nextLevelNumber.put(type, number + 1);
 		}
 	}
 	
