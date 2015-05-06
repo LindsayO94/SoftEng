@@ -1,115 +1,357 @@
 package game.boundary;
-import game.entities.*;
 
-import java.awt.Graphics;
+import game.controller.PlayGameController;
+import game.entities.Game;
 
-import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.util.Iterator;
-
+import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-
-import common.entity.Level;
 
 import java.awt.Color;
 
-@SuppressWarnings("serial")
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.awt.Font;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.BoxLayout;
+
+import java.awt.Component;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.swing.SwingConstants;
+
+import levelBuilder.controller.ChooseLevelButtonController;
+import common.LevelSaver;
+import common.entity.Level;
+
+import javax.swing.ScrollPaneConstants;
+
+/**
+ * Achievements Panel for Game
+ * Much of the functionality of this panel was taken from Will's level select panel
+ * @author Arty
+ *
+ **/
 public class AchievementsPanel extends JPanel {
-	private JTable table_1;
-	JButton mainMenuButton;
-	public AchievementsPanel(Game game) {
+	HashMap<String, JButton> levelButtons = new HashMap<String, JButton>();
+	private JButton btnBackToMain;
+	
+	boolean disableLockedLevels;
+
+	JScrollPane puzzleScroll;
+	JScrollPane lightningScroll;
+	JScrollPane eliminationScroll;
+	JScrollPane releaseScroll;
+	
+	JPanel releasePanel;
+	JPanel eliminationPanel;
+	JPanel lightningPanel;
+	JPanel puzzlePanel;
+	
+	private JLabel lblLevelName;
+	private JLabel lblHighScore;
+	private JLabel lblStars;
+	private JLabel lblMax;
+	private JLabel lblLocked;
+	private JLabel lblIsWon;
+	private JLabel lblNumSwaps;
+	private JLabel lblNumRemoves;
+	private JLabel lblNumShuffles;
+
+
+	public AchievementsPanel(Game game){
+		//this.disableLockedLevels = disableLockedLevels;
+		setBackground(new Color(255, 204, 102));
 		
-		JLabel lblAchievements = new JLabel("Achievements!");
-		lblAchievements.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAchievements.setFont(new Font("Dialog", Font.PLAIN, 40));
+		JLabel lblSixesWildLevel = new JLabel("Achievements!");
+		lblSixesWildLevel.setBounds(35, 11, 705, 38);
+		lblSixesWildLevel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSixesWildLevel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 36));
 		
-		mainMenuButton = new JButton("Back to Main Menu!");
+		puzzleScroll = new JScrollPane();
+		puzzleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		puzzleScroll.setBounds(35, 89, 150, 200);
 		
-		String[] columns = {"", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
-		Object[][] data = {
-				{"", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5"},
-				{"Puzzle", 0, 0, 0, 0, 0},
-				{"Lightning", 0, 0, 0, 0, 0},
-				{"Elimination",  0, 0, 0, 0, 0},
-				{"Release",  0, 0, 0, 0, 0}
-		};
+		lightningScroll = new JScrollPane();
+		lightningScroll.setBounds(220, 89, 150, 200);
 		
-		Iterator<Level>levelList = game.iterator();
+		eliminationScroll = new JScrollPane();
+		eliminationScroll.setBounds(405, 89, 150, 200);
 		
-		for(int i=1; i<5;i++){
-			for(int j=1; j<6;j++){
-				if(levelList.hasNext()){
-					data[i][j] = levelList.next().getHighScore();
+		releaseScroll = new JScrollPane();
+		releaseScroll.setBounds(590, 89, 150, 200);
+		
+		releasePanel = new JPanel();
+		releaseScroll.setViewportView(releasePanel);
+		releasePanel.setLayout(new BoxLayout(releasePanel, BoxLayout.Y_AXIS));
+		
+		eliminationPanel = new JPanel();
+		eliminationScroll.setViewportView(eliminationPanel);
+		eliminationPanel.setLayout(new BoxLayout(eliminationPanel, BoxLayout.Y_AXIS));
+		
+		lightningPanel = new JPanel();
+		lightningScroll.setViewportView(lightningPanel);
+		lightningPanel.setLayout(new BoxLayout(lightningPanel, BoxLayout.Y_AXIS));
+		setLayout(null);
+		
+		puzzlePanel = new JPanel();
+		puzzleScroll.setViewportView(puzzlePanel);
+		puzzlePanel.setLayout(new BoxLayout(puzzlePanel, BoxLayout.Y_AXIS));
+		add(puzzleScroll);
+		add(lightningScroll);
+		add(eliminationScroll);
+		add(releaseScroll);
+		add(lblSixesWildLevel);
+		
+		JLabel lblPuzzle = new JLabel("Puzzle");
+		lblPuzzle.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPuzzle.setBounds(35, 55, 150, 30);
+		add(lblPuzzle);
+		
+		JLabel lblLightning = new JLabel("Lightning");
+		lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLightning.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblLightning.setBounds(220, 55, 150, 30);
+		add(lblLightning);
+		
+		JLabel lblElimination = new JLabel("Elimination");
+		lblElimination.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElimination.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblElimination.setBounds(405, 55, 150, 30);
+		add(lblElimination);
+		
+		JLabel lblRelease = new JLabel("Release");
+		lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRelease.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
+		lblRelease.setBounds(590, 55, 150, 30);
+		add(lblRelease);
+		
+		btnBackToMain = new JButton("Back to Main Menu");
+		btnBackToMain.setBounds(590, 519, 150, 29);
+		add(btnBackToMain);
+		
+		JLabel lblLevelInfo = new JLabel("Level Info");
+		lblLevelInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLevelInfo.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblLevelInfo.setBounds(35, 300, 335, 38);
+		add(lblLevelInfo);
+		
+		JLabel lblHighScoreHeader = new JLabel("High Score");
+		lblHighScoreHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHighScoreHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblHighScoreHeader.setBounds(391, 300, 206, 38);
+		add(lblHighScoreHeader);
+		
+		lblLevelName = new JLabel("");
+		lblLevelName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLevelName.setBounds(35, 349, 335, 26);
+		add(lblLevelName);
+		
+		lblHighScore = new JLabel("");
+		lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 50));
+		lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHighScore.setBounds(391, 349, 206, 159);
+		add(lblHighScore);
+		
+		JLabel lblStarsHeader = new JLabel("Stars");
+		lblStarsHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStarsHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblStarsHeader.setBounds(607, 300, 143, 38);
+		add(lblStarsHeader);
+		
+		lblStars = new JLabel("");
+		lblStars.setFont(new Font("Tahoma", Font.BOLD, 50));
+		lblStars.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStars.setBounds(607, 350, 143, 158);
+		add(lblStars);
+		
+		lblMax = new JLabel("");
+		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMax.setBounds(35, 449, 335, 14);
+		add(lblMax);
+		
+		lblLocked = new JLabel("");
+		lblLocked.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLocked.setBounds(35, 386, 335, 14);
+		add(lblLocked);
+		
+		lblIsWon = new JLabel("");
+		lblIsWon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIsWon.setBounds(35, 411, 335, 14);
+		add(lblIsWon);
+		
+		lblNumSwaps = new JLabel("");
+		lblNumSwaps.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumSwaps.setBounds(35, 487, 335, 14);
+		add(lblNumSwaps);
+		
+		lblNumRemoves = new JLabel("");
+		lblNumRemoves.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumRemoves.setBounds(35, 512, 335, 14);
+		add(lblNumRemoves);
+		
+		lblNumShuffles = new JLabel("");
+		lblNumShuffles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumShuffles.setBounds(35, 534, 335, 14);
+		add(lblNumShuffles);
+		
+		Level level = new Level(0);
+		
+		puzzlePanel.removeAll();
+		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
+			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
+			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			puzzlePanel.add(btnNewButton);
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
 				}
+				btnNewButton.setEnabled(!level.getLocked());
 			}
+			levelButtons.put(filename, btnNewButton);
 		}
 		
-		table_1 = new JTable(data,columns) {
-			public boolean isCellEditable(int rowIndex, int colIndex) {
-				return false; //Disallow the editing of any cell
+		lightningPanel.removeAll();
+		for (String filename : LevelSaver.getLevelFilenames("Lightning")) {
+			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
+			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			lightningPanel.add(btnNewButton);
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				btnNewButton.setEnabled(!level.getLocked());
 			}
-		};
-		table_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		table_1.setForeground(new Color(0, 0, 0));
-		table_1.setBackground(new Color(153, 204, 255));
-		table_1.setRowHeight(50);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table_1.getColumnModel().getColumn(0).setPreferredWidth(150);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(50);
-		table_1.getColumnModel().getColumn(2).setPreferredWidth(50);
-		table_1.getColumnModel().getColumn(3).setPreferredWidth(50);
-		table_1.getColumnModel().getColumn(4).setPreferredWidth(50);
-		table_1.getColumnModel().getColumn(5).setPreferredWidth(50);
-		table_1.setShowVerticalLines(false);
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-		for(int i=0;i<6;i++)
-		{
-			table_1.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
+			levelButtons.put(filename, btnNewButton);
 		}
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(341, Short.MAX_VALUE)
-					.addComponent(mainMenuButton)
-					.addGap(17))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(131)
-					.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-					.addGap(130))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(210)
-					.addComponent(lblAchievements, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-					.addGap(220))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblAchievements)
-					.addGap(103)
-					.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-					.addComponent(mainMenuButton)
-					.addGap(15))
-		);
-		setLayout(groupLayout);
+		
+		eliminationPanel.removeAll();
+		for (String filename : LevelSaver.getLevelFilenames("Elimination")) {
+			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
+			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			eliminationPanel.add(btnNewButton);
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				btnNewButton.setEnabled(!level.getLocked());
+			}
+			levelButtons.put(filename, btnNewButton);
+		}
+		
+		releasePanel.removeAll();
+		for (String filename : LevelSaver.getLevelFilenames("Release")) {
+			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
+			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			releasePanel.add(btnNewButton);
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				btnNewButton.setEnabled(!level.getLocked());
+			}
+			levelButtons.put(filename, btnNewButton);
+		}
 	}
 	
-	protected void paintComponent(Graphics g){
-		super.paintComponent(g);
+	public void refresh() {
+		Level level = new Level(0);
+		
+		for (String filename : getLevelButtons().keySet()) {
+			if (disableLockedLevels){
+				try {
+					level = LevelSaver.levelFromJsonFile(filename, 0);
+				} catch (FileNotFoundException e) {
+					JOptionPane.showMessageDialog(this,
+						    e.getMessage(),
+						    "Error loading file",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				getLevelButton(filename).setEnabled(!level.getLocked());
+			}
+			
+		}
+		
+		
+	}
+
+	public HashMap<String, JButton> getLevelButtons() {
+		return levelButtons;
+	}
+
+	public JButton getLevelButton(String filename) {
+		return levelButtons.get(filename);
 	}
 	
-	public JButton getBackButton() {
-		return mainMenuButton;
+	public JButton getMainMenuButton() {
+		return btnBackToMain;
 	}
+	
+	public JLabel getLevelNameLabel(){
+		return lblLevelName;
+	}
+	
+	public JLabel getHighScoreLabel(){
+		return lblHighScore;
+	}
+	
+	public JLabel getStarsLabel(){
+		return lblStars;
+	}
+	
+	public JLabel getMaxLabel(){
+		return lblMax;
+	}
+
+	public JLabel getLblLocked() {
+		return lblLocked;
+	}
+
+	public JLabel getLblIsWon() {
+		return lblIsWon;
+	}
+
+	public JLabel getLblNumSwaps() {
+		return lblNumSwaps;
+	}
+	
+	public JLabel getLblNumRemoves() {
+		return lblNumRemoves;
+	}
+	
+	public JLabel getLblNumShuffles() {
+		return lblNumShuffles;
+	}	
+	
 }

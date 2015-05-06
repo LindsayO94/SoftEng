@@ -22,7 +22,7 @@ import common.entity.TileCell;
  * 
  * Controller used to execute a shuffle move when the shuffle button is pressed
  * 
- * Author: Arty
+ * Author: Will
  **/
 
 public class ShuffleController implements MouseListener{

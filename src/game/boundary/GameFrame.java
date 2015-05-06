@@ -21,29 +21,26 @@ public class GameFrame extends JFrame {
 	//Entities
 	Game game;
 	
-	AchievementsPanel achievements;
 	PlayGamePanel playGame;
 	LevelSelectPanel levelSelect = new LevelSelectPanel(true);
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
 	Random rand = new Random();
 
-	AchievementsPanelNew achievementsNew;
+	AchievementsPanel achievements;
 	
 	public GameFrame(Game game) {
 		this.game = game;
 		
 		achievements = new AchievementsPanel(game);
-		achievementsNew = new AchievementsPanelNew(game);
 		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
 		mainMenu.getPlayGameButton().addMouseListener(new LevelSelectController(this));
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
-		
-		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
-		achievementsNew.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
+
+		achievements.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		
 		playGame.getBackButton().addMouseListener(new ExitLevelController(this, playGame));
 		playGame.getCompletedBackButton().addMouseListener(new ExitLevelController(this, playGame));
@@ -59,15 +56,15 @@ public class GameFrame extends JFrame {
 			levelSelect.getLevelButton(filename).addMouseListener(new PlayGameController(this, filename));
 		}
 		
-		for (String filename : achievementsNew.getLevelButtons().keySet()) {
-			achievementsNew.getLevelButton(filename).addMouseListener(new AchievementsSwitchLevelController(this, filename));
+		for (String filename : achievements.getLevelButtons().keySet()) {
+			achievements.getLevelButton(filename).addMouseListener(new AchievementsSwitchLevelController(this, filename));
 		}
 		
 		getContentPane().add(splash, "Splash");
 		getContentPane().add(mainMenu, "Main Menu");
 		getContentPane().add(playGame, "Play Game");
 		getContentPane().add(levelSelect, "Level Select");
-		getContentPane().add(achievementsNew, "AchievementsNew");
+		getContentPane().add(achievements, "Achievements");
 	}
 
 	public void setBoard(Board board) {
@@ -82,8 +79,8 @@ public class GameFrame extends JFrame {
 		return levelSelect;
 	}
 	
-	public AchievementsPanelNew getAchievementsPanel(){
-		return achievementsNew;
+	public AchievementsPanel getAchievementsPanel(){
+		return achievements;
 	}
 
 	public long getSeed() {

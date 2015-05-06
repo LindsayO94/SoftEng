@@ -14,7 +14,7 @@ public class GameAchievementsController implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "AchievementsNew");
+		cardLayout.show(gf.getContentPane(), "Achievements");
 	}
 
 	public void mousePressed(MouseEvent e) {
