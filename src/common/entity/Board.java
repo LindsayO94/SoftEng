@@ -74,7 +74,12 @@ public abstract class Board {
 				for (int col = 0; col < cells.get(row).size(); col++) {
 					Cell cell = cells.get(col).get(row);
 					if (cell.getType() == Cell.Type.BASKET_CELL) {
-						putSixAbove(cell);
+						try{
+							putSixAbove(cell);
+						}catch(IllegalStateException e){
+							throw e;
+						}
+						
 					}
 				}
 			}
@@ -98,6 +103,10 @@ public abstract class Board {
 					validCells.add(cell);
 				}
 			}
+		}
+		
+		if (validCells.size() == 0){
+			throw new IllegalStateException("No room for sixes");
 		}
 		
 		Cell cellToMake6 = validCells.get(level.getRandomInt(validCells.size()));
@@ -293,13 +302,13 @@ public abstract class Board {
 	
 	
 	public void checkStars(){
-		if (score > getLevel().getStar1Score()){
+		if (score >= getLevel().getStar1Score()){
 			star1Active = true;
 		}
-		if (score > getLevel().getStar2Score()){
+		if (score >= getLevel().getStar2Score()){
 			star2Active = true;
 		}
-		if (score > getLevel().getStar3Score()){
+		if (score >= getLevel().getStar3Score()){
 			star3Active = true;
 		}
 	}

@@ -29,6 +29,8 @@ import common.entity.Level;
 import common.entity.LightningBoard;
 
 import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Timer;
 
 import javax.swing.ImageIcon;
@@ -60,10 +62,6 @@ public class PlayGamePanel extends JPanel {
 	private JLabel labelStar2;
 	private JLabel labelStar3;
 	
-	private JLabel lblStarScore1;
-	private JLabel lblStarScore2;
-	private JLabel lblStarScore3;
-	
 	//TODO eventually will combine these when i feel like it
 	private JLabel lblTimeLeft;
 	private JLabel lblTimeLeftValue;
@@ -76,9 +74,6 @@ public class PlayGamePanel extends JPanel {
 	JPanel winPanel;
 	JButton mainMenuAfterCompleteBtn;
 	private JButton btnContinuePlaying;
-	
-
-	
 	
 	
 	public PlayGamePanel(Game game){	
@@ -108,15 +103,6 @@ public class PlayGamePanel extends JPanel {
 		labelStar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		labelStar3.setIcon(new ImageIcon(inactivePath)); //AWESOME!3 
 		
-		lblStarScore1 = new JLabel("<STAR1>");
-		lblStarScore1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		lblStarScore2 = new JLabel("<STAR2>");
-		lblStarScore2.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		lblStarScore3 = new JLabel("<STAR3>");
-		lblStarScore3.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		lblTimeLeft = new JLabel("Time Left:");
 		lblTimeLeftValue = new JLabel("<NUM>");
 		
@@ -137,8 +123,6 @@ public class PlayGamePanel extends JPanel {
 		panel.addMouseMotionListener(new SelectController(panel, game, this));
 		panel.addMouseListener(new SelectController(panel, game, this));
 		layeredPane.add(panel, new Integer(0));
-		
-		
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -158,27 +142,19 @@ public class PlayGamePanel extends JPanel {
 								.addComponent(lblMovesRemainingSwap, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
 								.addComponent(lblMovesRemainingShuffle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
 						.addComponent(lblMovesRemaining)
-						.addComponent(mainMenuButton)
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(lblTimeLeft)
 								.addPreferredGap(ComponentPlacement.UNRELATED)
 								.addComponent(lblTimeLeftValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGroup(groupLayout.createSequentialGroup()
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(lblStarScore1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(labelStar1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+								.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblStarScore2, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(lblStarScore3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))))))
-					.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+								.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(mainMenuButton))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(layeredPane, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
@@ -202,16 +178,11 @@ public class PlayGamePanel extends JPanel {
 								.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 								.addComponent(labelStar2)
 								.addComponent(labelStar3))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblStarScore1)
-								.addComponent(lblStarScore2)
-								.addComponent(lblStarScore3))
-							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+							.addGap(30)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblTimeLeft)
 								.addComponent(lblTimeLeftValue))
-							.addGap(29)
+							.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnSwap, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblMovesRemainingSwap))
@@ -244,6 +215,14 @@ public class PlayGamePanel extends JPanel {
 	            }
 	        }
 		};
+		// Add event listener that does nothing so they can't play the game through the winPanel
+		winPanel.addMouseListener(new MouseListener() {
+			@Override public void mouseReleased(MouseEvent e) {}
+			@Override public void mousePressed(MouseEvent e) {}
+			@Override public void mouseExited(MouseEvent e) {}
+			@Override public void mouseEntered(MouseEvent e) {}
+			@Override public void mouseClicked(MouseEvent e) {}
+		});
 		winPanel.setBounds(0, 0, 460, 460);
 		winPanel.setBackground(Color.WHITE);
 		winPanel.setOpaque(false);
@@ -301,16 +280,11 @@ public class PlayGamePanel extends JPanel {
 		
 		lblTimeLeftValue.setVisible(true);
 		lblTimeLeft.setVisible(true);
-
-		//Set up star scores visually
-		lblStarScore1.setText("" + board.getLevel().getStar1Score());
-		lblStarScore2.setText("" + board.getLevel().getStar2Score());
-		lblStarScore3.setText("" + board.getLevel().getStar3Score());
-
 		
 		
-		//make moves remaining false if you're not playing lightning
+		
 		lblMovesRemaining.setVisible(false);
+		
 
 		//If it's not lightning, we want to see the moves remaining and not the timer
 		if (!board.getLevel().getType().equals("Lightning")){ //TODO figure out how to ID it as a lightning level

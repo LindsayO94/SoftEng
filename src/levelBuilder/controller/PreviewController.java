@@ -24,7 +24,11 @@ public class PreviewController implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		editor.getBoard().refresh();
+		try{
+			editor.getBoard().refresh();
+		}catch(IllegalStateException e){
+			panel.getOutputField().setText("Too many baskets in one column!");
+		}
 		panel.getBoardPanel().refresh();
 		if (panel.getOutputField().getText().equals("")){
 			panel.getSaveButton().setEnabled(true);
