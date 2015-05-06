@@ -65,9 +65,12 @@ public class LightningBoard extends Board {
 			@Override
 			public void run() {
 				timeLeft -= 1;
-				System.out.println(timeLeft);
 				checkWin();
 				panel.refreshTimeRemaining();
+				if (timeLeft == 0) {
+					stopTimer();
+					panel.refresh();
+				}
 			}
 		};
 		timer.scheduleAtFixedRate(task, 1000, 1000); // Run timer every 1000 ms starting in 1000 ms
