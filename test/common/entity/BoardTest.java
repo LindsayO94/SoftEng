@@ -84,9 +84,9 @@ public class BoardTest {
 		b.gravity(b);
 		
 		
-		b.incrementScore(5);
-		b.incrementScore(5);
-		assertEquals(b.score, 10);
+		b.incrementScore(100);
+		b.incrementScore(1000);
+		assertEquals(b.score, 1100);
 		
 		b.setMovesRemaining(4);
 		assertEquals(b.movesRemaining, 4);

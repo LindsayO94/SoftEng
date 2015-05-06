@@ -30,10 +30,10 @@ public class TileCellPanelTest {
 		cell.setSelected();
 		cp.refresh();
 		
-		// Test selected is teal
+		// Test selected is white
 		assertTrue(cell.isSelected());
 		assertFalse(cell.isMarked());
-		assertEquals(new Color(0,255,255), ((LineBorder) cp.getBorder()).getLineColor());
+		assertEquals(Color.BLACK, ((LineBorder) cp.getBorder()).getLineColor());
 		
 		cell.setMarked(true);
 		cp.refresh();
@@ -41,7 +41,7 @@ public class TileCellPanelTest {
 		// Test marked+selected is teal
 		assertTrue(cell.isSelected());
 		assertTrue(cell.isMarked());
-		assertEquals(new Color(0,255,255), ((LineBorder) cp.getBorder()).getLineColor());
+		assertEquals(Color.BLACK, ((LineBorder) cp.getBorder()).getLineColor());
 		
 		cell.setSelected(false);
 		cp.refresh();
