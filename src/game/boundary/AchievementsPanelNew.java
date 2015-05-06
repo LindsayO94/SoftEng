@@ -58,6 +58,14 @@ public class AchievementsPanelNew extends JPanel {
 	JPanel puzzlePanel;
 	
 	private JLabel lblLevelName;
+	private JLabel lblHighScore;
+	private JLabel lblStars;
+	private JLabel lblMax;
+	private JLabel lblLocked;
+	private JLabel lblIsWon;
+	private JLabel lblNumSwaps;
+	private JLabel lblNumRemoves;
+	private JLabel lblNumShuffles;
 
 
 	public AchievementsPanelNew(Game game){
@@ -135,42 +143,68 @@ public class AchievementsPanelNew extends JPanel {
 		JLabel lblLevelInfo = new JLabel("Level Info");
 		lblLevelInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelInfo.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblLevelInfo.setBounds(35, 338, 335, 38);
+		lblLevelInfo.setBounds(35, 300, 335, 38);
 		add(lblLevelInfo);
 		
 		JLabel lblHighScoreHeader = new JLabel("High Score");
 		lblHighScoreHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHighScoreHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblHighScoreHeader.setBounds(381, 338, 206, 38);
+		lblHighScoreHeader.setBounds(391, 300, 206, 38);
 		add(lblHighScoreHeader);
 		
-		JLabel lblLevelName = new JLabel("Level Name: <Level Name>");
+		lblLevelName = new JLabel("");
+		lblLevelName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLevelName.setBounds(35, 387, 335, 14);
+		lblLevelName.setBounds(35, 349, 335, 26);
 		add(lblLevelName);
 		
-		JLabel lblHighScore = new JLabel("<High Score>");
-		lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblHighScore = new JLabel("");
+		lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 50));
 		lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHighScore.setBounds(381, 413, 206, 38);
+		lblHighScore.setBounds(391, 349, 206, 159);
 		add(lblHighScore);
 		
 		JLabel lblStarsHeader = new JLabel("Stars");
 		lblStarsHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStarsHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblStarsHeader.setBounds(597, 338, 143, 38);
+		lblStarsHeader.setBounds(607, 300, 143, 38);
 		add(lblStarsHeader);
 		
-		JLabel lblStars = new JLabel("<S/S>");
-		lblStars.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblStars = new JLabel("");
+		lblStars.setFont(new Font("Tahoma", Font.BOLD, 50));
 		lblStars.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStars.setBounds(597, 413, 143, 38);
+		lblStars.setBounds(607, 350, 143, 158);
 		add(lblStars);
 		
-		JLabel lblMaxMoves = new JLabel("Max Moves: <MaxMoves/maxTime>");
-		lblMaxMoves.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMaxMoves.setBounds(35, 412, 335, 14);
-		add(lblMaxMoves);
+		lblMax = new JLabel("");
+		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMax.setBounds(35, 449, 335, 14);
+		add(lblMax);
+		
+		lblLocked = new JLabel("");
+		lblLocked.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLocked.setBounds(35, 386, 335, 14);
+		add(lblLocked);
+		
+		lblIsWon = new JLabel("");
+		lblIsWon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIsWon.setBounds(35, 411, 335, 14);
+		add(lblIsWon);
+		
+		lblNumSwaps = new JLabel("");
+		lblNumSwaps.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumSwaps.setBounds(35, 487, 335, 14);
+		add(lblNumSwaps);
+		
+		lblNumRemoves = new JLabel("");
+		lblNumRemoves.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumRemoves.setBounds(35, 512, 335, 14);
+		add(lblNumRemoves);
+		
+		lblNumShuffles = new JLabel("");
+		lblNumShuffles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumShuffles.setBounds(35, 534, 335, 14);
+		add(lblNumShuffles);
 		
 		Level level = new Level(0);
 		
@@ -287,4 +321,37 @@ public class AchievementsPanelNew extends JPanel {
 	public JLabel getLevelNameLabel(){
 		return lblLevelName;
 	}
+	
+	public JLabel getHighScoreLabel(){
+		return lblHighScore;
+	}
+	
+	public JLabel getStarsLabel(){
+		return lblStars;
+	}
+	
+	public JLabel getMaxLabel(){
+		return lblMax;
+	}
+
+	public JLabel getLblLocked() {
+		return lblLocked;
+	}
+
+	public JLabel getLblIsWon() {
+		return lblIsWon;
+	}
+
+	public JLabel getLblNumSwaps() {
+		return lblNumSwaps;
+	}
+	
+	public JLabel getLblNumRemoves() {
+		return lblNumRemoves;
+	}
+	
+	public JLabel getLblNumShuffles() {
+		return lblNumShuffles;
+	}	
+	
 }
