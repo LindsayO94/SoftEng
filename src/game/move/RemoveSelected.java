@@ -47,7 +47,8 @@ public class RemoveSelected extends gameMove {
 					}
 				}
 			}
-			
+			int moves = board.getMovesRemaining();
+			board.setMovesRemaining(moves-1);
 			board.gravity(board);
 			
 			return true;
