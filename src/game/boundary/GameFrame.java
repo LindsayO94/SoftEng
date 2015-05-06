@@ -69,6 +69,10 @@ public class GameFrame extends JFrame {
 	public PlayGamePanel getPlayView() {
 		return playGame;
 	}
+	
+	public LevelSelectPanel getLevelSelectPanel(){
+		return levelSelect;
+	}
 
 	public long getSeed() {
 		return rand.nextLong();

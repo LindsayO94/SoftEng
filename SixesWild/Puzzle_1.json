@@ -1,0 +1,133 @@
+{
+  "levelNumber": 1,
+  "locked": false,
+  "isWon": true,
+  "highScore": 1120,
+  "type": "Puzzle",
+  "startingConfig": [
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL"
+    ]
+  ],
+  "frequency": [
+    10,
+    20,
+    10,
+    7,
+    5,
+    1
+  ],
+  "multiplierFrequency": [
+    10,
+    5,
+    1
+  ],
+  "numSwap": 0,
+  "numRemove": 0,
+  "numShuffle": 0,
+  "maxMoves": 20,
+  "maxTime": 0,
+  "numBaskets": 0,
+  "numActiveCells": 81,
+  "starScore": [
+    100,
+    500,
+    3000
+  ]
+}

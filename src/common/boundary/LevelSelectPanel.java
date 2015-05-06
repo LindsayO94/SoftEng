@@ -40,12 +40,23 @@ import javax.swing.ScrollPaneConstants;
 public class LevelSelectPanel extends JPanel {
 	HashMap<String, JButton> levelButtons = new HashMap<String, JButton>();
 	private JButton btnBackToMain;
+	JScrollPane puzzleScroll;
 	
 	boolean disableLockedLevels;
+<<<<<<< HEAD
 	private JPanel releasePanel;
 	private JPanel eliminationPanel;
 	private JPanel lightningPanel;
 	private JPanel puzzlePanel;
+=======
+	JScrollPane lightningScroll;
+	JScrollPane eliminationScroll;
+	JScrollPane releaseScroll;
+	JPanel releasePanel;
+	JPanel eliminationPanel;
+	JPanel lightningPanel;
+	JPanel puzzlePanel;
+>>>>>>> 4f7f960ddb45818914638ce1a283d7b60fc48a77
 
 	public LevelSelectPanel(boolean disableLockedLevels){
 		this.disableLockedLevels = disableLockedLevels;
@@ -56,17 +67,17 @@ public class LevelSelectPanel extends JPanel {
 		lblSixesWildLevel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSixesWildLevel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 32));
 		
-		JScrollPane puzzleScroll = new JScrollPane();
+		puzzleScroll = new JScrollPane();
 		puzzleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		puzzleScroll.setBounds(35, 89, 150, 366);
 		
-		JScrollPane lightningScroll = new JScrollPane();
+		lightningScroll = new JScrollPane();
 		lightningScroll.setBounds(220, 89, 150, 366);
 		
-		JScrollPane eliminationScroll = new JScrollPane();
+		eliminationScroll = new JScrollPane();
 		eliminationScroll.setBounds(405, 89, 150, 366);
 		
-		JScrollPane releaseScroll = new JScrollPane();
+		releaseScroll = new JScrollPane();
 		releaseScroll.setBounds(590, 89, 150, 366);
 		
 		releasePanel = new JPanel();
@@ -123,7 +134,10 @@ public class LevelSelectPanel extends JPanel {
 	}
 	
 	public void refresh() {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 4f7f960ddb45818914638ce1a283d7b60fc48a77
 		Level level = new Level(0);
 		
 		puzzlePanel.removeAll();

@@ -58,8 +58,6 @@ public class RemoveSelected extends gameMove {
 			int moves = board.getMovesRemaining();
 			board.setMovesRemaining(moves-1);
 			board.gravity(board);
-			
-			return true;
 		} else {
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
 			for (int i = 0; i < temp.size(); i++) {
@@ -75,9 +73,10 @@ public class RemoveSelected extends gameMove {
 					}
 				}
 			}
-			return true;
 		}
-
+		
+		board.checkWin();
+		return true;
 	}
 
 	@Override

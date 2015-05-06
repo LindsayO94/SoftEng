@@ -1,7 +1,10 @@
 package game.boundary;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics;
 
+import game.controller.BackToMainMenuController;
 import game.controller.CellSelectController;
 import game.controller.SelectController;
 import game.entities.Game;
@@ -29,6 +32,7 @@ import java.util.Timer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
+import javax.swing.JLayeredPane;
 
 @SuppressWarnings("serial")
 public class PlayGamePanel extends JPanel {
@@ -62,7 +66,11 @@ public class PlayGamePanel extends JPanel {
 	private JLabel lblMovesRemainingSwap;
 	private JLabel lblMovesRemainingRemove;
 	private JLabel lblMovesRemainingShuffle;
-	BoardPanel panel;
+	private JLayeredPane layeredPane;
+	private BoardPanel panel;
+	JPanel winPanel;
+	JButton mainMenuAfterCompleteBtn;
+	private JButton btnContinuePlaying;
 	
 	
 	public PlayGamePanel(Game game){	
@@ -103,11 +111,15 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemainingSwap = new JLabel("<SWAP>");
 		lblMovesRemainingRemove = new JLabel("<REMOVE>");
 		lblMovesRemainingShuffle = new JLabel("<SHUFFLE>");
+		
+		layeredPane = new JLayeredPane();
+		
 		panel = new BoardPanel(board);
+		panel.setLocation(0, 0);
+		panel.setSize(460, 460);
 		panel.addMouseMotionListener(new SelectController(panel, game, this));
 		panel.addMouseListener(new SelectController(panel, game, this));
-//		panel.addMouseMotionListener(new SelectController(panel, game));
-//		panel.addMouseListener(new SelectController(panel, game));
+		layeredPane.add(panel, new Integer(0));
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -115,37 +127,34 @@ public class PlayGamePanel extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblScore)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblScore)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(btnSwap, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnShuffle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(lblMovesRemainingRemove, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-										.addComponent(lblMovesRemainingSwap, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-										.addComponent(lblMovesRemainingShuffle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
-								.addComponent(lblMovesRemaining)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblTimeLeft)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(lblTimeLeftValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))))
-							.addGap(18))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnSwap, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnShuffle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnRemove, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblMovesRemainingRemove, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+								.addComponent(lblMovesRemainingSwap, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+								.addComponent(lblMovesRemainingShuffle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
+						.addComponent(lblMovesRemaining)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblTimeLeft)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblTimeLeftValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(labelStar1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(labelStar2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(labelStar3, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(mainMenuButton))
-					.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(lblPuzzleLevel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+						.addComponent(layeredPane, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
 					.addGap(93))
 		);
 		groupLayout.setVerticalGroup(
@@ -170,7 +179,7 @@ public class PlayGamePanel extends JPanel {
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblTimeLeft)
 								.addComponent(lblTimeLeftValue))
-							.addPreferredGap(ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnSwap, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblMovesRemainingSwap))
@@ -184,11 +193,64 @@ public class PlayGamePanel extends JPanel {
 								.addComponent(lblMovesRemainingShuffle, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 							.addGap(24))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
+							.addComponent(layeredPane, GroupLayout.PREFERRED_SIZE, 460, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
 		);
 		groupLayout.linkSize(SwingConstants.VERTICAL, new Component[] {labelStar1, labelStar2, labelStar3});
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {labelStar1, labelStar2, labelStar3});
+		
+		winPanel = new JPanel() {
+			@Override
+	        public void paintComponent(java.awt.Graphics g) {
+	            super.paintComponent(g);
+	            java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
+	            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.85f));
+	            if (isBackgroundSet()) {
+	                Color c = getBackground();
+	                g2.setColor(c);
+	                g.fillRect(0, 0, getWidth(), getHeight());
+	            }
+	        }
+		};
+		winPanel.setBounds(0, 0, 460, 460);
+		winPanel.setBackground(Color.WHITE);
+		winPanel.setOpaque(false);
+		winPanel.setVisible(false);
+		layeredPane.add(winPanel, new Integer(10));
+		
+		JLabel lblLevelComplete = new JLabel("Level Complete!");
+		lblLevelComplete.setFont(new Font("Lucida Grande", Font.PLAIN, 46));
+		
+		mainMenuAfterCompleteBtn = new JButton("Back to Main Menu");
+		
+		btnContinuePlaying = new JButton("Continue Playing");
+		GroupLayout gl_winPanel = new GroupLayout(winPanel);
+		gl_winPanel.setHorizontalGroup(
+			gl_winPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_winPanel.createSequentialGroup()
+					.addGroup(gl_winPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_winPanel.createSequentialGroup()
+							.addGap(51)
+							.addComponent(lblLevelComplete))
+						.addGroup(gl_winPanel.createSequentialGroup()
+							.addGap(149)
+							.addGroup(gl_winPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btnContinuePlaying, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(mainMenuAfterCompleteBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(51, Short.MAX_VALUE))
+		);
+		gl_winPanel.setVerticalGroup(
+			gl_winPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_winPanel.createSequentialGroup()
+					.addGap(91)
+					.addComponent(lblLevelComplete)
+					.addGap(57)
+					.addComponent(mainMenuAfterCompleteBtn)
+					.addGap(18)
+					.addComponent(btnContinuePlaying)
+					.addContainerGap(181, Short.MAX_VALUE))
+		);
+		winPanel.setLayout(gl_winPanel);
 		setLayout(groupLayout);
 		
 		refresh();
@@ -295,9 +357,11 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
+
+		winPanel.setVisible(board.shouldShowCompletedMessage());
+		btnContinuePlaying.setVisible(board.getLevel().getType().equals("Puzzle"));
 		
 		panel.refresh();
-		
 	}
 
 
@@ -308,6 +372,10 @@ public class PlayGamePanel extends JPanel {
 	
 	public JButton getBackButton() {
 		return mainMenuButton;
+	}
+	
+	public JButton getCompletedBackButton() {
+		return mainMenuAfterCompleteBtn;
 	}
 
 	public Board getBoard(){
@@ -337,6 +405,10 @@ public class PlayGamePanel extends JPanel {
 	
 	public JToggleButton getRemoveButton(){
 		return btnRemove; 
+	}
+	
+	public JButton getEnterEndlessButton() {
+		return btnContinuePlaying;
 	}
 	
 	public JButton getShuffleButton(){
