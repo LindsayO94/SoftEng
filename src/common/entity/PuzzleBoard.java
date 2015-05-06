@@ -33,5 +33,9 @@ public class PuzzleBoard extends Board {
 	public void setEndlessMode(boolean b) {
 		this.isEndlessMode = b;
 	}
+	
+	public boolean getEndlessMode(){
+		return isEndlessMode;
+	}
 
 }

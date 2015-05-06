@@ -7,6 +7,7 @@ import game.boundary.PlayGamePanel;
 import game.entities.Game;
 import common.entity.Board;
 import common.entity.Cell;
+import common.entity.PuzzleBoard;
 import common.entity.Tile;
 import common.entity.TileCell;
 
@@ -30,7 +31,18 @@ public class RemoveSelected extends gameMove {
 	public boolean doMove(Game game) {
 		if (valid(game)) {
 						
-			board.incrementScore(10*numCells*multiplier);
+			PuzzleBoard pboard;
+			if (board instanceof PuzzleBoard)
+			{
+				pboard = (PuzzleBoard)board;
+				if (!pboard.getEndlessMode()){
+					board.incrementScore(10*numCells*multiplier);
+				}
+			}else
+			{
+				board.incrementScore(10*numCells*multiplier);
+			}
+			
 			board.checkStars();
 
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
@@ -60,7 +72,16 @@ public class RemoveSelected extends gameMove {
 			}
 			//Then decrement the moves remaining because you completed a move
 			int moves = board.getMovesRemaining();
-			board.setMovesRemaining(moves-1);
+			if (board instanceof PuzzleBoard)
+			{
+				pboard = (PuzzleBoard)board;
+				if (!pboard.getEndlessMode()){
+					board.setMovesRemaining(moves-1);
+				}
+			}else
+			{
+				board.setMovesRemaining(moves-1);
+			}
 			board.gravity(board);
 		} else {
 			ArrayList<ArrayList<Cell>> temp = board.getCells();
