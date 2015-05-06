@@ -70,6 +70,7 @@ public class PlayGamePanel extends JPanel {
 	private BoardPanel panel;
 	JPanel winPanel;
 	JButton mainMenuAfterCompleteBtn;
+	private JButton btnContinuePlaying;
 	
 	
 	public PlayGamePanel(Game game){	
@@ -221,6 +222,8 @@ public class PlayGamePanel extends JPanel {
 		lblLevelComplete.setFont(new Font("Lucida Grande", Font.PLAIN, 46));
 		
 		mainMenuAfterCompleteBtn = new JButton("Back to Main Menu");
+		
+		btnContinuePlaying = new JButton("Continue Playing");
 		GroupLayout gl_winPanel = new GroupLayout(winPanel);
 		gl_winPanel.setHorizontalGroup(
 			gl_winPanel.createParallelGroup(Alignment.TRAILING)
@@ -231,7 +234,9 @@ public class PlayGamePanel extends JPanel {
 							.addComponent(lblLevelComplete))
 						.addGroup(gl_winPanel.createSequentialGroup()
 							.addGap(149)
-							.addComponent(mainMenuAfterCompleteBtn)))
+							.addGroup(gl_winPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btnContinuePlaying, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(mainMenuAfterCompleteBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		gl_winPanel.setVerticalGroup(
@@ -241,7 +246,9 @@ public class PlayGamePanel extends JPanel {
 					.addComponent(lblLevelComplete)
 					.addGap(57)
 					.addComponent(mainMenuAfterCompleteBtn)
-					.addContainerGap(228, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnContinuePlaying)
+					.addContainerGap(181, Short.MAX_VALUE))
 		);
 		winPanel.setLayout(gl_winPanel);
 		setLayout(groupLayout);
@@ -334,7 +341,8 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
 
-		winPanel.setVisible(board.isCompleted());
+		winPanel.setVisible(board.shouldShowCompletedMessage());
+		btnContinuePlaying.setVisible(board.getLevel().getType().equals("Puzzle"));
 		
 		panel.refresh();
 	}
@@ -380,6 +388,10 @@ public class PlayGamePanel extends JPanel {
 	
 	public JToggleButton getRemoveButton(){
 		return btnRemove; 
+	}
+	
+	public JButton getEnterEndlessButton() {
+		return btnContinuePlaying;
 	}
 	
 	public JButton getShuffleButton(){

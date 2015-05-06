@@ -43,6 +43,7 @@ public class GameFrame extends JFrame {
 		
 		playGame.getBackButton().addMouseListener(new ExitLevelController(this, playGame));
 		playGame.getCompletedBackButton().addMouseListener(new ExitLevelController(this, playGame));
+		playGame.getEnterEndlessButton().addMouseListener(new EnterEndlessModeController(this));
 		playGame.getSwapButton().addMouseListener(new SwapController(this));
 		playGame.getRemoveButton().addMouseListener(new RemoveController(this)); 
 		playGame.getShuffleButton().addMouseListener(new ShuffleController(this));

@@ -329,7 +329,7 @@ public abstract class Board {
 	}
 
 	private void onCompleteAction() {
-		
+		// Designed to be overridden
 	}
 
 	private void onWinAction() {
@@ -352,6 +352,11 @@ public abstract class Board {
 		} catch (IOException e) {
 			System.out.println("Couldn't update next level to unlocked");
 		}
+	}
+
+	public boolean shouldShowCompletedMessage() {
+		// On most levels this is always isCompleted, but puzzle overrides it
+		return this.isCompleted();
 	}
 
 }
