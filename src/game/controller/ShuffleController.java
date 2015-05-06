@@ -72,6 +72,9 @@ public class ShuffleController implements MouseListener{
 			gf.getPlayView().refresh();
 		}
 		
+		gf.getPlayView().getBoard().checkWin();
+		gf.getPlayView().getBoard().moveMade(gf.getPlayView());
+		
 		return;
 		
 		

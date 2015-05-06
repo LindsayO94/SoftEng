@@ -315,6 +315,9 @@ public class EditPanel extends JPanel {
 			shuffleField.setEnabled(false);
 			removeField.setEnabled(false);
 			swapField.setEnabled(false);
+			shuffleField.setText("0");
+			removeField.setText("0");
+			swapField.setText("0");
 			getTimeLimitTextField().setEnabled(false);
 			maxMovesField.setEnabled(true);
 			probabilitieField_6.setText("0");
