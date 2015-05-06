@@ -271,9 +271,23 @@ public class TestMoves{
 //		
 //		assertEquals(editor.getLevel().getType(),"Release" );
 		
+		GameTypeMove move4 = new GameTypeMove("Lightning", "Release", frame.getEditor());
+		
+		move4.doMove(editor);
+		
 	}
 
+	@Test
+	public void testChangeCellTypeMove(){
+		ChangeCellTypeMove move = new ChangeCellTypeMove(editor.getBoard().getCells().get(0).get(0), editor.getBoard());
+		
+		move.doMove(editor);
+		
+		move.undo(editor);
+		
+	}
 
+	
 	
 	
 
