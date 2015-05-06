@@ -53,13 +53,7 @@ public class LevelSaver {
 	}
 	
 	public static File getSaveLocation() {
-		File documentsPath;
-		if (System.getProperty("os.name").equals("Mac OS X")) {
-			documentsPath = new File( System.getProperty("user.home")+File.separator+"Documents" );
-		} else {
-			documentsPath = new JFileChooser().getFileSystemView().getDefaultDirectory();
-		}
-		File sixesWildPath = new File(documentsPath, "SixesWild");
+		File sixesWildPath = new File(".", "SixesWild");
 		sixesWildPath.mkdir();
 		
 		return sixesWildPath;

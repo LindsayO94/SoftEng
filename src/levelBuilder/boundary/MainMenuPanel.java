@@ -35,6 +35,10 @@ public class MainMenuPanel extends JPanel {
 	private JButton newLvlButton;
 	private JButton loadButton;
 	
+	/**
+	 * MainMenuPanel: Constructor for the Main Menu Panel
+	 *
+	 */
 	public MainMenuPanel(){
 		setBackground(new Color(255, 204, 102));
 		
@@ -85,6 +89,9 @@ public class MainMenuPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * dispose: Method which cleans the main menu panel.
+	 */
 	public void dispose(){
 		newLvlButton = null;
 		loadButton = null;

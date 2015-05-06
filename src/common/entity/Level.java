@@ -39,10 +39,6 @@ public class Level {
 	int frequency[] = new int[6];
 	int multiplierFrequency[] = new int[3];
 	
-	boolean swapAllowed;
-	boolean removeAllowed;
-	boolean shuffleAllowed;
-	
 	//integers representing the number of each move type a player is given at the start of a level
 	int numSwap;
 	int numRemove;
@@ -60,8 +56,6 @@ public class Level {
 	//array for star achieving thresholds
 	int starScore[] = new int[3];
 
-	
-	
 	public Level(String type, long seed) {
 		if (!Arrays.asList(Level.allowedTypes).contains(type)) {
 			throw new IllegalArgumentException("Illegal level type");
@@ -73,46 +67,48 @@ public class Level {
 		
 		this.rand = new Random(seed);
 	
-		// Temporary - For now, all tiles are active
+		// Default to all active
 		this.numActiveCells = 81;
 		
-		// Temporary - For now, all frequencies are 1
-		for (int i = 0; i < frequency.length; i++) {
-			frequency[i] = 1;
-		}
+		// Default to a decent distribution
+		frequency[0] = 10;
+		frequency[1] = 10;
+		frequency[2] = 10;
+		frequency[3] = 10;
+		frequency[4] = 10;
+		frequency[5] = 5;
+		
 		
 		if (type.equals("Release")) {
 			frequency[5] = 0;
 		}
 		
-		// Temporary - For now, all multiplierFrequency are 1
-		for (int i = 0; i < multiplierFrequency.length; i++) {
-			multiplierFrequency[i] = 1;
-		}
+		// Default to a decent distribution
+		multiplierFrequency[0] = 10;
+		multiplierFrequency[1] = 5;
+		multiplierFrequency[2] = 1;
 		
-		
-		
-		
-		
-		// Temporary - For now, all cells are tile cells
-		//will have to initialize numActiveTiles for elimination mode around here
+		// Default to all cells are tile cells
 		for (int i = 0; i < startingConfig.length; i++) {
 			for (int j = 0; j < startingConfig[i].length; j++) {
 				startingConfig[i][j] = Cell.Type.TILE_CELL;  
 			}
 		}
 		
-		// Temporary - For now, all starScores are 1
-		for (int i = 0; i < starScore.length; i++) {
-			starScore[i] = 1;
-		}
+		// Default to a decent distribution
+		starScore[0] = 100;
+		starScore[1] = 500;
+		starScore[2] = 1000;
 		
-		//Temporary - for now 3 of each move is allowed
+		// Default to 3 of each move is allowed
 		numShuffle = 3;
 		numSwap = 3;
 		numRemove = 3;
 		
-		
+		// Default to 20 moves
+		maxMoves = 20;
+		// Default to 2 minutes
+		maxTime = 120;
 	}
 
 	public Level(long seed) {
@@ -367,5 +363,9 @@ public class Level {
 	
 	public void setLocked(boolean locked){
 		this.locked = locked;
+	}
+
+	public void setIsWon(boolean b) {
+		this.isWon = b;
 	}
 }

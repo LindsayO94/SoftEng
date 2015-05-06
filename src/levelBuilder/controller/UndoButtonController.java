@@ -7,11 +7,20 @@ import levelBuilder.boundary.EditPanel;
 import levelBuilder.entity.LevelBuilder;
 import common.boundary.BoardPanel;
 
+/**
+ * Controller Class which coordinates the undo capabilities of the EditPanel
+ * @author August
+ */
 public class UndoButtonController implements MouseListener{
 
 	EditPanel editPanel;
 	LevelBuilder editor;
 	
+	/**
+	 * Class Constructor
+	 * @param editPanel: the LevelBuilderFrame's editPanel
+	 * @param editor: the top level entity LevelBuilder
+	 */
 	public UndoButtonController(EditPanel editPanel, LevelBuilder editor){
 		this.editPanel = editPanel;
 		this.editor = editor;
@@ -25,6 +34,10 @@ public class UndoButtonController implements MouseListener{
 		
 	}
 
+	/**
+	 * On mouse pressed undo the most recent edit on the undo stack and refresh the edit Panel
+	 *  @param e: the mouse event in question
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		editor.undoMove();

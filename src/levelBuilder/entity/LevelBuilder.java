@@ -9,6 +9,10 @@ import levelBuilder.move.MultiplierFrequencyMove;
 import common.entity.Board;
 import common.entity.Level;
 
+/**
+ * Top Level Entity Class for the level builder, this class is responsible for maintaining the current level and board that are being edited and the users undo history
+ * @author August Beers
+ */
 public class LevelBuilder {
 	private Level level;
 	private Board board;
@@ -45,6 +49,7 @@ public class LevelBuilder {
 	}
 	
 	/**
+	 * Courtesy of George T. Heineman (heineman@cs.wpi.edu)
 	 * Returns most recent move and removes it from list of Moves.
 	 * <p>
 	 * If there are no moves present in this game, null is returned.
@@ -65,6 +70,7 @@ public class LevelBuilder {
 	}
 
 	/**
+	 * Courtesy of George T. Heineman (heineman@cs.wpi.edu)
 	 * Pushes given move onto our stack of existing moves.
 	 * 
 	 * @return boolean
@@ -78,6 +84,7 @@ public class LevelBuilder {
 	}
 
 	/**
+	 * Courtesy of George T. Heineman (heineman@cs.wpi.edu)
 	 * six is wild stores all moves and enables them to be undone. Once a
 	 * request to undo is received, this takes care of it.
 	 * 
@@ -107,6 +114,9 @@ public class LevelBuilder {
 		return status;
 	}
 	
+	/**
+	 * Cleans up the LevelBuilder object
+	 */
 	public void dispose(){
 		
 		
