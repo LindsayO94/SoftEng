@@ -1,24 +1,14 @@
 package common.boundary;
 
-import game.controller.CellSelectController;
-
 import javax.swing.JPanel;
 
 import common.entity.BasketCell;
 import common.entity.Board;
 import common.entity.InactiveCell;
-import common.entity.Tile;
 import common.entity.TileCell;
 
 import java.awt.GridLayout;
-import java.util.Random;
-
-import levelBuilder.controller.ChangeCellTypeController;
-import levelBuilder.entity.LevelBuilder;
 import common.entity.Cell;
-import common.entity.TileCell;
-
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
 public class BoardPanel extends JPanel {

@@ -1,8 +1,8 @@
 {
   "levelNumber": 1,
   "locked": false,
-  "isWon": true,
-  "highScore": 480,
+  "isWon": false,
+  "highScore": 0,
   "type": "Lightning",
   "startingConfig": [
     [

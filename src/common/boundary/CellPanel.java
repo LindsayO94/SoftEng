@@ -1,14 +1,10 @@
 package common.boundary;
 
-import game.controller.CellSelectController;
-import game.controller.SelectController;
-
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import common.entity.Cell;
-import common.entity.Tile;
 
 public abstract class CellPanel extends JPanel {
 	final Cell cellModel;

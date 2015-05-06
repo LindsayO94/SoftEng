@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import game.controller.BackToMainMenuController;
-import game.controller.CellSelectController;
 import game.controller.SelectController;
 import game.entities.Game;
 

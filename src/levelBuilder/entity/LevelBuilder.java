@@ -5,7 +5,6 @@ import java.util.Random;
 
 import levelBuilder.boundary.LevelBuilderFrame;
 import levelBuilder.move.Move;
-import levelBuilder.move.MultiplierFrequencyMove;
 import common.entity.Board;
 import common.entity.Level;
 
