@@ -44,21 +44,24 @@ import javax.swing.ScrollPaneConstants;
 public class AchievementsPanelNew extends JPanel {
 	HashMap<String, JButton> levelButtons = new HashMap<String, JButton>();
 	private JButton btnBackToMain;
-	JScrollPane puzzleScroll;
 	
 	boolean disableLockedLevels;
 
+	JScrollPane puzzleScroll;
 	JScrollPane lightningScroll;
 	JScrollPane eliminationScroll;
 	JScrollPane releaseScroll;
+	
 	JPanel releasePanel;
 	JPanel eliminationPanel;
 	JPanel lightningPanel;
 	JPanel puzzlePanel;
+	
+	private JLabel lblLevelName;
 
 
-	public AchievementsPanelNew(Game game){
-		this.disableLockedLevels = disableLockedLevels;
+public AchievementsPanelNew(Game game){
+		//this.disableLockedLevels = disableLockedLevels;
 		setBackground(new Color(255, 204, 102));
 		
 		JLabel lblSixesWildLevel = new JLabel("Achievements!");
@@ -129,38 +132,45 @@ public class AchievementsPanelNew extends JPanel {
 		btnBackToMain.setBounds(590, 519, 150, 29);
 		add(btnBackToMain);
 		
-		JLabel lblLevel = new JLabel("Level Info");
-		lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLevel.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblLevel.setBounds(35, 338, 335, 38);
-		add(lblLevel);
+		JLabel lblLevelInfo = new JLabel("Level Info");
+		lblLevelInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLevelInfo.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblLevelInfo.setBounds(35, 338, 335, 38);
+		add(lblLevelInfo);
 		
-		JLabel lblHighScore = new JLabel("High Score");
+		JLabel lblHighScoreHeader = new JLabel("High Score");
+		lblHighScoreHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHighScoreHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblHighScoreHeader.setBounds(381, 338, 206, 38);
+		add(lblHighScoreHeader);
+		
+		JLabel lblLevelName = new JLabel("Level Name: <Level Name>");
+		lblLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLevelName.setBounds(35, 387, 335, 14);
+		add(lblLevelName);
+		
+		JLabel lblHighScore = new JLabel("<High Score>");
+		lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblHighScore.setBounds(381, 338, 206, 38);
+		lblHighScore.setBounds(381, 413, 206, 38);
 		add(lblHighScore);
 		
-		JLabel label = new JLabel("<Level Name>");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(35, 413, 150, 14);
-		add(label);
+		JLabel lblStarsHeader = new JLabel("Stars");
+		lblStarsHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStarsHeader.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblStarsHeader.setBounds(597, 338, 143, 38);
+		add(lblStarsHeader);
 		
-		JLabel label_1 = new JLabel("<High Score>");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(381, 413, 206, 14);
-		add(label_1);
-		
-		JLabel lblStars = new JLabel("Stars");
+		JLabel lblStars = new JLabel("<S/S>");
+		lblStars.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblStars.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStars.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblStars.setBounds(597, 338, 143, 38);
+		lblStars.setBounds(597, 413, 143, 38);
 		add(lblStars);
 		
-		JLabel label_2 = new JLabel("<S/S>");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(597, 413, 143, 14);
-		add(label_2);
+		JLabel lblMaxMoves = new JLabel("Max Moves: <MaxMoves/maxTime>");
+		lblMaxMoves.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMaxMoves.setBounds(35, 412, 335, 14);
+		add(lblMaxMoves);
 		
 Level level = new Level(0);
 		
@@ -256,7 +266,10 @@ Level level = new Level(0);
 				}
 				getLevelButton(filename).setEnabled(!level.getLocked());
 			}
+			
 		}
+		
+		
 	}
 
 	public HashMap<String, JButton> getLevelButtons() {
@@ -269,5 +282,9 @@ Level level = new Level(0);
 	
 	public JButton getMainMenuButton() {
 		return btnBackToMain;
+	}
+	
+	public JLabel getLevelNameLabel(){
+		return lblLevelName;
 	}
 }
