@@ -126,9 +126,10 @@ public class LevelSelectPanel extends JPanel {
 		refresh();
 	}
 	
-	public void refresh(){
+	public void refresh() {
 		Level level = new Level(0);
 		
+		puzzlePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -147,6 +148,7 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		lightningPanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Lightning")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -165,6 +167,7 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		eliminationPanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Elimination")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -183,6 +186,7 @@ public class LevelSelectPanel extends JPanel {
 			levelButtons.put(filename, btnNewButton);
 		}
 		
+		releasePanel.removeAll();
 		for (String filename : LevelSaver.getLevelFilenames("Release")) {
 			JButton btnNewButton = new JButton(LevelSaver.filenameToLevelName(filename));
 			btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
