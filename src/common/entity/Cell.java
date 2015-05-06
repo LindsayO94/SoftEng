@@ -26,7 +26,8 @@ public abstract class Cell {
 		return row;
 	}
 
-	public abstract Type getType();
+	public abstract Type getType()
+	;
 
 	/**
 	 * Returns true if this cell neighbors the given cell (no diagonals), false

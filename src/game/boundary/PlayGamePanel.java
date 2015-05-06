@@ -97,7 +97,7 @@ public class PlayGamePanel extends JPanel {
 		
 		btnSwap = new JToggleButton("Swap");
 		btnRemove = new JToggleButton("Remove");
-		btnShuffle = new JButton("Shuffle"); 
+		btnShuffle = new JButton("Shuffle");
 		
 		//Special Moves
 		lblMovesRemainingSwap = new JLabel("<SWAP>");
@@ -209,9 +209,11 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeft.setVisible(true);
 		
 		//If it's not lightning, hide the time stuff. TODO Probably should go in constructor
-		System.out.println("Accessed board type is: " + board.getLevel().getType());
-		System.out.println("Accessed board type equals Lightning:");
-		System.out.println(board.getLevel().getType().equals("Lightning"));
+		
+		//Just some testing printlns:
+		//System.out.println("Accessed board type is: " + board.getLevel().getType());
+		//System.out.println("Accessed board type equals Lightning:");
+		//System.out.println(board.getLevel().getType().equals("Lightning"));
 		
 		lblMovesRemaining.setVisible(false);
 		
@@ -246,17 +248,32 @@ public class PlayGamePanel extends JPanel {
 		lblMovesRemainingShuffle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMovesRemainingShuffle.setFont(new Font("Tahoma", Font.BOLD, 22));
 		
+		/* There was an issue where selecting a special move then quitting the
+		 * level would keep the button selected when you loaded a different level.
+		 * Small inconvenience if it didn't also re-enable the other buttons.
+		 * Below fixes this 
+		 */
+		btnSwap.setSelected(false);
+		btnRemove.setSelected(false);
+		
 		//if any of the special moves are out of moves, disable the buttons
+		//Otherwise, make sure they are enabled
 		if (board.getSwapsRemaining() == 0){
 			btnSwap.setEnabled(false);
+		} else {
+			btnSwap.setEnabled(true);
 		}
 		
 		if (board.getRemovesRemaining() == 0){
 			btnRemove.setEnabled(false);
+		} else {
+			btnRemove.setEnabled(true);
 		}
 		
 		if (board.getShufflesRemaining() == 0){
 			btnShuffle.setEnabled(false);
+		} else {
+			btnShuffle.setEnabled(true);
 		}
 		
 		if (board.getStar1Active()){
