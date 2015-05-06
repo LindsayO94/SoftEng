@@ -293,13 +293,13 @@ public abstract class Board {
 	
 	
 	public void checkStars(){
-		if (score > getLevel().getStar1Score()){
+		if (score >= getLevel().getStar1Score()){
 			star1Active = true;
 		}
-		if (score > getLevel().getStar2Score()){
+		if (score >= getLevel().getStar2Score()){
 			star2Active = true;
 		}
-		if (score > getLevel().getStar3Score()){
+		if (score >= getLevel().getStar3Score()){
 			star3Active = true;
 		}
 	}
