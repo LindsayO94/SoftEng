@@ -22,6 +22,24 @@ public class BoardTest {
 		assertEquals(l, b.level);
 	}
 	
+	@Test
+	public void testMakeLightningBoard() {
+		Level l = new Level("Lightning", 13);
+		Board b = Board.makeBoard(l);
+		
+		assertTrue(b instanceof LightningBoard);
+		assertEquals(l, b.level);
+	}
+	
+	@Test
+	public void testMakeEliminationBoard() {
+		Level l = new Level("Elimination", 13);
+		Board b = Board.makeBoard(l);
+		
+		assertTrue(b instanceof EliminationBoard);
+		assertEquals(l, b.level);
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testMakeBoardUnknownType() {
 		Level l = new Level("EagleWing", 13);
