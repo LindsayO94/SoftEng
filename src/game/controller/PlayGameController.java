@@ -22,17 +22,23 @@ public class PlayGameController implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "Play Game");
-		
+		Level newLevel = new Level("Puzzle", 0);
+		newLevel.setLocked(true);
 		try {
-			gf.setBoard(Board.makeBoard( LevelSaver.levelFromJsonFile(filename, gf.getSeed()) ));
-			gf.getPlayView().refresh();
+			newLevel = LevelSaver.levelFromJsonFile(filename, gf.getSeed());
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(gf,
 				    e1.getMessage(),
 				    "Error loading file",
 				    JOptionPane.ERROR_MESSAGE);
+		}
+		if (!newLevel.getLocked())
+		{
+			CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
+			cardLayout.show(gf.getContentPane(), "Play Game");
+			
+			gf.setBoard(Board.makeBoard( newLevel ));
+			gf.getPlayView().refresh();
 		}
 	}
 

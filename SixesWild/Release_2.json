@@ -54,63 +54,63 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "BASKET_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "BASKET_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "BASKET_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
       "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
       "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL"
+      "BASKET_CELL"
     ]
   ],
   "frequency": [
+    20,
     10,
     10,
     10,
-    10,
-    10,
+    3,
     0
   ],
   "multiplierFrequency": [

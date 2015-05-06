@@ -1,67 +1,66 @@
 {
   "levelNumber": 2,
   "locked": true,
-  "isWon": true,
-  "highScore": 2070,
-  "type": "Puzzle",
+  "isWon": false,
+  "highScore": 0,
+  "type": "Lightning",
   "startingConfig": [
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
@@ -69,10 +68,10 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
@@ -80,7 +79,8 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
       "TILE_CELL",
@@ -108,26 +108,26 @@
   "frequency": [
     10,
     10,
-    7,
-    7,
-    5,
-    5
+    10,
+    10,
+    10,
+    20
   ],
   "multiplierFrequency": [
     10,
-    10,
-    3
+    5,
+    1
   ],
-  "numSwap": 1,
-  "numRemove": 1,
-  "numShuffle": 1,
-  "maxMoves": 30,
-  "maxTime": 120,
+  "numSwap": 0,
+  "numRemove": 0,
+  "numShuffle": 0,
+  "maxMoves": 20,
+  "maxTime": 20,
   "numBaskets": 0,
   "numActiveCells": 81,
   "starScore": [
-    500,
-    1000,
-    5000
+    50,
+    200,
+    500
   ]
 }
