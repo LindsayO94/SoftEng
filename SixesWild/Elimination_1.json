@@ -106,12 +106,12 @@
     ]
   ],
   "frequency": [
-    10,
-    10,
-    10,
-    10,
-    10,
-    5
+    5,
+    5,
+    4,
+    3,
+    2,
+    1
   ],
   "multiplierFrequency": [
     10,
@@ -121,7 +121,7 @@
   "numSwap": 3,
   "numRemove": 3,
   "numShuffle": 3,
-  "maxMoves": 20,
+  "maxMoves": 30,
   "maxTime": 120,
   "numBaskets": 0,
   "numActiveCells": 81,

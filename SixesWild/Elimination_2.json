@@ -1,96 +1,96 @@
 {
   "levelNumber": 2,
   "locked": true,
-  "isWon": true,
-  "highScore": 2070,
-  "type": "Puzzle",
+  "isWon": false,
+  "highScore": 0,
+  "type": "Elimination",
   "startingConfig": [
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
+      "TILE_CELL",
       "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
       "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
-    ],
-    [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "INACTIVE_CELL",
-      "INACTIVE_CELL"
-    ],
-    [
-      "INACTIVE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "INACTIVE_CELL",
-      "INACTIVE_CELL"
-    ],
-    [
-      "INACTIVE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "INACTIVE_CELL"
-    ],
-    [
-      "INACTIVE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "INACTIVE_CELL"
+      "TILE_CELL"
     ],
     [
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
+      "INACTIVE_CELL",
       "TILE_CELL"
     ],
     [
@@ -108,18 +108,18 @@
   "frequency": [
     10,
     10,
-    7,
-    7,
-    5,
+    10,
+    10,
+    10,
     5
   ],
   "multiplierFrequency": [
     10,
-    10,
-    3
+    5,
+    1
   ],
-  "numSwap": 1,
-  "numRemove": 1,
+  "numSwap": 0,
+  "numRemove": 5,
   "numShuffle": 1,
   "maxMoves": 30,
   "maxTime": 120,
@@ -128,6 +128,6 @@
   "starScore": [
     500,
     1000,
-    5000
+    2000
   ]
 }
