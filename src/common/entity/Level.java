@@ -365,6 +365,10 @@ public class Level {
 		this.locked = locked;
 	}
 
+	public boolean getIsWon(){
+		return isWon;
+	}
+	
 	public void setIsWon(boolean b) {
 		this.isWon = b;
 	}
