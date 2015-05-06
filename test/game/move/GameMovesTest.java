@@ -35,10 +35,10 @@ public class GameMovesTest {
 		gf.setBoard(Board.makeBoard( new Level("Puzzle", 0) ));
 		
 		TestUtil.displayView(gf.getPlayView(), 600,800);
-		ArrayList<Cell> cells = new ArrayList<Cell>();
+		ArrayList<TileCell> cells = new ArrayList<TileCell>();
 		Cell oldCell = gf.getPlayView().getBoard().getCells().get(3).get(3);
-		cells.add(gf.getPlayView().getBoard().getCells().get(1).get(2));
-		cells.add(gf.getPlayView().getBoard().getCells().get(1).get(3));
+		cells.add((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(2));
+		cells.add((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(3));
 		
 		((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(2)).setSelected();
 		((TileCell)gf.getPlayView().getBoard().getCells().get(1).get(2)).setSelected();
