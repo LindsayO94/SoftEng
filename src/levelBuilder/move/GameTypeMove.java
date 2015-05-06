@@ -44,6 +44,9 @@ public class GameTypeMove extends Move {
 				options.getShuffle().setEnabled(false);
 				options.getRemove().setEnabled(false);
 				options.getSwap().setEnabled(false);
+				options.getShuffle().setText("0");
+				options.getRemove().setText("0");
+				options.getSwap().setText("0");
 				options.getSixProbabilityField().setText("0");
 				options.getSixProbabilityField().setEnabled(false);
 			}

@@ -270,12 +270,7 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeftValue.setVisible(true);
 		lblTimeLeft.setVisible(true);
 		
-		//If it's not lightning, hide the time stuff. TODO Probably should go in constructor
 		
-		//Just some testing printlns:
-		//System.out.println("Accessed board type is: " + board.getLevel().getType());
-		//System.out.println("Accessed board type equals Lightning:");
-		//System.out.println(board.getLevel().getType().equals("Lightning"));
 		
 		lblMovesRemaining.setVisible(false);
 		
@@ -340,12 +335,18 @@ public class PlayGamePanel extends JPanel {
 		
 		if (board.getStar1Active()){
 			labelStar1.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar1.setIcon(new ImageIcon(inactivePath));
 		}
 		if (board.getStar2Active()){
 			labelStar2.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar2.setIcon(new ImageIcon(inactivePath));
 		}
 		if (board.getStar3Active()){
 			labelStar3.setIcon(new ImageIcon(activePath));
+		}else{
+			labelStar3.setIcon(new ImageIcon(inactivePath));
 		}
 		
 		
@@ -356,6 +357,7 @@ public class PlayGamePanel extends JPanel {
 		lblTimeLeftValue.setText("" + board.getTimeLeft());
 		lblTimeLeftValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimeLeftValue.setFont(new Font("Tahoma", Font.BOLD, 22));
+		
 		
 
 		winPanel.setVisible(board.shouldShowCompletedMessage());
