@@ -98,7 +98,7 @@ public class LevelBuilderFrame extends JFrame {
 	 * showLevelSelect: Method which constructs a LevelSelectPanel and then changes the frame to display it.
 	 */
 	public void showLevelSelect() {
-		LevelSelectPanel levelSelect = new LevelSelectPanel(true);
+		LevelSelectPanel levelSelect = new LevelSelectPanel(false);
 		
 		levelSelect.getMainMenuButton().addMouseListener(new BackToMainBuilderMenuController(this));
 		for (String filename : levelSelect.getLevelButtons().keySet()) {
