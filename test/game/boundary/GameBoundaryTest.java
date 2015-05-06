@@ -11,6 +11,13 @@ import org.junit.Test;
 import common.entity.Board;
 import common.entity.Level;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
+
 public class GameBoundaryTest {
 
 	@Test

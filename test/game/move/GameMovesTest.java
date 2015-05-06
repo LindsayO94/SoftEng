@@ -16,6 +16,12 @@ import common.entity.Cell;
 import common.entity.Level;
 import common.entity.TileCell;
 
+/**
+ * 
+ * @author Lindsay
+ *
+ */
+
 public class GameMovesTest {
 	
 	@Test
