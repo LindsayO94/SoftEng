@@ -40,8 +40,16 @@ import javax.swing.ScrollPaneConstants;
 public class LevelSelectPanel extends JPanel {
 	HashMap<String, JButton> levelButtons = new HashMap<String, JButton>();
 	private JButton btnBackToMain;
+	JScrollPane puzzleScroll;
 	
 	boolean disableLockedLevels;
+	JScrollPane lightningScroll;
+	JScrollPane eliminationScroll;
+	JScrollPane releaseScroll;
+	JPanel releasePanel;
+	JPanel eliminationPanel;
+	JPanel lightningPanel;
+	JPanel puzzlePanel;
 
 	public LevelSelectPanel(boolean disableLockedLevels){
 		this.disableLockedLevels = disableLockedLevels;
@@ -52,33 +60,33 @@ public class LevelSelectPanel extends JPanel {
 		lblSixesWildLevel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSixesWildLevel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 32));
 		
-		JScrollPane puzzleScroll = new JScrollPane();
+		puzzleScroll = new JScrollPane();
 		puzzleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		puzzleScroll.setBounds(35, 89, 150, 366);
 		
-		JScrollPane lightningScroll = new JScrollPane();
+		lightningScroll = new JScrollPane();
 		lightningScroll.setBounds(220, 89, 150, 366);
 		
-		JScrollPane eliminationScroll = new JScrollPane();
+		eliminationScroll = new JScrollPane();
 		eliminationScroll.setBounds(405, 89, 150, 366);
 		
-		JScrollPane releaseScroll = new JScrollPane();
+		releaseScroll = new JScrollPane();
 		releaseScroll.setBounds(590, 89, 150, 366);
 		
-		JPanel releasePanel = new JPanel();
+		releasePanel = new JPanel();
 		releaseScroll.setViewportView(releasePanel);
 		releasePanel.setLayout(new BoxLayout(releasePanel, BoxLayout.Y_AXIS));
 		
-		JPanel eliminationPanel = new JPanel();
+		eliminationPanel = new JPanel();
 		eliminationScroll.setViewportView(eliminationPanel);
 		eliminationPanel.setLayout(new BoxLayout(eliminationPanel, BoxLayout.Y_AXIS));
 		
-		JPanel lightningPanel = new JPanel();
+		lightningPanel = new JPanel();
 		lightningScroll.setViewportView(lightningPanel);
 		lightningPanel.setLayout(new BoxLayout(lightningPanel, BoxLayout.Y_AXIS));
 		setLayout(null);
 		
-		JPanel puzzlePanel = new JPanel();
+		puzzlePanel = new JPanel();
 		puzzleScroll.setViewportView(puzzlePanel);
 		puzzlePanel.setLayout(new BoxLayout(puzzlePanel, BoxLayout.Y_AXIS));
 		add(puzzleScroll);
@@ -115,6 +123,10 @@ public class LevelSelectPanel extends JPanel {
 		btnBackToMain.setBounds(622, 5, 150, 29);
 		add(btnBackToMain);
 		
+		refresh();
+	}
+	
+	public void refresh(){
 		Level level = new Level(0);
 		
 		for (String filename : LevelSaver.getLevelFilenames("Puzzle")) {

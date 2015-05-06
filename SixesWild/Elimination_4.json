@@ -1,0 +1,133 @@
+{
+  "levelNumber": 4,
+  "locked": false,
+  "isWon": false,
+  "highScore": 0,
+  "type": "Elimination",
+  "startingConfig": [
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ]
+  ],
+  "frequency": [
+    15,
+    15,
+    10,
+    10,
+    10,
+    5
+  ],
+  "multiplierFrequency": [
+    5,
+    7,
+    2
+  ],
+  "numSwap": 3,
+  "numRemove": 3,
+  "numShuffle": 3,
+  "maxMoves": 50,
+  "maxTime": 120,
+  "numBaskets": 0,
+  "numActiveCells": 81,
+  "starScore": [
+    1000,
+    2000,
+    3000
+  ]
+}

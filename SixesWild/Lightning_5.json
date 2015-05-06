@@ -1,0 +1,133 @@
+{
+  "levelNumber": 5,
+  "locked": false,
+  "isWon": false,
+  "highScore": 0,
+  "type": "Lightning",
+  "startingConfig": [
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ]
+  ],
+  "frequency": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    5
+  ],
+  "multiplierFrequency": [
+    10,
+    5,
+    1
+  ],
+  "numSwap": 1,
+  "numRemove": 1,
+  "numShuffle": 1,
+  "maxMoves": 20,
+  "maxTime": 40,
+  "numBaskets": 0,
+  "numActiveCells": 81,
+  "starScore": [
+    100,
+    200,
+    400
+  ]
+}
