@@ -28,7 +28,7 @@ public class AchievementsSwitchLevelController implements MouseListener{
 			return;
 		}
 
-		gf.getAchievementsPanel().getLevelNameLabel().setText(level.filename());
+		gf.getAchievementsPanel().getLevelNameLabel().setText(level.getType()+ " " + level.getNumber());
 		
 		
 		
