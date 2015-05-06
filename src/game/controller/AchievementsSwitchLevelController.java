@@ -5,16 +5,17 @@ import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class GameAchievementsController implements MouseListener {
+public class AchievementsSwitchLevelController implements MouseListener{
 	GameFrame gf;
+	String fileName;
 	
-	public GameAchievementsController(GameFrame gf){
+	public AchievementsSwitchLevelController(GameFrame gf, String fileName){
 		this.gf = gf;
+		this.fileName = fileName;
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		CardLayout cardLayout = (CardLayout) gf.getContentPane().getLayout();
-		cardLayout.show(gf.getContentPane(), "AchievementsNew");
+		
 	}
 
 	public void mousePressed(MouseEvent e) {

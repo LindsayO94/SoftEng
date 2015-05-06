@@ -1,6 +1,6 @@
 {
   "levelNumber": 4,
-  "locked": true,
+  "locked": false,
   "isWon": false,
   "highScore": 0,
   "type": "Puzzle",

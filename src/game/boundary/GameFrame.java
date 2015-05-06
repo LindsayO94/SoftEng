@@ -26,12 +26,15 @@ public class GameFrame extends JFrame {
 	LevelSelectPanel levelSelect = new LevelSelectPanel(true);
 	MainMenuPanel mainMenu = new MainMenuPanel();
 	SplashPanel splash = new SplashPanel();
-	Random rand = new Random(); 	
+	Random rand = new Random();
+
+	AchievementsPanelNew achievementsNew;
 	
 	public GameFrame(Game game) {
 		this.game = game;
 		
 		achievements = new AchievementsPanel(game);
+		achievementsNew = new AchievementsPanelNew(game);
 		playGame = new PlayGamePanel(game);
 		this.setMinimumSize(new Dimension(800, 600));
 		getContentPane().setLayout(new CardLayout(0, 0));
@@ -40,6 +43,7 @@ public class GameFrame extends JFrame {
 		mainMenu.getAchievementsButton().addMouseListener(new GameAchievementsController(this));
 		
 		achievements.getBackButton().addMouseListener(new BackToMainMenuController(this));
+		achievementsNew.getMainMenuButton().addMouseListener(new BackToMainMenuController(this));
 		
 		playGame.getBackButton().addMouseListener(new ExitLevelController(this, playGame));
 		playGame.getCompletedBackButton().addMouseListener(new ExitLevelController(this, playGame));
@@ -55,11 +59,15 @@ public class GameFrame extends JFrame {
 			levelSelect.getLevelButton(filename).addMouseListener(new PlayGameController(this, filename));
 		}
 		
+		for (String filename : achievementsNew.getLevelButtons().keySet()) {
+			achievementsNew.getLevelButton(filename).addMouseListener(new AchievementsSwitchLevelController(this, filename));
+		}
+		
 		getContentPane().add(splash, "Splash");
 		getContentPane().add(mainMenu, "Main Menu");
 		getContentPane().add(playGame, "Play Game");
 		getContentPane().add(levelSelect, "Level Select");
-		getContentPane().add(achievements, "Achievements");
+		getContentPane().add(achievementsNew, "AchievementsNew");
 	}
 
 	public void setBoard(Board board) {
@@ -72,6 +80,10 @@ public class GameFrame extends JFrame {
 	
 	public LevelSelectPanel getLevelSelectPanel(){
 		return levelSelect;
+	}
+	
+	public AchievementsPanelNew getAchievementsPanel(){
+		return achievementsNew;
 	}
 
 	public long getSeed() {
