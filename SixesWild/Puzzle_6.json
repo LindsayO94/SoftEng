@@ -1,12 +1,12 @@
 {
-  "levelNumber": 4,
-  "locked": true,
-  "isWon": false,
-  "highScore": 0,
-  "type": "Release",
+  "levelNumber": 6,
+  "locked": false,
+  "isWon": true,
+  "highScore": 140,
+  "type": "Puzzle",
   "startingConfig": [
     [
-      "INACTIVE_CELL",
+      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
@@ -23,7 +23,18 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL"
     ],
@@ -36,14 +47,14 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "BASKET_CELL"
+      "TILE_CELL"
     ],
     [
-      "BASKET_CELL",
       "TILE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
-      "BASKET_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
@@ -55,7 +66,18 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "BASKET_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL"
+    ],
+    [
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
+      "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL"
@@ -64,43 +86,21 @@
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "TILE_CELL",
-      "INACTIVE_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "TILE_CELL",
-      "INACTIVE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL"
     ],
     [
-      "INACTIVE_CELL",
-      "TILE_CELL",
-      "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "BASKET_CELL",
-      "TILE_CELL"
-    ],
-    [
-      "TILE_CELL",
-      "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL",
       "TILE_CELL",
-      "TILE_CELL",
-      "BASKET_CELL",
       "TILE_CELL",
       "TILE_CELL"
     ]
@@ -108,10 +108,10 @@
   "frequency": [
     10,
     10,
-    3,
-    3,
-    3,
-    0
+    10,
+    10,
+    10,
+    5
   ],
   "multiplierFrequency": [
     10,
@@ -121,7 +121,7 @@
   "numSwap": 3,
   "numRemove": 3,
   "numShuffle": 3,
-  "maxMoves": 20,
+  "maxMoves": 3,
   "maxTime": 120,
   "numBaskets": 0,
   "numActiveCells": 81,
